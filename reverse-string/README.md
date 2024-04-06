@@ -1,6 +1,6 @@
 # Reverse string
 
-Utiliza lo aprendido sobre prompt engineering para crear una **función en javascript que invierta el orden de una cadena de texto**. 
+Crea una **función en javascript que invierta el orden de una cadena de texto**. 
 
 Ejemplo: si introduzco `AI4Devs` devuelve `sveD4IA`. 
 
