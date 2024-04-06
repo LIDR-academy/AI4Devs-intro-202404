@@ -1,3 +1,5 @@
+This document and the development journey of the Reverse String application were crafted with the assistance of GPT-4, showcasing the collaborative process between human creativity and AI capabilities.
+
 # Reverse String App Development Journey
 
 Follow the journey of creating a web application for reversing strings, including enhancements and functionalities based on specific prompts.
@@ -51,3 +53,7 @@ This document encapsulates the progression of building a simple yet functional R
 ### 11. Including Document Creation Prompts
 
 **Prompt:** Include in the document these last two prompts in which I ask you to generate the markdown.
+
+### 12. Highlighting GPT-4's Role
+
+**Prompt:** Add to .md that I have done this code with GPT 4 at the begining
