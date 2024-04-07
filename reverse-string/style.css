@@ -48,3 +48,11 @@ button:hover {
 .output-container {
     margin-top: 1.5rem;
 }
+
+#copyButton {
+    background-color: #6c757d;
+}
+
+#copyButton:hover {
+    background-color: #5a6268;
+}
