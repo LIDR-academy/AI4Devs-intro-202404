@@ -18,8 +18,13 @@ body {
 
 .input-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 1.5rem;
+}
+
+.input-container input {
+    margin-bottom: 0.5rem;
 }
 
 input {
@@ -38,15 +43,10 @@ button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     cursor: pointer;
-    margin-left: 0.5rem;
 }
 
 button:hover {
     background-color: #0056b3;
-}
-
-.output-container {
-    margin-top: 1.5rem;
 }
 
 #copyButton {
@@ -55,4 +55,8 @@ button:hover {
 
 #copyButton:hover {
     background-color: #5a6268;
+}
+
+.output-container {
+    margin-top: 1.5rem;
 }
