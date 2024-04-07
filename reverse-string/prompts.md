@@ -38,6 +38,3 @@ Podrías poner un salto de línea entre la caja de texto y el botón de reverse?
 
 ### Añadir salto de línea en CSS
 Podrías poner los saltos de línea en el css?
-
-### Arreglar estilo del botón reverse
-Podrías hacer que el botón de reverse esté centrado como el botón de Copy?
