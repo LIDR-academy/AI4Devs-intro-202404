@@ -31,3 +31,6 @@ add related icons to both buttons positioned to the right
 Fix the following mistakes:
 Align the reverse button with the text input
 Hide the Copy button and only show it when the reversed text is visible
+
+## Fifth prompt
+review the `#copy-button` styles as the 'Copy' button gets visible on first load
