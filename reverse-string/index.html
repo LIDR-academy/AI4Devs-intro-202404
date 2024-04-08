@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+    <title>Reverse String</title>
+    <script src="script.js"></script>
 </head>
 <body>
-<script src="script.js"></script>
+   <h1>Revertir Cadena de Texto</h1>
+
+  <label for="inputString">Cadena origen:</label>
+  <input type="text" id="inputString" placeholder="Ingrese la cadena que desea invertir" onkeypress="handleKeyPress(event)">
+
+  <button id="buttonString">Revertir</button>
+
+  <p id="output"></p>
+
+  <script>
+    document.getElementById('buttonString').addEventListener('click', reverseStringHandler);
+  </script>
 </body>
 </html>
