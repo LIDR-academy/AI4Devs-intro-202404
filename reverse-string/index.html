@@ -94,14 +94,14 @@
   <div class="container">
     <h1>Reverse String</h1>
     <div class="input-container">
-      <input type="text" id="input-text" placeholder="Enter text to reverse">
-      <button onclick="reverseText()">
+      <input type="text" id="input-text" placeholder="Enter text to reverse" aria-label="Input text to reverse">
+      <button onclick="reverseText()" aria-label="Reverse text">
         Reverse
         <i class="fas fa-redo-alt"></i>
       </button>
     </div>
-    <div id="reversed-text"></div>
-    <button id="copy-button" onclick="copyToClipboard()">
+    <div id="reversed-text" aria-live="polite"></div>
+    <button id="copy-button" onclick="copyToClipboard()" aria-label="Copy reversed text" tabindex="0" style="display: none;">
       Copy
       <i class="fas fa-copy"></i>
     </button>

@@ -37,3 +37,6 @@ review the `#copy-button` styles as the 'Copy' button gets visible on first load
 
 ## Sixth prompt
 Get rid of the `display: flex` attribute definition inside the `#copy-button` css selector
+
+## Seventh prompt
+check for accessibility missing attributes and keyboard navigation features
