@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+    <title>Reverse String</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        #reverseButton {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-<script src="script.js"></script>
+    <h1>Reverse String</h1>
+    <input type="text" id="stringInput" placeholder="Enter string here" />
+    <button id="reverseButton">Reverse 🔁</button>
+    <input type="text" id="reversedStringOutput" readonly />
+    <script src="script.js"></script>
 </body>
 </html>
