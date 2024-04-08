@@ -34,3 +34,6 @@ Hide the Copy button and only show it when the reversed text is visible
 
 ## Fifth prompt
 review the `#copy-button` styles as the 'Copy' button gets visible on first load
+
+## Sixth prompt
+Get rid of the `display: flex` attribute definition inside the `#copy-button` css selector
