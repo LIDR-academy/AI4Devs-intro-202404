@@ -26,3 +26,8 @@ add a 'copy to clipboard button' below the reversed text only visible when the r
 
 ## Third prompt
 add related icons to both buttons positioned to the right
+
+## Fourth prompt
+Fix the following mistakes:
+Align the reverse button with the text input
+Hide the Copy button and only show it when the reversed text is visible

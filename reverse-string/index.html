@@ -25,13 +25,19 @@
       text-align: center;
     }
 
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
     input {
       width: 300px;
       padding: 10px;
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      margin-bottom: 10px;
+      margin-right: 10px;
     }
 
     button {
@@ -88,11 +94,13 @@
 <body>
   <div class="container">
     <h1>Reverse String</h1>
-    <input type="text" id="input-text" placeholder="Enter text to reverse">
-    <button onclick="reverseText()">
-      Reverse
-      <i class="fas fa-redo-alt"></i>
-    </button>
+    <div class="input-container">
+      <input type="text" id="input-text" placeholder="Enter text to reverse">
+      <button onclick="reverseText()">
+        Reverse
+        <i class="fas fa-redo-alt"></i>
+      </button>
+    </div>
     <div id="reversed-text"></div>
     <button id="copy-button" onclick="copyToClipboard()">
       Copy
