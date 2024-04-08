@@ -1,3 +1,9 @@
+CHATBOT: [Claude](https://claude.ai/login)
+
+PROMPTS:
+
+------
+
 Actuando como experto desarrollador Javascript, se requiere crear una función llamada reverseString que reciba por parámetro una cadena de texto y devuelva en orden inverso la misma cadena. Ejemplo: se recibe el valor "AI4Devs", entonces devuelve el valor \`sveD4IA\`.
 
 -----
