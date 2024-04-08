@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100vh;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+input[type="text"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 30%;
+    font-size: 18px; /* Adjust font size */
+}
+
+button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    border-radius: 5px; /* Rounded corners */
+}
+
+#reverseButton {
+    background-color: #4a90e2; /* Lighter blue */
+    color: white;
+}
+
+#copyButton {
+    background-color: grey;
+    color: white;
+}
+
+#reversedString {
+    margin-top: 10px;
+}
+
+.heading {
+    font-size: 24px; /* Adjust heading font size */
+}
+
+button i {
+    margin-left: 5px; /* Adjust icon spacing */
+}

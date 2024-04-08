@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+    <title>Reverse String</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include an icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-<script src="script.js"></script>
+    <div class="container">
+        <h1 class="heading">Reverse String</h1>
+        <input type="text" id="inputText" placeholder="Hello, welcome to AI4Devs">
+        <button id="reverseButton" onclick="updateReversedString()">Reverse <i class="fas fa-reply"></i></button>
+        <div id="reversedString"></div>
+        <button id="copyButton" onclick="copyToClipboard()">Copy <i class="far fa-copy"></i></button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
