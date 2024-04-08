@@ -20,3 +20,6 @@ html structure:
 ```
 
 design sample image: "./res/reverse string.png"
+
+## Second prompt
+add a 'copy to clipboard button' below the reversed text only visible when the reversed text is shown. The text of the button must be 'Copy' and the styling is based on the sample image provided previously

@@ -52,6 +52,22 @@
       font-weight: bold;
       margin-top: 10px;
     }
+
+    #copy-button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #copy-button:hover {
+      background-color: #218838;
+    }
   </style>
 </head>
 <body>
@@ -60,6 +76,7 @@
     <input type="text" id="input-text" placeholder="Enter text to reverse">
     <button onclick="reverseText()">Reverse</button>
     <div id="reversed-text"></div>
+    <button id="copy-button" onclick="copyToClipboard()">Copy</button>
   </div>
 
   <script src="script.js"></script>
