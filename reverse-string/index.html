@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reverse String</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -41,6 +42,13 @@
       font-size: 16px;
       border-radius: 4px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button i {
+      margin-left: 8px;
     }
 
     button:hover {
@@ -63,6 +71,13 @@
       cursor: pointer;
       margin-top: 10px;
       display: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #copy-button i {
+      margin-left: 8px;
     }
 
     #copy-button:hover {
@@ -74,9 +89,15 @@
   <div class="container">
     <h1>Reverse String</h1>
     <input type="text" id="input-text" placeholder="Enter text to reverse">
-    <button onclick="reverseText()">Reverse</button>
+    <button onclick="reverseText()">
+      Reverse
+      <i class="fas fa-redo-alt"></i>
+    </button>
     <div id="reversed-text"></div>
-    <button id="copy-button" onclick="copyToClipboard()">Copy</button>
+    <button id="copy-button" onclick="copyToClipboard()">
+      Copy
+      <i class="fas fa-copy"></i>
+    </button>
   </div>
 
   <script src="script.js"></script>
