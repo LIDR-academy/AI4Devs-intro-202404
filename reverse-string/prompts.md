@@ -1,1 +1,2 @@
 
+Hola necesito que te comportes como un experto en desarrollo frontend. Requiero que basado en un archivo index.html y un script.js me generes un sistema básico para recibir un texto y que con un botón realice un reverse del texto llamando una función en javascript que se encuentre en el archivo script.js
