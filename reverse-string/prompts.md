@@ -110,3 +110,11 @@ for this code:
 Can you include valid and significant icon names? right now all I see on the front end side are "send" where the send icon should be, and "file_copy" where the file copy icon should be.
 
 Remember that you have already imported the font awesome library, so pick some icon from there
+
+sixth prompt:
+
+something is odd, looks like when we call the function reverseString on line 35, we are not sending any param; we should be sending the string that we imput on the line 30, right? 
+
+seventh prompt:
+
+let's rollback that last one and instead of adding a param, create a wrapper for the reverseStringFunction where we grab the prop directly from the element; something similar to what we are doing on the first couple of lines for the copyToClipboard function 

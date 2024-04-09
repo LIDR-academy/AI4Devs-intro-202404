@@ -1,4 +1,13 @@
 /**
+     * Reverses the input string and updates the output field with the reversed string.
+     */
+function reverseStringWrapper() {
+    const input = document.getElementById('inputText').value;
+    const reversed = reverseString(input);
+    document.getElementById('outputText').value = reversed;
+}
+
+/**
  * Reverses a given string.
  * @param {string} str - The input string to be reversed.
  * @returns {string} - The reversed string.
