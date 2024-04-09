@@ -22,12 +22,18 @@ function reverseString(str) {
     return str.split('').reverse().join('');
 }
 
-/**
- * Copies the content of the output text field to the clipboard.
- */
-function copyToClipboard() {
-    const outputText = document.getElementById('outputText');
-    outputText.select();
-    document.execCommand('copy');
-    M.toast({html: 'Copied to clipboard!'});
+ /**
+     * Copies the content of the output text field to the clipboard using Clipboard API.
+     */
+ function copyToClipboard() {
+    const outputText = document.getElementById('outputText').value;
+
+    navigator.clipboard.writeText(outputText)
+        .then(() => {
+            M.toast({html: 'Copied to clipboard!'});
+        })
+        .catch((error) => {
+            console.error('Unable to copy to clipboard:', error);
+            M.toast({html: 'Failed to copy to clipboard'});
+        });
 }

@@ -1,8 +1,8 @@
-First prompt:
+### Prompt 1:
 
-hi, I have an almost empty repository with the following scripts:
+Hi, I have an almost empty repository with the following scripts:
 
-//index.html
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,16 +14,18 @@ hi, I have an almost empty repository with the following scripts:
 <script src="script.js"></script>
 </body>
 </html>
+```
 
-//script.js
+```javascript
+// script.js
 
 // this script is empty =(
+```
 
-And what I want you to help pme create is a reverseStrign function.
-the reverseString function should be created using only javascript, with no other library on top, and should take in considerations any edge case, like script injecting, and so on.
+And what I want you to help me create is a `reverseString` function.
+The `reverseString` function should be created using only JavaScript, with no other library on top, and should take in considerations any edge case, like script injecting, and so on.
 
-Once the function is created, please generate a suite of unit test that will be used to validate the function, please include edge cases that you consider useful, like testing strings with no printable characters, numbers and other primitives, etc.
-
+Once the function is created, please generate a suite of unit tests that will be used to validate the function, please include edge cases that you consider useful, like testing strings with no printable characters, numbers and other primitives, etc.
 After that, please, update the index-html file to add material ui library and create a form.
 
 The form will have the following components ordered from top to bottom:
@@ -32,22 +34,23 @@ The form will have the following components ordered from top to bottom:
 - then we will have a button with the label "Reverse" and a related icon
 -after that we will have a label component that will display the reversed string once a user clicks on the Reverse button (using our reverseString function.
 
+### Prompt 2:
 
-Second prompt:
+I forgot asking you for a button to copy, please use a secondary-button style and the "copy" label and a related icon for that button and create a function to copy the reversed string to the clipboard.
 
-I forgot asking you for a button to copy, please use a secondary-button style and the "copy" label and a related icon for that button and create a function to copy the reversed string to the clipboard
+### Prompt 3:
 
-third prompt:
+Now, can you go ahead and put all the JavaScript in the file `script.js`? Please also make sure to show me the updated `index.html`, create unit tests, and JSDocs for all the JavaScript functions.
 
-now, can you go ahead and put all the javascript on the file scripts.js?. Please also make sure to show me the updated index.html, create unit tests and JSDocs for all the javascript functions.
+### Prompt 4:
 
+Very good, some minor details: let's make sure that all the tests are inside a file called `script.test.js` and they are called after initialization.
 
-fourth prompt:
-very good, some minor details:  let's make sure that all the tests are inside a file called scrpit.test.js and they are called after initialization.
+### Prompt 5:
 
-fifth prompt:
+For this code:
 
-for this code:
+```html
 
 <!DOCTYPE html>
 <html lang="en">
@@ -106,15 +109,25 @@ for this code:
 <script src="script.test.js"></script>
 </body>
 </html>
+```
 
-Can you include valid and significant icon names? right now all I see on the front end side are "send" where the send icon should be, and "file_copy" where the file copy icon should be.
+Can you include valid and significant icon names? Right now all I see on the front end side are "send" where the send icon should be, and "file_copy" where the file copy icon should be.
 
-Remember that you have already imported the font awesome library, so pick some icon from there
+Remember that you have already imported the Font Awesome library, so pick some icon from there.
 
-sixth prompt:
+### Prompt 6:
 
-something is odd, looks like when we call the function reverseString on line 35, we are not sending any param; we should be sending the string that we imput on the line 30, right? 
+Something is odd, looks like when we call the function `reverseString` on line 35, we are not sending any param; we should be sending the string that we input on line 30, right?
 
-seventh prompt:
+### Prompt 7:
 
-let's rollback that last one and instead of adding a param, create a wrapper for the reverseStringFunction where we grab the prop directly from the element; something similar to what we are doing on the first couple of lines for the copyToClipboard function 
+Let's rollback that last one and instead of adding a param, create a wrapper for the `reverseString` function where we grab the prop directly from the element; something similar to what we are doing on the first couple of lines for the `copyToClipboard` function.
+
+### Prompt 8:
+
+The `copyToClipboard` function is not working, I get the following message:
+The signature '(commandId: string, showUI?: boolean | undefined, value?: string | undefined): boolean' of 'document.execCommand' is deprecated.
+
+### Prompt 9:
+
+ Can you beautify this .md file?
