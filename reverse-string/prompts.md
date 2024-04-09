@@ -40,3 +40,7 @@ I forgot asking you for a button to copy, please use a secondary-button style an
 third prompt:
 
 now, can you go ahead and put all the javascript on the file scripts.js?. Please also make sure to show me the updated index.html, create unit tests and JSDocs for all the javascript functions.
+
+
+fourth prompt:
+very good, some minor details:  let's make sure that all the tests are inside a file called scrpit.test.js and they are called after initialization.
