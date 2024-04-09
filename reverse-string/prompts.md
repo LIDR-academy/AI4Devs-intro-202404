@@ -32,3 +32,7 @@ The form will have the following components ordered from top to bottom:
 - then we will have a button with the label "Reverse" and a related icon
 -after that we will have a label component that will display the reversed string once a user clicks on the Reverse button (using our reverseString function.
 
+
+Second prompt:
+
+I forgot asking you for a button to copy, please use a secondary-button style and the "copy" label and a related icon for that button and create a function to copy the reversed string to the clipboard

@@ -42,6 +42,11 @@
                     <label for="outputText">Reversed String</label>
                 </div>
             </div>
+            <div class="row">
+                <button id="copyBtn" class="btn waves-effect waves-light secondary-button" type="button" onclick="copyToClipboard()">Copy
+                    <i class="material-icons right">file_copy</i>
+                </button>
+            </div>
         </form>
     </div>
 </div>
@@ -52,6 +57,13 @@
         const input = document.getElementById('inputText').value;
         const reversed = reverseString(input);
         document.getElementById('outputText').value = reversed;
+    }
+
+    function copyToClipboard() {
+        const outputText = document.getElementById('outputText');
+        outputText.select();
+        document.execCommand('copy');
+        M.toast({html: 'Copied to clipboard!'});
     }
 </script>
 </body>
