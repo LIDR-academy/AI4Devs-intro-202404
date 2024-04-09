@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
+    <title>Reverse String</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<script src="script.js"></script>
+    <div class="container">
+        <h1>Reverse String</h1>
+        <input type="text" id="inputText" class="input-text" placeholder="Hello, welcome to AI4Devs">
+        <button onclick="reverseInputText()" class="action-button">Reverse</button>
+        <div id="reversedText" class="output-text"></div>
+        <button onclick="copyToClipboard()" class="action-button copy-button">Copy</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
