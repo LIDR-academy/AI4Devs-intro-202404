@@ -36,3 +36,7 @@ The form will have the following components ordered from top to bottom:
 Second prompt:
 
 I forgot asking you for a button to copy, please use a secondary-button style and the "copy" label and a related icon for that button and create a function to copy the reversed string to the clipboard
+
+third prompt:
+
+now, can you go ahead and put all the javascript on the file scripts.js?. Please also make sure to show me the updated index.html, create unit tests and JSDocs for all the javascript functions.

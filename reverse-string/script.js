@@ -1,5 +1,3 @@
-// script.js
-
 /**
  * Reverses a given string.
  * @param {string} str - The input string to be reversed.
@@ -15,27 +13,12 @@ function reverseString(str) {
     return str.split('').reverse().join('');
 }
 
-// Unit tests
-function runTests() {
-    try {
-        // Test normal string
-        console.log(reverseString('hello') === 'olleh');
-
-        // Test empty string
-        console.log(reverseString('') === '');
-
-        // Test string with numbers
-        console.log(reverseString('12345') === '54321');
-
-        // Test string with special characters
-        console.log(reverseString('!@#$%^&*()') === ')(*&^%$#@!');
-
-        // Test non-string input
-        console.log(reverseString(123) === ''); // Should throw an error
-    } catch (error) {
-        console.error('Test failed:', error.message);
-    }
+/**
+ * Copies the content of the output text field to the clipboard.
+ */
+function copyToClipboard() {
+    const outputText = document.getElementById('outputText');
+    outputText.select();
+    document.execCommand('copy');
+    M.toast({html: 'Copied to clipboard!'});
 }
-
-// Run the tests
-runTests();
