@@ -63,7 +63,8 @@ class Stopwatch {
     const minutes = Math.floor((currentTime % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((currentTime % (1000 * 60)) / 1000);
     const milliseconds = currentTime % 1000;
-    this.timeElement.textContent = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}.${this.pad(milliseconds, 3)}`;
+    this.timeElement.textContent = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+    this.timeElement.innerHTML += `<span class="milliseconds">${this.pad(milliseconds, 3)}</span>`;
   }
 
   pad(value, length = 2) {

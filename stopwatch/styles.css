@@ -1,18 +1,31 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f0f0f0;
-  transition: background-color 0.3s ease;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .stopwatch {
-  margin-top: 50px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .time {
   font-size: 72px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.time .milliseconds {
+  font-size: 36px;
+  vertical-align: top;
 }
 
 .controls button {
@@ -35,7 +48,7 @@ body {
 }
 
 .controls .continue {
-  background-color: #007bff;
+  background-color: #4CAF50;
   color: white;
 }
 
@@ -50,5 +63,5 @@ body {
 }
 
 body.paused {
-  background: linear-gradient(to bottom, #007bff 0%, #0056b3 100%);
+  background-color: white;
 }
