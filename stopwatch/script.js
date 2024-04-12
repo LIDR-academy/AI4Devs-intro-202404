@@ -59,11 +59,16 @@ class Stopwatch {
   }
 
   updateTime() {
-    const currentTime = Date.now() - this.startTime + this.elapsedTime;
-    const hours = Math.floor(currentTime / (1000 * 60 * 60));
-    const minutes = Math.floor((currentTime % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((currentTime % (1000 * 60)) / 1000);
-    const milliseconds = currentTime % 1000;
+    let hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
+
+    if (this.startTime !== null) {
+      const currentTime = Date.now() - this.startTime + this.elapsedTime;
+      hours = Math.floor(currentTime / (1000 * 60 * 60));
+      minutes = Math.floor((currentTime % (1000 * 60 * 60)) / (1000 * 60));
+      seconds = Math.floor((currentTime % (1000 * 60)) / 1000);
+      milliseconds = currentTime % 1000;
+    }
+
     this.timeElement.textContent = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
     this.millisecondsElement.textContent = this.pad(milliseconds, 3);
   }
