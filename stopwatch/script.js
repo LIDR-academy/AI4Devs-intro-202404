@@ -1,6 +1,6 @@
 class Stopwatch {
   constructor() {
-    this.timeElement = document.querySelector('.time');
+    this.displayTimeElement = document.querySelector('.display-time');
     this.millisecondsElement = document.querySelector('.milliseconds');
     this.startBtn = document.getElementById('start-btn');
     this.clearBtn = document.getElementById('clear-btn');
@@ -69,7 +69,7 @@ class Stopwatch {
       milliseconds = currentTime % 1000;
     }
 
-    this.timeElement.textContent = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+    this.displayTimeElement.textContent = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
     this.millisecondsElement.textContent = this.pad(milliseconds, 3);
   }
 

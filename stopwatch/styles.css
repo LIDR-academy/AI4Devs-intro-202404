@@ -22,13 +22,13 @@ h1 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.time {
+.display-time {
   font-size: 72px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-.time .milliseconds {
+.milliseconds {
   font-size: 36px;
   vertical-align: top;
 }
