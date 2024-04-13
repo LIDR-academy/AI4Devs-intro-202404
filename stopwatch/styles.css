@@ -1,0 +1,26 @@
+.hidden {
+    display: none;
+  }
+  
+  #stopwatch, #countdown {
+    text-align: center;
+  }
+  
+  .number {
+    width: 50px; /* Set the width as needed */
+    height: 50px; /* Set the height as needed */
+    margin: 5px;
+    /* Add more styling as needed */
+  }
+  
+  .display {
+    margin-bottom: 20px;
+    /* Add more styling as needed */
+  }
+  
+  .back {
+    display: block;
+    margin-top: 20px;
+    /* Add more styling as needed */
+  }
+  

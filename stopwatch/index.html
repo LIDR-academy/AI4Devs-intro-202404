@@ -7,7 +7,43 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
+
+<div id="main-menu">
+  <button id="stopwatch-btn">Stopwatch</button>
+  <button id="countdown-btn">Countdown</button>
+</div>
+
+<div id="stopwatch" class="hidden">
+  <div class="display">
+    <span id="time">00:00:00</span>
+  </div>
+  <button id="start">Start</button>
+  <button id="clear">Clear</button>
+  <button id="back1" class="back">Back</button>
+</div>
+
+<div id="countdown" class="hidden">
+  <div class="display">
+    <span id="timer">00:00:00</span>
+  </div>
+  <div id="numeric-keypad" class="hidden">
+    <button class="number">0</button>
+    <button class="number">1</button>
+    <button class="number">2</button>
+    <button class="number">3</button>
+    <button class="number">4</button>
+    <button class="number">5</button>
+    <button class="number">6</button>
+    <button class="number">7</button>
+    <button class="number">8</button>
+    <button class="number">9</button>
+    <!-- Add more number buttons here -->
+    <button id="set">Set</button>
+    <button id="clear-countdown">Clear</button>
+  </div>
+  <button id="back2" class="back">Back</button>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
