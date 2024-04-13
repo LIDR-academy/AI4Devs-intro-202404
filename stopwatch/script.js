@@ -25,19 +25,19 @@ class Stopwatch {
   }
 
   start() {
-    this.startTime = Date.now() - this.elapsedTime;
-    this.timerId = setInterval(this.updateTime.bind(this), 10);
-    this.isRunning = true;
-    this.startBtn.textContent = 'Pause';
-    this.startBtn.classList.remove('start');
-    this.startBtn.classList.add('pause');
-    this.clearBtn.classList.remove('disabled');
-    document.body.classList.remove('paused');
+    if (!this.isRunning) {
+      this.startTime = Date.now() - this.elapsedTime;
+      this.timerId = setInterval(this.updateTime.bind(this), 10);
+      this.isRunning = true;
+      this.startBtn.textContent = 'Pause';
+      this.startBtn.classList.remove('continue');
+      this.startBtn.classList.add('pause');
+      document.body.classList.remove('paused');
+    }
   }
 
   pause() {
     clearInterval(this.timerId);
-    this.elapsedTime = Date.now() - this.startTime;
     this.isRunning = false;
     this.startBtn.textContent = 'Continue';
     this.startBtn.classList.remove('pause');
@@ -59,18 +59,17 @@ class Stopwatch {
   }
 
   updateTime() {
-    let hours = 0, minutes = 0, seconds = 0, milliseconds = 0;
-
     if (this.startTime !== null) {
-      const currentTime = Date.now() - this.startTime + this.elapsedTime;
-      hours = Math.floor(currentTime / (1000 * 60 * 60));
-      minutes = Math.floor((currentTime % (1000 * 60 * 60)) / (1000 * 60));
-      seconds = Math.floor((currentTime % (1000 * 60)) / 1000);
-      milliseconds = currentTime % 1000;
-    }
+      const currentTime = Date.now();
+      this.elapsedTime = currentTime - this.startTime;
+      let hours = Math.floor(this.elapsedTime / (1000 * 60 * 60));
+      let minutes = Math.floor((this.elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((this.elapsedTime % (1000 * 60)) / 1000);
+      let milliseconds = this.elapsedTime % 1000;
 
-    this.displayTimeElement.textContent = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
-    this.millisecondsElement.textContent = this.pad(milliseconds, 3);
+      this.displayTimeElement.textContent = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+      this.millisecondsElement.textContent = this.pad(milliseconds, 3);
+    }
   }
 
   pad(value, length = 2) {
