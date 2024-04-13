@@ -4,6 +4,7 @@ class Stopwatch {
     this.millisecondsElement = document.querySelector('.milliseconds');
     this.startBtn = document.getElementById('start-btn');
     this.clearBtn = document.getElementById('clear-btn');
+    this.clearBtn.classList.add('disabled');
     this.startTime = null;
     this.elapsedTime = 0;
     this.timerId = null;
@@ -32,6 +33,7 @@ class Stopwatch {
       this.startBtn.textContent = 'Pause';
       this.startBtn.classList.remove('continue');
       this.startBtn.classList.add('pause');
+      this.clearBtn.classList.remove('disabled');
       document.body.classList.remove('paused');
     }
   }
@@ -51,6 +53,8 @@ class Stopwatch {
     this.elapsedTime = 0;
     this.isRunning = false;
     this.updateTime();
+    this.displayTimeElement.textContent = '00:00:00';
+    this.millisecondsElement.textContent = '000';
     this.startBtn.textContent = 'Start';
     this.startBtn.classList.remove('pause', 'continue');
     this.startBtn.classList.add('start');
