@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,16 @@
 </head>
 <body>
 <h1>Timer and Countdown</h1>
+<div id="timer-container">
+    <div id="timer-display">
+        <input id="time-main" type="text" value="00:00:00" readonly />
+        <span id="time-ms">000</span>
+    </div>
+    <div class="button-row">
+        <button id="start-pause">Start</button>
+        <button id="clear">Clear</button>
+    </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
