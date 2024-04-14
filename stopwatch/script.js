@@ -1,57 +1,41 @@
-/* script.js */
-
-let timerInterval;
+let timer;
+let isRunning = false;
 let startTime;
-let running = false;
+let elapsedTime = 0;
 
-const timerDisplay = document.getElementById('timer');
-const millisecondsDisplay = document.getElementById('milliseconds');
-const startButton = document.getElementById('start');
-const clearButton = document.getElementById('clear');
-
-function startTimer() {
-  if (!running) {
-    running = true;
-    startButton.textContent = 'Stop';
-    startButton.style.backgroundColor = 'orange';
-    startTime = Date.now() - (timerInterval ? timerInterval : 0);
-    timerInterval = setInterval(updateTimer, 10);
-  } else {
-    running = false;
-    startButton.textContent = 'Start';
-    startButton.style.backgroundColor = 'green';
-    clearInterval(timerInterval);
-  }
+function startStop() {
+    if (isRunning) {
+        clearInterval(timer);
+        document.getElementById("startStopButton").innerText = "Start";
+        document.getElementById("startStopButton").classList.remove("stopButton");
+        isRunning = false;
+    } else {
+        startTime = Date.now() - elapsedTime;
+        timer = setInterval(updateDisplay, 10);
+        document.getElementById("startStopButton").innerText = "Stop";
+        document.getElementById("startStopButton").classList.add("stopButton");
+        isRunning = true;
+    }
 }
 
-function updateTimer() {
-  const elapsedTime = Date.now() - startTime;
-  const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
-  const minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
-  const milliseconds = elapsedTime % 1000;
-
-  timerDisplay.textContent = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
-  millisecondsDisplay.textContent = formatMilliseconds(milliseconds);
+function clearTime() {
+    clearInterval(timer);
+    document.getElementById("time").innerText = "00:00:00";
+    document.getElementById("milliseconds").innerText = "000";
+    document.getElementById("startStopButton").innerText = "Start";
+    document.getElementById("startStopButton").classList.remove("stopButton");
+    isRunning = false;
+    elapsedTime = 0;
 }
 
-function formatTime(time) {
-  return time < 10 ? `0${time}` : time;
+function updateDisplay() {
+    let currentTime = Date.now();
+    elapsedTime = currentTime - startTime;
+    let formattedTime = new Date(elapsedTime).toISOString().substr(11, 8);
+    let formattedMilliseconds = String(elapsedTime).slice(-3).padStart(3, "0");
+    document.getElementById("time").innerText = formattedTime;
+    document.getElementById("milliseconds").innerText = formattedMilliseconds;
 }
 
-function formatMilliseconds(milliseconds) {
-  return milliseconds < 10 ? `00${milliseconds}` : milliseconds < 100 ? `0${milliseconds}` : milliseconds;
-}
-
-function clearTimer() {
-  clearInterval(timerInterval);
-  timerInterval = null;
-  running = false;
-  timerDisplay.textContent = '00:00:00';
-  millisecondsDisplay.textContent = '000';
-  startButton.textContent = 'Start';
-  startButton.style.backgroundColor = 'green';
-}
-
-startButton.addEventListener('click', startTimer);
-clearButton.addEventListener('click', clearTimer);
+document.getElementById("startStopButton").addEventListener("click", startStop);
+document.getElementById("clearButton").addEventListener("click", clearTime);

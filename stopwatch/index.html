@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stopwatch</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="container">
-  <div id="principal-box">
-    <div id="timer">00:00:00</div>
-    <div id="milliseconds">000</div>
-  </div>
-  <div>
-    <button id="start">Start</button>
-    <button id="clear">Clear</button>
-  </div>
-</div>
-<script src="script.js"></script>
+    <div id="stopwatch" class="container">
+        <div id="display" class="display">
+            <span id="time">00:00:00</span><br>
+            <span id="milliseconds">000</span>
+        </div>
+        <button id="startStopButton" class="startButton">Start</button>
+        <button id="clearButton" class="clearButton">Clear</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
