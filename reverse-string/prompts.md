@@ -1,1 +1,17 @@
-Create a html+js website where you input a string up to 100 chars length, click on a button "Reverse 🔄" and below you can see the text reversed. Below, there is a button "Copy 📋" that copies the content to the clipboard and shows a plain text "Copied to clipboard!" to the right of the button. Button should only appears once there is reversed text. Styles should be fresh and flat, similar to bootstrap library. Use functions to better decouple and structure the code in script.js
+Para el siguiente html:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>    
+</head>
+<body>
+<script src="script.js"></script>
+</body>
+</html>
+
+Crea una **función en javascript que invierta el orden de una cadena de texto**. 
+Ejemplo: si introduzco `AI4Devs` devuelve `sveD4IA`.
+
+La función estará en el archivo script.js, necesito el codigo para este archivo y si es necesario tambien los cambios en el html
