@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Stopwatch</title>
 </head>
 <body>
-<h1>Timer and Countdown</h1>
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100">
+  <div id="stopwatch" class="border rounded-pill px-5 py-3 shadow text-center">
+    <h1 class="time" id="display">00:00:00</h1>
+    <div class="milliseconds" id="milliseconds">000</div>
+  </div>
+  <div class="button-group mt-3">
+    <button id="startStopBtn" class="btn btn-success mr-2">Start</button>
+    <button id="resetBtn" class="btn btn-danger">Clear</button>
+  </div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,54 @@
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#stopwatch {
+  background-color: #ffffff;
+  display: inline-block;
+}
+
+.time {
+  font-size: 4em;
+  margin-bottom: 0;
+}
+
+.milliseconds {
+  font-size: 1.5em;
+  vertical-align: text-bottom;
+}
+
+.button-group button {
+  width: 100px;
+  height: 45px;
+}
+
+/* Bootstrap button override */
+.btn-success {
+  background-color: #28a745;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .time {
+    font-size: 2em;
+  }
+
+  .milliseconds {
+    font-size: 1em;
+  }
+
+  .button-group button {
+    width: 80px;
+    height: 40px;
+    font-size: 0.8em;
+  }
+}
