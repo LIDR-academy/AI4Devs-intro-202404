@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch & Countdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Agregamos Font Awesome -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+    <div class="container">
+        <div class="options-container">
+            <button id="stopwatch-btn" class="option-btn"><i class="fas fa-arrow-up"></i> Stopwatch</button>
+            <button id="countdown-btn" class="option-btn"><i class="fas fa-arrow-down"></i> Countdown</button>
+        </div>
+        <div id="timer-container" class="timer-container hidden">
+            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>.<span id="milliseconds">000</span>
+        </div>
+        <div id="buttons-container" class="buttons-container hidden">
+            <button id="start-pause-btn" class="start-pause-btn">Start</button>
+            <button id="clear-btn" class="clear-btn">Clear</button>
+        </div>
+        <div id="number-pad-container" class="number-pad-container hidden">
+            <div class="number-row">
+                <button class="number-btn">7</button>
+                <button class="number-btn">8</button>
+                <button class="number-btn">9</button>
+                <button id="set-btn">Set</button>
+                <button id="clear-pad-btn">Clear</button>
+            </div>
+            <div class="number-row">
+                <button class="number-btn">4</button>
+                <button class="number-btn">5</button>
+                <button class="number-btn">6</button>
+                <button class="number-btn">1</button>
+                <button class="number-btn">2</button>
+                <button class="number-btn">3</button>
+                <button class="number-btn" id="zero-btn">0</button>
+            </div>
+        </div>
+        <div id="back-container" class="back-container hidden">
+            <button id="back-btn" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script> <!-- Agregamos Font Awesome -->
+    <script src="script.js"></script>
 </body>
 </html>

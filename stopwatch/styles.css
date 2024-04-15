@@ -1,0 +1,276 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    font-size: 1.5em; /* Increased font size */
+}
+
+.option {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-btn {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+}
+
+.option-btn i {
+    margin-right: 5px; 
+    margin-left: 5px; 
+    padding: 10px;
+}
+
+.options-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+
+.timer-container {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.timer {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.timer-digit {
+    padding: 0 5px;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+/* Add this CSS for the Start/Pause buttons */
+.buttons button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Add this CSS to change the color when button is hovered */
+.buttons button:hover {
+    background-color: darkgreen;
+}
+
+/* Add this CSS to change the color when button is clicked */
+.buttons button:active {
+    background-color: forestgreen;
+}
+
+/* Add this CSS for the Clear button */
+.buttons #clear-button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Add this CSS to change the color when button is hovered */
+.buttons #clear-button:hover {
+    background-color: darkred;
+}
+
+/* Add this CSS to change the color when button is clicked */
+.buttons #clear-button:active {
+    background-color: firebrick;
+}
+
+.start-pause-btn {
+    background-color: green; /* Color de fondo verde */
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 15px;
+    margin-right: 10px;
+    /*color: white; *//* Texto en color blanco */
+}
+
+.clear-btn {
+    background-color: red; /* Color de fondo rojo */
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 15px;
+    margin-right: 10px;
+    /*color: white; *//* Texto en color blanco */
+}
+
+.number-pad-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.number-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.number-row:last-child {
+    margin-bottom: 0; /* Eliminar el margen inferior de la última fila */
+}
+.countdown-display {
+    margin-bottom: 10px;
+}
+
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    gap: 5px;
+}
+
+
+.number-button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.number-button:hover {
+    background-color: darkgreen;
+}
+
+.number-button:active {
+    background-color: forestgreen;
+}
+
+/* Add this CSS for the countdown display */
+.countdown-display {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+
+
+
+
+.hidden {
+    display: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.timer-container {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.buttons-container {
+    margin-top: 20px;
+}
+
+.control-btn {
+    /*background-color: transparent;*/
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 15px;
+    margin-right: 10px;
+}
+
+.number-pad-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+
+.number-btn {
+    background-color: transparent;
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.number-btn, #set-btn {
+    background-color: green; /* Fondo verde para los botones de números y el botón "Set" */
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 15px;
+    margin-right: 5px; /* Espacio entre los botones */
+    color: white; /* Texto en color blanco */
+}
+
+#clear-pad-btn {
+    background-color: gray; /* Fondo gris para el botón "Clear" */
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 15px;
+    color: white; /* Texto en color blanco */
+}
+
+
+.back-btn {
+    background-color: transparent;
+    border: 2px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px 15px;
+    margin-top: 20px; /* Espacio entre el botón y los demás elementos */
+}
+
+.back-btn i {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+
+.hidden {
+    display: none;
+}
