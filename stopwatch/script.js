@@ -28,16 +28,16 @@ startBtn.addEventListener('click', () => {
     clearInterval(intervalId);
     isRunning = false;
     startBtn.textContent = "Continue";
-    // Change button color to green for "Pause" state
-    startBtn.classList.remove('btn-danger');
-    startBtn.classList.add('btn-success');
+    // Change button color to blue for "Continue" state
+    startBtn.classList.remove('btn-danger', 'btn-success');
+    startBtn.classList.add('btn-primary');
   } else {
     intervalId = setInterval(updateTime, 10);
     isRunning = true;
     startBtn.textContent = "Pause";
-    // Change button color to blue for "Start" state
-    startBtn.classList.remove('btn-success');
-    startBtn.classList.add('btn-primary');
+    // Change button color to green for "Start" state
+    startBtn.classList.remove('btn-primary', 'btn-danger');
+    startBtn.classList.add('btn-success');
   }
 });
 
