@@ -1,6 +1,7 @@
 body, html {
   height: 100%;
   margin: 0;
+  background-color: #f5f5f5;
 }
 
 .container {
@@ -9,22 +10,25 @@ body, html {
 
 #stopwatch {
   background-color: #ffffff;
-  display: inline-block;
+  width: 300px; /* Fixed width, adjust if needed */
+  border-radius: 15px; /* Rounded corners */
 }
 
 .time {
-  font-size: 4em;
+  font-size: 3em;
   margin-bottom: 0;
 }
 
 .milliseconds {
-  font-size: 1.5em;
+  font-size: 1em;
   vertical-align: text-bottom;
 }
 
-.button-group button {
-  width: 100px;
-  height: 45px;
+.button-group button, .predefined-times button {
+  width: 100px; /* Fixed width for buttons */
+  height: 45px; /* Fixed height for buttons */
+  margin: 5px;
+  border-radius: 5px; /* Rounded corners for buttons */
 }
 
 /* Bootstrap button override */
@@ -36,19 +40,27 @@ body, html {
   background-color: #dc3545;
 }
 
+.btn-secondary {
+  background-color: #6c757d;
+}
+
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
   .time {
-    font-size: 2em;
+      font-size: 2em;
   }
 
   .milliseconds {
-    font-size: 1em;
+      font-size: 0.8em;
   }
 
-  .button-group button {
-    width: 80px;
-    height: 40px;
-    font-size: 0.8em;
+  .button-group button, .predefined-times button {
+      width: 75px; /* Smaller width for buttons on small screens */
+      height: 35px; /* Smaller height for buttons on small screens */
+      font-size: 0.8em;
+  }
+  
+  #stopwatch {
+      width: 80%; /* Responsive width on small screens */
   }
 }

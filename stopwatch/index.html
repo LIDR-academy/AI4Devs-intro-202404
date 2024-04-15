@@ -9,13 +9,21 @@
 </head>
 <body>
 <div class="container d-flex flex-column align-items-center justify-content-center vh-100">
-  <div id="stopwatch" class="border rounded-pill px-5 py-3 shadow text-center">
+  <div id="stopwatch" class="stopwatch border rounded px-5 py-3 shadow text-center">
     <h1 class="time" id="display">00:00:00</h1>
     <div class="milliseconds" id="milliseconds">000</div>
   </div>
   <div class="button-group mt-3">
     <button id="startStopBtn" class="btn btn-success mr-2">Start</button>
     <button id="resetBtn" class="btn btn-danger">Clear</button>
+  </div>
+  <div class="predefined-times mt-3">
+    <button class="btn btn-secondary" onclick="setPredefinedTime(5)">5 sec</button>
+    <button class="btn btn-secondary" onclick="setPredefinedTime(10)">10 sec</button>
+    <button class="btn btn-secondary" onclick="setPredefinedTime(30)">30 sec</button>
+    <button class="btn btn-secondary" onclick="setPredefinedTime(60)">1 min</button>
+    <button class="btn btn-secondary" onclick="setPredefinedTime(300)">5 min</button>
+    <button class="btn btn-secondary" onclick="setPredefinedTime(600)">10 min</button>
   </div>
 </div>
 <script src="script.js"></script>
