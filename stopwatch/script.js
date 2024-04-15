@@ -28,21 +28,24 @@ startBtn.addEventListener('click', () => {
     clearInterval(intervalId);
     isRunning = false;
     startBtn.textContent = "Continue";
+    // Change button color to green for "Pause" state
     startBtn.classList.remove('btn-danger');
-    startBtn.classList.add('btn-primary');
+    startBtn.classList.add('btn-success');
   } else {
-    intervalId = setInterval(updateTime, 10); // Update every 10 milliseconds
+    intervalId = setInterval(updateTime, 10);
     isRunning = true;
     startBtn.textContent = "Pause";
-    startBtn.classList.remove('btn-primary');
-    startBtn.classList.add('btn-danger');
+    // Change button color to blue for "Start" state
+    startBtn.classList.remove('btn-success');
+    startBtn.classList.add('btn-primary');
   }
 });
 
 clearBtn.addEventListener('click', () => {
   clearTimer();
   startBtn.textContent = "Start";
-  startBtn.classList.remove('btn-danger', 'btn-primary');
+  // Change button color to green for "Start" state on clear
+  startBtn.classList.remove('btn-primary', 'btn-danger');
   startBtn.classList.add('btn-success');
 });
 
@@ -67,7 +70,6 @@ function updateTime() {
 
   // Update the time display
   timeDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  millisecondsDisplay.textContent = milliseconds.toString().padStart(3, '0');
 }
 
 function clearTimer() {
