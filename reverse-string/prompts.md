@@ -96,3 +96,5 @@ function copyToClipboard() {
 }
 
 Asegúrate de guardar el archivo JavaScript como script.js en la misma carpeta que tu archivo HTML para que funcione correctamente. También, ten en cuenta que he incluido la biblioteca Font Awesome para los iconos; asegúrate de tener una conexión a Internet activa para cargar los iconos desde su CDN.
+Create a html+js website where you input a string up to 100 chars length, click on a button "Reverse 🔄" and below you can see the text reversed. Below, there is a button "Copy 📋" that copies the content to the clipboard and shows a plain text "Copied to clipboard!" to the right of the button. Button should only appears once there is reversed text. Styles should be fresh and flat, similar to bootstrap library. Use functions to better decouple and structure the code in script.js
+
