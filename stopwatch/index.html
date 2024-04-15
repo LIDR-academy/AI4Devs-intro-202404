@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer and Countdown</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Timer and Countdown</h1>
+
+    <div id="main-view">
+      <button id="stopwatch-btn">Stopwatch</button>
+      <button id="countdown-btn">Countdown</button>
+    </div>
+
+    <div id="stopwatch-view" style="display: none">
+      <h2>Stopwatch</h2>
+      <div id="stopwatch-time">00:00:00.000</div>
+      <button id="start-stop-btn">Start</button>
+      <button id="reset-btn" disabled>Clear</button>
+      <button id="back-stopwatch">Back</button>
+    </div>
+
+    <div id="countdown-setup-view" style="display: none">
+      <h2>Countdown</h2>
+      <div id="countdown-input">
+        <!-- Botones para añadir números al timer -->
+        <button class="num-btn">1</button>
+        <button class="num-btn">2</button>
+        <button class="num-btn">3</button>
+        <button class="num-btn">4</button>
+        <button class="num-btn">5</button>
+        <button class="num-btn">6</button>
+        <button class="num-btn">7</button>
+        <button class="num-btn">8</button>
+        <button class="num-btn">9</button>
+        <button class="num-btn">0</button>
+      </div>
+      <div id="countdown-time-setup">00:00</div>
+      <button id="set-btn">Set</button>
+      <button id="clear-setup">Clear</button>
+      <button id="back-countdown-setup">Back</button>
+    </div>
+
+    <div id="countdown-view" style="display: none">
+      <div id="countdown-display">00:00:00.000</div>
+      <button id="start-countdown">Start</button>
+      <button id="reset-countdown" disabled>Clear</button>
+      <button id="back-countdown">Back</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
