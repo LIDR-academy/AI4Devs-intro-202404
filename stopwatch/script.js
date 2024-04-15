@@ -83,25 +83,21 @@ function updateCountdownInputDisplay() {
 
 function startCountdown() {
   if (!isCountdownRunning) {
-    if (!countdownRemainingTime || countdownRemainingTime <= 0) {
-      countdownRemainingTime = initialCountdownTime; // Usar tiempo inicial si no está definido o es inválido.
-    }
-    updateCountdownDisplay(); // Actualizar inmediatamente la visualización.
-    startCountdownBtn.textContent = "Pause";
     countdownInterval = setInterval(() => {
       countdownRemainingTime--;
       if (countdownRemainingTime < 0) {
         clearInterval(countdownInterval);
         alert("Countdown finished!");
-        resetCountdown(true); // Resetear a estado inicial si termina.
+        resetCountdown(true);
         return;
       }
       updateCountdownDisplay();
     }, 1000);
-    resetCountdownBtn.disabled = false; // Habilitar el botón "Clear".
     isCountdownRunning = true;
+    resetCountdownBtn.disabled = true; // Deshabilitar cuando la cuenta atrás está activa
+    startCountdownBtn.textContent = "Pause";
   } else {
-    toggleCountdownPause(); // Pausar si el botón se presiona nuevamente.
+    toggleCountdownPause();
   }
 }
 
@@ -110,6 +106,7 @@ function toggleCountdownPause() {
     clearInterval(countdownInterval);
     startCountdownBtn.textContent = "Continue";
     isCountdownRunning = false;
+    resetCountdownBtn.disabled = false; // Habilitar cuando la cuenta atrás está pausada
   } else {
     startCountdown(); // Continuar desde el tiempo restante.
   }
@@ -134,6 +131,8 @@ function updateCountdownDisplay() {
 function resetCountdown(finished = false) {
   clearInterval(countdownInterval);
   countdownRemainingTime = initialCountdownTime; // Restaurar el tiempo inicial siempre.
+  countdownTime = ""; // Limpiar la entrada de usuario.
+  updateCountdownInputDisplay();
   updateCountdownDisplay();
   startCountdownBtn.textContent = "Start";
   resetCountdownBtn.disabled = true; // Deshabilitar "Clear" hasta que inicie de nuevo.
@@ -144,9 +143,10 @@ function resetCountdown(finished = false) {
 stopwatchBtn.addEventListener("click", () =>
   switchView(mainView, stopwatchView)
 );
-countdownBtn.addEventListener("click", () =>
-  switchView(mainView, countdownSetupView)
-);
+countdownBtn.addEventListener("click", () => {
+  switchView(mainView, countdownSetupView);
+  resetCountdown();
+});
 backStopwatchBtn.addEventListener("click", () => {
   switchView(stopwatchView, mainView);
   resetStopwatch();
