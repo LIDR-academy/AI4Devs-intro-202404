@@ -14,7 +14,11 @@
             <h1 class="display-4">Timer and Countdown</h1>
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-lg btn-success mx-2" id="stopwatchBtn">
-            Stopwatch  </button>
+            Stopwatch
+          </button>
+          <button type="button" class="btn btn-lg btn-warning mx-2" id="countdownBtn">
+            Countdown
+          </button>
             </div>
         </div>
     </div>
@@ -25,22 +29,37 @@
             <h1 class="display-1" id="time">00:00:00</h1>
             <p id="milliseconds">000</p>
       </div>
-    </div>
-    <div class="row mt-3 justify-content-between">
-      <div class="col-md-auto">
-        <button type="button" class="btn btn-lg btn-success" id="startBtn">Start</button>
-      </div>
-      <div class="col-md-auto">
+      <div class="col-md-auto d-flex justify-content-end">
+        <button type="button" class="btn btn-lg btn-success me-2" id="startBtn">Start</button>
         <button type="button" class="btn btn-lg btn-danger" id="clearBtn">Clear</button>
+    </div>
+    </div>
+  </div>
+  <div id="countdown" class="container mt-5 d-none">
+    <div class="row">
+      <div class="col-md-auto d-flex justify-content-center">
+        <input type="number" id="minutesInput" class="form-control mx-2" placeholder="Minutes">
+        <input type="number" id="secondsInput" class="form-control mx-2" placeholder="Seconds">
+      </div>
+      <div class="col-md-auto d-flex justify-content-center">
+        <button type="button" class="btn btn-lg btn-warning" id="setCountdownBtn">Set</button>
+      </div>
+      </div>
+    <div class="row mt-3">
+      <div class="col text-center">
+        <h1 class="display-1" id="countdownDisplay">00:00</h1>
         </div>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-3">
         <div class="col text-center">
-            <button type="button" class="btn btn-secondary" id="backBtn">Back</button>
+        <button type="button" class="btn btn-lg btn-danger" id="clearCountdownBtn">Clear</button>
         </div>
     </div>
 
 </div>
+  <div id="backBtnContainer" class="d-flex justify-content-center mt-5">
+    <button type="button" class="btn btn-secondary btn-lg" id="backBtn">Back</button>
+  </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="script.js"></script>
 </body>
