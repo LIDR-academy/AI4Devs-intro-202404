@@ -2,8 +2,12 @@ let milliseconds = 0;
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
-let intervalId = null;
 let isRunning = false;
+
+// Variables to store countdown time (in seconds)
+let countdownTime = 0;
+let currentDigit = -1; // -1 indicates no digit selected
+let intervalId = null; // Variable to store setInterval ID
 
 const timeDisplay = document.getElementById('time');
 const millisecondsDisplay = document.getElementById('milliseconds');
@@ -13,9 +17,16 @@ const stopwatch = document.getElementById('stopwatch');
 const backBtn = document.getElementById('backBtn');
 
 const stopwatchBtn = document.getElementById('stopwatchBtn');
+const countdownBtn = document.getElementById('countdownBtn');
 
 stopwatchBtn.addEventListener('click', () => {
+  countdown.classList.add('d-none');
   stopwatch.classList.remove('d-none');
+});
+
+countdownBtn.addEventListener('click', () => {
+  stopwatch.classList.add('d-none');
+  countdown.classList.remove('d-none');
 });
 
 backBtn.addEventListener('click', () => {
@@ -82,3 +93,65 @@ function clearTimer() {
   timeDisplay.textContent = '00:00:00';
   millisecondsDisplay.textContent = '000';
 }
+
+
+// Function to update countdown display
+function updateCountdownDisplay() {
+    const minutes = Math.floor(countdownTime / 60);
+    const seconds = countdownTime % 60;
+
+    // Check for zero countdown and display "00:00"
+    if (countdownTime === 0) {
+      document.getElementById("countdownDisplay").innerText = "00:00";
+    } else {
+        document.getElementById("countdownDisplay").innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+}
+
+// Event listeners for digit buttons
+const digitButtons = document.querySelectorAll('.btn-success.btn-lg');
+digitButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const digit = parseInt(this.innerText);
+
+      // Check if a previous digit was selected
+      if (currentDigit !== -1) {
+        countdownTime = countdownTime * 10 + digit;
+      } else {
+        countdownTime = digit;
+      }
+
+      currentDigit++; // Update current digit position
+
+      updateCountdownDisplay();
+    });
+});
+
+// Event listener for "Set" button
+document.getElementById("btnSet").addEventListener('click', function() {
+    updateCountdownDisplay(); // Call updateCountdownDisplay to show set time
+    console.log("Countdown set to:", countdownTime, "seconds");
+
+     if (intervalId) {
+      clearInterval(intervalId);
+    }
+
+    // Start countdown using setInterval
+    intervalId = setInterval(function() {
+      if (countdownTime > 0) {
+        countdownTime--;
+        updateCountdownDisplay();
+      } else {
+        clearInterval(intervalId);
+        // Handle countdown completion (e.g., play sound, display message)
+        console.log("Countdown finished!");
+      }
+    }, 1000); // Update every second (1000 milliseconds)
+});
+
+// Event listener for "Clear" button
+document.getElementById("btnClear").addEventListener('click', function() {
+    countdownTime = 0;
+    currentDigit = -1;
+    updateCountdownDisplay();
+});
