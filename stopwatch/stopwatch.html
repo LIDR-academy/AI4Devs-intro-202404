@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cronómetro</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #display {
+    font-size: 48px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 0 auto; /* Asegura que la caja esté centrada */
+  }
+  .milliseconds {
+    font-size: 24px;
+    display: block; /* Hace que los milisegundos vayan debajo */
+    text-align: right; /* Alinea los milisegundos a la derecha */
+  }
+  .button-container {
+    display: flex;
+    justify-content: center; /* Alinea los botones horizontalmente en el centro */
+  }
+  .button {
+    padding: 10px 20px;
+    font-size: 22px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+  }
+  .start, .clear {
+    min-width: 120px; /* Asegura que los botones tengan un ancho mínimo */
+  }
+  .start {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  .clear {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  .back {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    margin-top: 20px;
+    align-self: flex-start; /* Alinea el botón Back a la izquierda */
+  }
+</style>
+</head>
+<body>
+
+<div id="display">
+  00:00:00
+  <span class="milliseconds">000</span>
+</div>
+
+<div class="button-container">
+  <button class="button start" onclick="toggleStopwatch()">Start</button>
+  <button class="button clear" onclick="clearStopwatch()">Clear</button>
+</div>
+
+<button class="button back" onclick="goBack()">← Back</button>
+
+<script src="stopwatch.js"></script>
+</body>
+</html>
