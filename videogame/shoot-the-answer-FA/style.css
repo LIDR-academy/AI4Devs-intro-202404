@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#gameScreen {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    background-size: cover;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#questionContainer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+#answers div {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
