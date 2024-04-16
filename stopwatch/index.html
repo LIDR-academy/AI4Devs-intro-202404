@@ -3,11 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+<title>Stopwatch</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  #stopwatch-container {
+    width: 80%;
+    margin: auto;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+</style>
 </head>
 <body>
-<h1>Timer and Countdown</h1>
+<div class="container">
+  <h1 class="mt-5 mb-4">Stopwatch</h1>
+  <div id="stopwatch-container">
+    <div class="row mb-4">
+      <div class="col">
+        <h2 id="display" class="text-center">00:00:00</h2>
+        <h3 id="milliseconds" class="text-center">000</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button id="startPauseButton" class="btn btn-lg btn-block btn-success">Start</button>
+      </div>
+      <div class="col">
+        <button id="resetButton" class="btn btn-lg btn-block btn-danger">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
