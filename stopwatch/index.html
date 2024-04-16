@@ -1,13 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer and Countdown</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Timer and Countdown</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Select an option</h5>
+                        <div class="d-flex justify-content-center">
+                            <button id="stopwatch-btn" class="btn btn-primary mr-3">Stopwatch</button>
+                            <button id="countdown-btn" class="btn btn-primary">Countdown</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="stopwatch-container" class="d-none">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Stopwatch</h5>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <span id="stopwatch-display" class="display-1">00:00:00.000</span>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <button id="start-stopwatch" class="btn btn-success mr-3">Start</button>
+                                <button id="stop-stopwatch" class="btn btn-danger mr-3">Stop</button>
+                                <button id="reset-stopwatch" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="countdown-container" class="d-none">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6">
+                    <div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Countdown</h5>
+                            <div class="d-flex justify-content-center align-items-center mb-4">
+                                <input type="number" id="countdown-hours" class="form-control countdown-input" min="0" max="99" value="0" />
+                                <span class="mx-2">:</span>
+                                <input type="number" id="countdown-minutes" class="form-control countdown-input" min="0" max="59" value="0" />
+                                <span class="mx-2">:</span>
+                                <input type="number" id="countdown-seconds" class="form-control countdown-input" min="0" max="59" value="0" />
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button id="start-countdown" class="btn btn-success mr-3">Start</button>
+                                <button id="stop-countdown" class="btn btn-danger mr-3">Stop</button>
+                                <button id="reset-countdown" class="btn btn-secondary">Reset</button>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center mt-4">
+                                <span id="countdown-display" class="display-1">00:00:00.000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
