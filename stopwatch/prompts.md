@@ -14,12 +14,18 @@ Starts time must be 00:00:00
 
 Add milliseconds too aligned bottom of seconds label as the image shows like `000`
 
+Add at bottom predefined time buttons to countdown in 5, 10, 30 seconds and 1, 5 or 10 minutes.
+
+Use Bootstrap classname for Stopwatch container `border rounded` 
+
 ## HOW IT WORKS
 
-1. Start button must start the stopwatch
+1. Start button must start the stopwatch to count up
 2. Stop button must stop the stopwatch
 3. If Start button if pressed after Stop button, the stopwatch must continue from where it left off
-4. Reset button must reset the stopwatch to 00:00:00 and milliseconds to `000`
+4. If press a predefined time button, the stopwatch must countdown from that time
+5. If the stopwatch is running and press a predefined time button, the stopwatch must countdown from that time
+6. Reset button must reset the stopwatch to 00:00:00 and milliseconds to `000`
 
 ## STACK
 
@@ -30,3 +36,16 @@ Bootstrap, Font Awesome
 
 index.html, style.css, script.js
 folder structure
+
+## Errors to Fix
+
+This code represent a StopWatch WebApp. Have the next errors:
+
+1. Time is not present like 00:00:00 just 00:0:0 it looks an error formatting the time
+2. When you press a predefined time value is not setting up correctly
+3. When you press a predefined time value and press start button you get an Alert with Time is Up text.
+4. Milliseconds label is having negative values
+
+Check the code and fix it
+
+
