@@ -1,26 +1,40 @@
 // Global variables
+let stopwatchStartTime;
+let stopwatchPauseTime;
 let stopwatchInterval;
-let countdownInterval;
 let countdownStartTime;
+let countdownPauseTime;
+let countdownInterval;
 let countdownDuration;
 
 // Stopwatch functions
+// Stopwatch functions
 function startStopwatch() {
-    let startTime = new Date().getTime();
+    if (!stopwatchStartTime) {
+        stopwatchStartTime = new Date().getTime();
+    } else if (stopwatchPauseTime) {
+        let elapsedTime = new Date().getTime() - stopwatchPauseTime;
+        stopwatchStartTime += elapsedTime;
+        stopwatchPauseTime = null;
+    }
     stopwatchInterval = setInterval(() => {
-        let elapsedTime = new Date().getTime() - startTime;
+        let elapsedTime = new Date().getTime() - stopwatchStartTime;
         updateStopwatchDisplay(elapsedTime);
     }, 10);
 }
 
 function stopStopwatch() {
     clearInterval(stopwatchInterval);
+    stopwatchPauseTime = new Date().getTime();
 }
 
 function resetStopwatch() {
     stopStopwatch();
+    stopwatchStartTime = null;
+    stopwatchPauseTime = null;
     updateStopwatchDisplay(0);
 }
+
 
 function updateStopwatchDisplay(elapsedTime) {
     let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
@@ -30,13 +44,19 @@ function updateStopwatchDisplay(elapsedTime) {
     document.getElementById("stopwatch-display").textContent = `${padZero(hours)}:${padZero(minutes)}:${padZero(seconds)}.${padZero(milliseconds, 3)}`;
 }
 
+
 // Countdown functions
 function startCountdown() {
-    let hours = parseInt(document.getElementById("countdown-hours").value);
-    let minutes = parseInt(document.getElementById("countdown-minutes").value);
-    let seconds = parseInt(document.getElementById("countdown-seconds").value);
-    countdownDuration = (hours * 3600 + minutes * 60 + seconds) * 1000;
-    countdownStartTime = new Date().getTime() + countdownDuration;
+    if (!countdownStartTime) {
+        let hours = parseInt(document.getElementById("countdown-hours").value);
+        let minutes = parseInt(document.getElementById("countdown-minutes").value);
+        let seconds = parseInt(document.getElementById("countdown-seconds").value);
+        countdownDuration = (hours * 3600 + minutes * 60 + seconds) * 1000;
+        countdownStartTime = new Date().getTime() + countdownDuration;
+    } else if (countdownPauseTime) {
+        countdownStartTime = new Date().getTime() + (countdownStartTime - countdownPauseTime);
+        countdownPauseTime = null;
+    }
     countdownInterval = setInterval(() => {
         updateCountdownDisplay();
     }, 10);
@@ -44,6 +64,7 @@ function startCountdown() {
 
 function stopCountdown() {
     clearInterval(countdownInterval);
+    countdownPauseTime = new Date().getTime();
 }
 
 function resetCountdown() {
@@ -51,6 +72,8 @@ function resetCountdown() {
     document.getElementById("countdown-hours").value = "0";
     document.getElementById("countdown-minutes").value = "0";
     document.getElementById("countdown-seconds").value = "0";
+    countdownStartTime = null;
+    countdownPauseTime = null;
     updateCountdownDisplay(0);
 }
 
