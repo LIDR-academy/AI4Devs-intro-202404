@@ -20,4 +20,5 @@ Requirements:
 - Use javascript and html 5, and the library boostrap. 
 - We whant separat files for the function, index.html, style.css
 
-Output: https://chat.openai.com/share/4cbd9147-a0aa-45cb-bd1b-d225530160b5
+[Output](https://chat.openai.com/share/4cbd9147-a0aa-45cb-bd1b-d225530160b5)
+
