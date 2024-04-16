@@ -127,3 +127,33 @@ body {
 }
 ```
 Siguiente paso: Agrega el código proporcionado a los respectivos archivos y comprueba que el cronómetro y la cuenta atrás funcionen como se espera. Una vez que hayas probado y confirmado que todo está en orden, procederemos con los pasos de GitHub.
+
+**User**: Now let's do the PR
+
+**ChatGPT**: To create a Pull Request (PR), follow these steps:
+
+1. **Commit your changes**:
+   - Make sure all your changes are saved in the respective files (`index.html`, `script.js`, `styles.css`, and `prompts.md` if you've updated it).
+   - Use the command line or a Git GUI to stage your changes: `git add .`
+   - Commit the changes: `git commit -m "Add stopwatch functionality"`
+
+2. **Push to GitHub**:
+   - Push your commits to your fork on GitHub: `git push origin main` (assuming your main branch is called `main`).
+
+3. **Create the PR**:
+   - Go to your fork on GitHub.
+   - You'll often see a notification about your recent push with a button to "Compare & pull request" on the original repository that you forked from. Click that button.
+   - If you don't see the notification, navigate to the "Pull requests" tab in the original repository and click "New pull request".
+   - Select your fork and branch with the changes as the "compare" branch.
+   - Verify the changes that will be included in the PR and ensure they are correct.
+   - Add a title and description to your PR. Make sure to mention the prompt and the functionality you've added.
+   - Click "Create pull request".
+
+4. **Review and merge**:
+   - Wait for the repository owner or maintainers to review your PR. They might ask for changes or clarification.
+   - If changes are requested, make the necessary adjustments, commit, and push again. The PR will update automatically.
+
+5. **Completion**:
+   - Once the PR is approved, the maintainers can merge your changes into the main codebase.
+
+**Next Step**: Proceed to create the PR on GitHub. If you run into any issues or need further guidance, please let me know.
