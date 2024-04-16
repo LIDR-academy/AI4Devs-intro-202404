@@ -7,7 +7,28 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
+
+<div id="landing">
+    <h1>Choose a Timer</h1>
+    <button id="toStopwatch">Stopwatch</button>
+    <button id="toCountdown">Countdown Timer</button>
+</div>
+
+<div id="stopwatch" class="module" style="display:none;">
+    <div id="stopwatch-display" class="display">00:00:00</div>
+    <button id="startStop" class="start">Start</button>
+    <button id="reset" class="clear">Clear</button>
+</div>
+
+<div id="countdown" class="module" style="display:none;">
+    <div id="countdown-display" class="display">00:00:00</div>
+    <div id="number-inputs">
+        <!-- Numeric buttons will be added here -->
+    </div>
+    <button id="set-countdown" class="set">Set</button>
+    <button id="start-countdown" class="start">Start</button>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
