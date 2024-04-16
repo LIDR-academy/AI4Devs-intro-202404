@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.stopwatch {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.display-time {
+  font-size: 72px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.milliseconds {
+  font-size: 36px;
+  vertical-align: top;
+}
+
+.controls button {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controls .start,
+.controls .pause {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.controls .continue {
+  background-color: #007bff;
+  color: white;
+}
+
+.controls .clear {
+  background-color: #dc3545;
+  color: white;
+}
+
+.controls .disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+body.paused {
+  background-color: white;
+}
