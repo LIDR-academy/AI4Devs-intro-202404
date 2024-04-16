@@ -1,13 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+<title>Cronómetro y Cuenta Atrás</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+  }
+  #timer {
+    font-size: 48px;
+    margin-bottom: 10px;
+    padding: 20px;
+    background: white;
+    border: 2px solid #000; /* Black border */
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    color: #000; /* Black text */
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+  }
+  button {
+    border: 2px solid #000; /* Black border for buttons */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex: 1; /* Equal width */
+    margin: 0 5px; /* Spacing between buttons */
+    color: #000; /* Black text for buttons */
+  }
+  #startButton {
+    background-color: #4CAF50; /* Green */
+  }
+  #clearButton {
+    background-color: #f44336; /* Red */
+  }
+  #clearButton:disabled {
+    background-color: #cccccc;
+    border-color: #aaaaaa; /* Lighter border for disabled state */
+    cursor: not-allowed;
+    color: #666666; /* Dark gray text for disabled button */
+  }
+</style>
 </head>
 <body>
-<h1>Timer and Countdown</h1>
+<div id="timer">00:08:00</div>
+<div class="button-container">
+  <button id="startButton">Start</button>
+  <button id="clearButton" disabled>Clear</button>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
