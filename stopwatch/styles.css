@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  #main-view button,
+  #stopwatch-view button,
+  #countdown-setup-view button,
+  #countdown-view button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  #stopwatch-time,
+  #countdown-display {
+    font-size: 32px;
+    margin: 20px;
+  }
+  
+  input[type=text] {
+    margin: 20px;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  button[disabled] {
+    background-color: #ccc;
+  }
+  
