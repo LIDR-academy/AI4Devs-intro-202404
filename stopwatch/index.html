@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer and Countdown</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
+<div id="app">
+    <h1>Timer and Countdown</h1>
+
+    <div id="home" class="view">
+        <button id="timerBtn">⏱️ Timer</button>
+        <button id="countdownBtn">⏳ Countdown</button>
+    </div>
+
+    <div id="timer" class="view">
+        <div class="display">
+            <div id="timerTime">00:00:00</div>
+            <div id="timerMillis">000</div>
+        </div>
+        <div class="controls">
+            <button id="timerStartBtn">▶️</button>
+            <button id="timerResetBtn">🔄</button>
+            <button id="timerBackBtn" class="back-btn"></button>
+        </div>
+    </div>
+
+    <div id="countdown" class="view">
+        <div class="display">
+            <div id="countdownTime">
+                <input id="hoursInput" type="text" maxlength="2" placeholder="HH">
+                <span>:</span>
+                <input id="minutesInput" type="text" maxlength="2" placeholder="MM">
+                <span>:</span>
+                <input id="secondsInput" type="text" maxlength="2" placeholder="SS">
+            </div>
+            <div id="countdownMillis">000</div>
+        </div>
+        <div class="controls">
+            <button id="countdownStartBtn" disabled>▶️</button>
+            <button id="countdownResetBtn">🔄</button>
+            <button id="countdownBackBtn" class="back-btn"></button>
+        </div>
+    </div>
+
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
