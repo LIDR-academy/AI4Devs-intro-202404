@@ -1,13 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch y Countdown</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+    <div id="principal-div">
+        <h1 class="titulo-principal">Stopwatch y Countdown</h1>
+        <div class="botones">
+            <button class="stopwatch-btn">Stopwatch</button>
+            <button class="countdown-btn">Countdown</button>
+        </div>
+    </div>
+
+    <div id="stopwatch-div" class="stopwatch-container">
+        <div class="stopwatch-display">
+            <div class="hours digits">00</div>
+            <div class="colon">:</div>
+            <div class="minutes digits">00</div>
+            <div class="colon">:</div>
+            <div class="seconds digits">00</div>
+            <div class="milliseconds digits">000</div>
+        </div>
+        <div class="stopwatch-controls">
+            <button id="start-stopwatch" class="stopwatch-btn">Iniciar</button>
+            <button id="reset-stopwatch" class="stopwatch-btn">Limpiar</button>
+        </div>        
+        <button id="volver-stopwatch">Volver</button>        
+    </div>
+    
+
+    <div id="countdown-div" class="countdown-container">    
+        <input type="text" id="timer" value="00:00:00 000" readonly>
+        <div class="countdown-buttons">
+        <!-- Botones numéricos -->
+        <button onclick="setTime(5)">5</button>
+        <button onclick="setTime(6)">6</button>
+        <button onclick="setTime(7)">7</button>
+        <button onclick="setTime(8)">8</button>
+        <button onclick="setTime(9)">9</button>
+        <button id="setBtn" onclick="startCountdown()">Set</button>        
+        <button onclick="setTime(0)">0</button>
+        <button onclick="setTime(1)">1</button>
+        <button onclick="setTime(2)">2</button>
+        <button onclick="setTime(3)">3</button>
+        <button onclick="setTime(4)">4</button>
+        <button id="clearBtn">Clear</button>
+    
+        </div>
+        <button id="volver-countdown">Volver</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
