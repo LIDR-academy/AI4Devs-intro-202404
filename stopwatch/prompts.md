@@ -28,4 +28,6 @@ HTML
     </div>
 </div>
 
+En general me toco usar varios, use inicialmente chatGPT se me complico bastante luego para aprovechar el cargue de imagenes use gemini y Copilot de MS , con estos dos si pude avanzar bastante maspues en chatgpt no tengo la opcion de subir imagenes.
+
 
