@@ -1,5 +1,8 @@
 # Create a snake game. 
 
+- Iterations: 1
+- [Output](https://chat.openai.com/share/4cbd9147-a0aa-45cb-bd1b-d225530160b5)
+
 As a professional developer
 I want to create a snake game in javascript,
 so that I can play the game with my keyboard.
@@ -19,6 +22,3 @@ so that I can play the game with my keyboard.
 Requirements:
 - Use javascript and html 5, and the library boostrap. 
 - We whant separat files for the function, index.html, style.css
-
-[Output](https://chat.openai.com/share/4cbd9147-a0aa-45cb-bd1b-d225530160b5)
-
