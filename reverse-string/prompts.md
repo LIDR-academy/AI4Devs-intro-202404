@@ -1,16 +1,1 @@
-*Usando GPT-4:*
-Eres un experto en desarrollo web,  teniendo la base del archivo index.html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverse String</title>    
-</head>
-<body>
-<script src="script.js"></script>
-</body>
-</html>
-necesito lograr que al digitar un texto en un formulario hacer que invierta el orden de una cadena de texto y esa sea la respuesta. Ejemplo: si introduzco `AI4Devs` devuelve `sveD4IA`.  utiliza buenas practicas en el nombramiento de variables, y aplica estilos css además agrega una funcion botón extra para copiar el texto de la respuesta
-
-
+Create a html+js website where you input a string up to 100 chars length, click on a button "Reverse 🔄" and below you can see the text reversed. Below, there is a button "Copy 📋" that copies the content to the clipboard and shows a plain text "Copied to clipboard!" to the right of the button. Button should only appears once there is reversed text. Styles should be fresh and flat, similar to bootstrap library. Use functions to better decouple and structure the code in script.js
