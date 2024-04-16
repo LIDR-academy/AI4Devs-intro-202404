@@ -1,0 +1,30 @@
+.container {
+    width: 200px;
+    background-color: lightblue;
+    padding: 20px;
+    text-align: center;
+}
+
+.display {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.startButton {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    margin-right: 5px;
+    border: none;
+}
+
+.stopButton {
+    background-color: orange;
+}
+
+.clearButton {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+}
