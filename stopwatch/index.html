@@ -8,6 +8,27 @@
 </head>
 <body>
 <h1>Timer and Countdown</h1>
+
+<div class="buttons">
+  <button id="timer-btn">Cronómetro</button>
+  <button id="countdown-btn">Cuenta Regresiva</button>
+</div>
+
+<div id="timer-section" class="hidden">
+  <h2>Cronómetro</h2>
+  <div id="timer-display">00:00:00.000</div>
+  <button id="start-pause-btn">Iniciar</button>
+  <button id="clear-timer-btn">Limpiar</button>
+</div>
+
+<div id="countdown-section" class="hidden">
+  <h2>Cuenta Regresiva</h2>
+  <div id="countdown-display">00:00:00.000</div>
+  <input type="number" id="countdown-input" placeholder="Tiempo en segundos">
+  <button id="start-countdown-btn">Iniciar</button>
+  <button id="clear-countdown-btn">Limpiar</button>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>
