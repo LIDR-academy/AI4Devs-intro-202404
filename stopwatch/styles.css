@@ -1,0 +1,30 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.buttons {
+  margin-bottom: 20px;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 0 10px;
+}
+
+/* Estilos específicos para cada sección */
+.hidden {
+  display: none;
+}
+
+/* Estilos para el cronómetro */
+#timer-section, #countdown-section {
+  margin-bottom: 20px;
+}
+
+#timer-display, #countdown-display {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
