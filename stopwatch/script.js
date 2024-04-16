@@ -50,5 +50,6 @@ function resetTimer() {
   isRunning = false;
 }
 
+
 startPauseButton.addEventListener('click', startPauseTimer);
 document.getElementById('resetButton').addEventListener('click', resetTimer);
