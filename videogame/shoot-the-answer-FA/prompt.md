@@ -1,36 +1,59 @@
-# Shoot the answer
+Como desarrollador de juegos, se requiere realizar el desarrollo de un juego de preguntas y respuestas llamado Shoot n' Study, en el cual un niño o niña deberá escoger los temas que más le interese aprender entre Matematicas, Ciencias e Historia. El juego debe actuar como un juego de disparos donde se debe disparar a la respuesta correcta que será representada por un disco que tendrá A, B, C, D segun sea el caso, deben presentarse flotando por la pantalla sin salir de un espacio definido para el juego y moviendose de forma aleatoria con una velocidad de minimo 250 milisegundos. Deberas crear los archivos necesarios.
 
-You are Game Developer, create a full game using PixiJS (Use CDN) and Plain Javascript, the game should be a shoot game in 2D, need to have score and a player that should be a Kid ( boy or girl). Use HTML and CSS to make the game look good. Every file must be created by you.
+Path: /videogame/shoot-the-answer-FA
 
-## Story
-A little Kid ( need to choose is Boy or Girl ) need to study for final exams and needs some way to study faster and fun, so decides take the questions of the book to the air and start shoot the right answer with their Nerf gun. But only have 3 darts, so the kid need to shoot the right answer in 3 tries. Sometimes the wind could be a problem, but the Kid study so well and finish learning everything.
+## **Especificaciones**
 
-## Rules
-- The Kid need to shoot the correct answer
-- If the kid shoot the correct answer, the score will be 100
-- If the kid shoot the wrong answer, the score will be 0
-- The kid need to shoot the correct answer in 3 tries
-- If the kid shoot the wrong answer in 3 tries, the game will be over and the kid will be sad and cry
-- The kid need to shoot the correct answer in 3 tries
-- If the kid shoot the wrong answer in 3 tries, the game will be over and the kid will be sad and cry
-- The kid need to shoot the correct answer in 3 tries
-- If the kid shoot the wrong answer in 3 tries, the game will be over and the kid will be sad and cry
+Todas las pantallas deben tener un tamaño de 800 px de ancho y 600 px de alto centradas en el centro de la pantalla. La pantalla debe tener colores alegres que puedan ser representados en un juego de preguntas y respuestas.
 
-## Assets 
-- Create an image for a Boy or Girl that needs to learn
-- Create a json database with 3 big topics and 10 questions for each topic, every question must have multiple options just 1 should be the correct answer and must be A, B, C y D.
-  - Topic 1: Math for kids
-  - Topic 2: Science for kids
-  - Topic 3: History for kids
-- Screen to select the topic
-- Screen to select the kid
-- Screen to select the gender
-- Screen to play must have a different background for each topic
-  - Every answer must be a disc with its own letter A, B, C or D
-  - The question and answer must be showing up at botton of the screen
-  - Every answer must floating in the screen and can be shot
+### Pantalla de Inicio
 
-Create every file for the game, you can use PixiJS to create the game, but you need to create the assets and the game logic. Create a Zip code with all the files and send it to me.
+* Seleccionar el tema para aprender
+* Seleccionar si es un niño o una niña 
+* Los temas a seleccionar deben ser **Matematicas, Ciencias e Historia** en un select centrado
+* Al seleccionar niño o niña debe mostrar una imagen de niño o niña y al dar clic setear el valor seleccionado en una variable
+* Debe mostrar el titulo del Juego **Shoot n' Study**
+
+### Pantalla de Juego
+
+* Debe tener un background asociado al tema seleccionado.
+* Debe mostrar al niño o niña a un lado de la pantalla
+* La parte superior deberá mostrar el tema que se esta jugando.
+* la parte inferior deberá mostrar la pregunta y las multiples respuestas, solo hay una respuesta correcta
+* Cada respuesta es representada por un disco flotando en la pantalla
+* En la parte superior derecha se mostrar el puntaje obtenido
+
+### Reglas del Juego
+
+* El niño o niña tiene 3 dardos máximos
+* Si acierta en el primer intento, se le suman 100 puntos
+* Si acierta en el segundo intento, se le suman 50 puntos
+* Si acierta en el tercer intento, se le suman 25 puntos
+* Si no acierta el niño o niña no obtiene puntos
+* Si acierta tres preguntas seguidas en el primer intento se le dará un bonus de 100 puntos adicionales
+
+## Stack
+
+* HTML
+* CSS
+* JavaScript
+
+Ya tendrás disponibles para tu uso los siguientes recursos:
+
+* /index.html 
+* /style.css
+* /assets/boy.png   
+* /assets/girl.png
+* /assets/backgrounds/math.png
+* /assets/backgrounds/science.png
+* /assets/backgrounds/history.png
+* /assets/disks/A.png
+* /assets/disks/B.png
+* /assets/disks/C.png
+* /assets/disks/D.png
+* /data/questions.json
+* /game.js
+
 
 
 
