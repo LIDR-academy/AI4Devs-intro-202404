@@ -1,0 +1,34 @@
+/* Timer section */
+#timer-display {
+    font-size: 2.5rem; /* Larger font size for timer */
+    margin-top: 1.5rem;
+}
+
+#timer-display {
+    color: black; /* Set the color of the timer display */
+}
+
+#start-timer-btn, #resume-timer-btn {
+    background-color: #28a745; /* Green color for Start and Resume buttons */
+    border-color: #28a745;
+}
+
+#pause-timer-btn {
+    background-color: #ffc107; /* Gold color for Pause button */
+    border-color: #ffc107;
+}
+
+form {
+    text-align: center; /* Center the form */
+}
+
+form label {
+    display: block;
+}
+
+/* Stopwatch */
+#stopwatch-display {
+    font-size: 2.5rem; /* Larger font size for stopwatch */
+    margin-top: 1.5rem;
+}
+
