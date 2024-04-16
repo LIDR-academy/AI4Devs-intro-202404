@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Timer and Countdown</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Cronómetro y Cuenta Atrás</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Timer and Countdown</h1>
-<script src="script.js"></script>
+    <header>
+        <button id="btnCronometro">Cronómetro</button>
+        <button id="btnCuentaAtras">Cuenta Atrás</button>
+    </header>
+    <div id="cronometro" class="feature">
+        <h1>00:00:00</h1>
+        <p>0</p>
+        <button id="startStop">Comenzar</button>
+        <button id="reset">Limpiar</button>
+    </div>
+    <div id="cuentaAtras" class="feature">
+        <h1>00:00:00</h1>
+        <p>000</p>
+        <div id="numPad">
+            <!-- Botones numéricos del 0 al 9 -->
+            <button>0</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+        </div>
+        <button id="setTimer">Settear</button>
+        <button id="resetTimer">Limpiar</button>
+        <button id="startStopCountdown" style="display:none;">Comenzar</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
