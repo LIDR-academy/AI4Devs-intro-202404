@@ -1,127 +1,59 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const timeDisplay = document.getElementById("time-display");
-  const stopwatchBtn = document.getElementById("stopwatch-btn");
-  const countdownBtn = document.getElementById("countdown-btn");
-  const numbersDiv = document.getElementById("numbers");
-  const startStopContinueBtn = document.getElementById("start-stop-continue-btn");
-  const clearBtn = document.getElementById("clear-btn");
-  const setBtn = document.getElementById("set-btn");
+let stopwatchInterval;
+let countdownInterval;
+let stopwatchSeconds = 0;
+let countdownSeconds = 0;
 
-  let timerInterval;
-  let currentTime = 0;
-  let countdownTime = 0;
-  let isRunning = false;
-  let isStopwatch = true;
+function startStopwatch() {
+    stopwatchInterval = setInterval(updateStopwatch, 1000);
+}
 
-  function formatTime(time) {
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor((time % 3600) / 60);
-    const seconds = time % 60;
-    return `${hours.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  }
+function updateStopwatch() {
+    stopwatchSeconds++;
+    const hours = Math.floor(stopwatchSeconds / 3600);
+    const minutes = Math.floor((stopwatchSeconds % 3600) / 60);
+    const seconds = stopwatchSeconds % 60;
+    const displayTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    document.getElementById('stopwatchDisplay').innerText = displayTime;
+}
 
-  function updateDisplay() {
-    timeDisplay.textContent = formatTime(currentTime);
-  }
+function stopStopwatch() {
+    clearInterval(stopwatchInterval);
+}
 
-  function updateCountdownDisplay(btnValue) {
-    let currentDisplay = timeDisplay.textContent.replace(/:/g, '');
-    currentDisplay = currentDisplay.substring(1);
-    currentDisplay += btnValue;
-    const formattedDisplay = currentDisplay.replace(/(\d{2})(\d{2})(\d{2})/, '$1:$2:$3');
-    timeDisplay.textContent = formattedDisplay;
-  }
+function resetStopwatch() {
+    clearInterval(stopwatchInterval);
+    stopwatchSeconds = 0;
+    document.getElementById('stopwatchDisplay').innerText = '00:00:00';
+}
 
-  function startTimer() {
-    timerInterval = setInterval(() => {
-      if (isStopwatch) {
-        currentTime++;
-      } else {
-        countdownTime--;
-        if (countdownTime <= 0) {
-          stopTimer();
-          updateDisplay();
-          return;
-        }
-      }
-      updateDisplay();
-    }, 1000);
-  }
+function startCountdown() {
+    const inputSeconds = parseInt(document.getElementById('countdownInput').value);
+    if (!isNaN(inputSeconds)) {
+        countdownSeconds = inputSeconds;
+        countdownInterval = setInterval(updateCountdown, 1000);
+    }
+}
 
-  function stopTimer() {
-    clearInterval(timerInterval);
-  }
-
-  function toggleTimer() {
-    if (isRunning) {
-      stopTimer();
-      startStopContinueBtn.textContent = "Continue";
+function updateCountdown() {
+    if (countdownSeconds > 0) {
+        countdownSeconds--;
+        const minutes = Math.floor(countdownSeconds / 60);
+        const seconds = countdownSeconds % 60;
+        const displayTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        document.getElementById('countdownDisplay').innerText = displayTime;
     } else {
-      startTimer();
-      startStopContinueBtn.textContent = "Stop";
+        stopCountdown();
+        alert('Countdown finished!');
     }
-    isRunning = !isRunning;
-  }
+}
 
-  function resetTimer() {
-    clearInterval(timerInterval);
-    currentTime = 0;
-    countdownTime = 0;
-    updateDisplay();
-    isRunning = false;
-    startStopContinueBtn.textContent = "Start";
-  }
+function stopCountdown() {
+    clearInterval(countdownInterval);
+}
 
-  stopwatchBtn.addEventListener("click", function () {
-    isStopwatch = true;
-    clearInterval(timerInterval);
-    resetTimer();
-    startStopContinueBtn.style.display = "inline-block";
-    startStopContinueBtn.textContent = "Start";
-    clearBtn.style.display = "inline-block";
-    numbersDiv.style.display = "none";
-  });
-
-  countdownBtn.addEventListener("click", function () {
-    isStopwatch = false;
-    clearInterval(timerInterval);
-    resetTimer();
-    startStopContinueBtn.style.display = "none";
-    clearBtn.style.display = "inline-block";
-    numbersDiv.style.display = "block";
-  });
-
-  startStopContinueBtn.addEventListener("click", function () {
-    if (isStopwatch) {
-      toggleTimer();
-    } else {
-      if (!isRunning) {
-        startTimer();
-        startStopContinueBtn.style.display = "none";
-      }
-    }
-  });
-
-  clearBtn.addEventListener("click", function () {
-    resetTimer();
-  });
-
-  setBtn.addEventListener("click", function () {
-    const inputSeconds = parseInt(timeDisplay.textContent.slice(6, 8));
-    countdownTime = inputSeconds;
-    startTimer();
-    startStopContinueBtn.style.display = "none";
-    numbersDiv.style.display = "none";
-  });
-
-  numbersDiv.addEventListener("click", function (event) {
-    if (event.target.tagName === "BUTTON") {
-      const buttonText = event.target.textContent;
-      updateCountdownDisplay(buttonText);
-    }
-  });
-
-  updateDisplay();
-});
+function resetCountdown() {
+    clearInterval(countdownInterval);
+    countdownSeconds = 0;
+    document.getElementById('countdownInput').value = '';
+    document.getElementById('countdownDisplay').innerText = '00:00';
+}

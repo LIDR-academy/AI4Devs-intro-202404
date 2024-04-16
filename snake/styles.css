@@ -1,0 +1,19 @@
+/* Estilos personalizados */
+#gameContainer {
+  border: 1px solid #000;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.snakePart, .apple {
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  position: absolute;
+}
+
+.apple {
+  background-color: red;
+}
