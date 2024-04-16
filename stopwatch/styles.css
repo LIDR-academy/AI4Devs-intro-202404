@@ -1,0 +1,62 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+    margin: 0;
+    flex-direction: column;
+  }
+  
+  /* Styling for the stopwatch display and buttons */
+  #stopwatch {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+  }
+  
+  .display {
+    background: #e0e0e0;
+    padding: 20px;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .start {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .start:hover {
+    background-color: #45a049;
+  }
+  
+  .clear {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
+  .clear:hover {
+    background-color: #da2c1f;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
