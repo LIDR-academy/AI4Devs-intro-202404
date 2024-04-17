@@ -3,46 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Timer and Countdown</title>
+  <title>StopWatch and Countdown</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <h1>Timer and Countdown</h1>
-  <div class="container">
-    <div class="stopwatch">
-      <span class="display-time">00:00:00</span>
-      <span class="milliseconds">000</span>
+  <body>
+    <h1 class="title">StopWatch and Countdown</h1>
+    <div class="initial-page">
+      <button id="showStopwatch">Show Stopwatch</button>
+      <button id="showCountdown">Show Countdown</button>
     </div>
-    <div class="controls">
-      <button id="start-btn" class="start">Start</button>
-      <button id="clear-btn" class="clear">Clear</button>
-    </div>
-  </div>
-  <div class="container">
-    <div class="countdown">
-      <div class="countdown-item">
-        <input type="number" id="hours" min="0" max="23" value="0">
-        <span class="countdown-label">Hours</span>
+    <div class="stopwatch" style="display: none;">
+      <h1>StopWatch</h1>
+      <div class="time">
+        <span class="display-time">00:00:00</span>
+        <span class="milliseconds">000</span>
       </div>
-      <div class="countdown-item">
-        <input type="number" id="minutes" min="0" max="59" value="0">
-        <span class="countdown-label">Minutes</span>
-      </div>
-      <div class="countdown-item">
-        <input type="number" id="seconds" min="0" max="59" value="0">
-        <span class="countdown-label">Seconds</span>
-      </div>
-      <div class="countdown-item">
-        <input type="number" id="milliseconds" min="0" max="999" value="0">
-        <span class="countdown-label">Milliseconds</span>
+      <div class="controls">
+        <button id="start-btn" class="start">Start</button>
+        <button id="clear-btn" class="clear">Clear</button>
       </div>
     </div>
-
-    <div class="controls">
-      <button id="startPauseButton" class="start">Start</button>
-      <button id="clearButton" class="clear">Clear</button>
+    <div class="countdown" style="display: none;">
+      <h1>Countdown</h1>
+      <div class="countdown">
+        <div class="countdown-item">
+          <input type="number" id="hours" min="0" max="23" value="0">
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item">
+          <input type="number" id="minutes" min="0" max="59" value="0">
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-item">
+          <input type="number" id="seconds" min="0" max="59" value="0">
+          <span class="countdown-label">Seconds</span>
+        </div>
+        <div class="countdown-item">
+          <input type="number" id="milliseconds" min="0" max="999" value="0">
+          <span class="countdown-label">Milliseconds</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button id="startPauseButton" class="start">Start</button>
+        <button id="clearButton" class="clear">Clear</button>
+      </div>
     </div>
-  </div>
-  <script src="script.js"></script>
-</body>
+    <div>
+      <button id="backButton">Back</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>

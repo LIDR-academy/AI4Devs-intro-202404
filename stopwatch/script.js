@@ -86,78 +86,61 @@ class CountdownTimer {
     this.countdownInterval = null;
     this.isCountdownRunning = false;
     this.startTime = null;
-
-    // Select buttons
     this.startPauseButton = document.getElementById('startPauseButton');
     this.clearButton = document.getElementById('clearButton');
-
-    // Add event listeners
+    this.clearButton.classList.add('disabled');
     this.startPauseButton.addEventListener('click', this.startPauseCountdown.bind(this));
     this.clearButton.addEventListener('click', this.clearCountdown.bind(this));
   }
 
   startPauseCountdown() {
     if (this.isCountdownRunning) {
-      // If countdown is running, pause it
       clearInterval(this.countdownInterval);
-      this.startPauseButton.innerText = 'Continue'; // Change button text to "Continue"
+      this.startPauseButton.innerText = 'Continue';
     } else {
-      // If countdown is paused or hasn't started, start it
       this.startCountdown();
-      this.startPauseButton.innerText = 'Pause'; // Change button text to "Pause"
+      this.startPauseButton.innerText = 'Pause';
+      this.clearButton.classList.remove('disabled');
     }
-
-    // Toggle the countdown state
     this.isCountdownRunning = !this.isCountdownRunning;
   }
 
   startCountdown() {
-    // Clear any existing countdown interval
     clearInterval(this.countdownInterval);
 
-    // Get the input values for hours, minutes, seconds, and milliseconds
     const hoursInput = document.getElementById('hours');
     const minutesInput = document.getElementById('minutes');
     const secondsInput = document.getElementById('seconds');
     const millisecondsInput = document.getElementById('milliseconds');
 
-    // Convert input values to integers
     const hours = parseInt(hoursInput.value);
     const minutes = parseInt(minutesInput.value);
     const seconds = parseInt(secondsInput.value);
     const milliseconds = parseInt(millisecondsInput.value);
 
-    // Validate input values
     if (isNaN(hours) || isNaN(minutes) || isNaN(seconds) || isNaN(milliseconds)) {
       alert('Please enter valid numbers for hours, minutes, seconds, and milliseconds.');
       return;
     }
 
-    // Calculate the total number of milliseconds
     const totalMilliseconds = hours * 3600000 + minutes * 60000 + seconds * 1000 + milliseconds;
 
-    // Start the countdown
     let currentMillisecond = totalMilliseconds;
     this.startTime = performance.now();
 
     this.countdownInterval = setInterval(() => {
-      // Calculate elapsed time since the start of the countdown
       const elapsedTime = performance.now() - this.startTime;
-
-      // Calculate remaining hours, minutes, seconds, and milliseconds
       const remainingMilliseconds = currentMillisecond - elapsedTime;
       const remainingHours = Math.floor(remainingMilliseconds / 3600000);
       const remainingMinutes = Math.floor((remainingMilliseconds % 3600000) / 60000);
       const remainingSeconds = Math.floor((remainingMilliseconds % 60000) / 1000);
       const remainingMillisecondsPadded = Math.floor(remainingMilliseconds % 1000).toString().padStart(3, '0');
 
-      // Update the countdown display
       hoursInput.value = remainingHours.toString().padStart(2, '0');
       minutesInput.value = remainingMinutes.toString().padStart(2, '0');
       secondsInput.value = remainingSeconds.toString().padStart(2, '0');
       millisecondsInput.value = remainingMillisecondsPadded;
 
-      // If countdown reaches zero, clear the interval
       if (remainingMilliseconds <= 0) {
         clearInterval(this.countdownInterval);
         alert('Countdown completed!');
@@ -166,26 +149,61 @@ class CountdownTimer {
         secondsInput.value = '00';
         millisecondsInput.value = '000';
         this.isCountdownRunning = false;
-        this.startPauseButton.innerText = 'Start'; // Change button text to "Start" when countdown completes
+        this.startPauseButton.innerText = 'Start';
       }
-    }, 10); // Update every 10 milliseconds
+    }, 10);
   }
 
   clearCountdown() {
-    // Clear the interval and reset input fields to zero
     clearInterval(this.countdownInterval);
     document.getElementById('hours').value = '0';
     document.getElementById('minutes').value = '0';
     document.getElementById('seconds').value = '0';
     document.getElementById('milliseconds').value = '0';
 
-    // Reset the countdown state
     this.isCountdownRunning = false;
-    this.startPauseButton.innerText = 'Start'; // Change button text to "Start" when countdown is cleared
+    this.startPauseButton.innerText = 'Start';
+    this.clearButton.classList.add('disabled');
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const showStopwatchButton = document.getElementById('showStopwatch');
+  const showCountdownButton = document.getElementById('showCountdown');
+  const stopwatchSection = document.querySelector('.stopwatch');
+  const countdownSection = document.querySelector('.countdown');
+  const backButton = document.getElementById('backButton');
+  const title = document.querySelector('.title');
+  backButton.style.display = 'none';
+
+  showStopwatchButton.addEventListener('click', () => {
+    title.style.display = 'none';
+    stopwatchSection.style.display = 'block';
+    countdownSection.style.display = 'none';
+    showStopwatchButton.style.display = 'none';
+    showCountdownButton.style.display = 'none';
+    backButton.style.display = 'block';
+  });
+
+  showCountdownButton.addEventListener('click', () => {
+    title.style.display = 'none';
+    stopwatchSection.style.display = 'none';
+    countdownSection.style.display = 'block';
+    showStopwatchButton.style.display = 'none';
+    showCountdownButton.style.display = 'none';
+    backButton.style.display = 'block';
+  });
+
+  backButton.addEventListener('click', () => {
+    title.style.display = 'block';
+    stopwatchSection.style.display = 'none';
+    countdownSection.style.display = 'none';
+    showStopwatchButton.style.display = 'inline-block';
+    showCountdownButton.style.display = 'inline-block';
+    backButton.style.display = 'none';
+  });
+
   new Stopwatch();
   new CountdownTimer();
 });
+
