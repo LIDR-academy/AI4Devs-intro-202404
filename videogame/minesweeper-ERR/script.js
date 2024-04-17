@@ -97,8 +97,6 @@ function initGame() {
     const boardContainer = document.querySelector('.board');
     boardContainer.innerHTML = '';
     const { height, width } = levelConfig[currentLevel];
-    boardContainer.classList.remove('level-beginner', 'level-intermediate', 'level-expert');
-    boardContainer.classList.add(`level-${currentLevel}`);
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
             const cell = document.createElement('div');
@@ -112,15 +110,25 @@ function initGame() {
             boardContainer.appendChild(cell);
         }
     }
+    // Log current class list before updating
+    console.log('Current class list:', boardContainer.classList.toString());
+    // Update class after a short delay to ensure board rendering
+    setTimeout(() => {
+        boardContainer.classList.remove('level-beginner', 'level-intermediate', 'level-expert');
+        boardContainer.classList.add(`level-${currentLevel}`);
+        // Log updated class list after updating
+        console.log('Updated class list:', boardContainer.classList.toString());
+    }, 10);
 }
 
 function restartGame() {
-    createBoard();
+    const boardContainer = document.querySelector('.board');
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
         cell.textContent = '';
         cell.classList.remove('revealed', 'bomb', 'flagged');
     });
+    initGame(); // Call initGame() to refresh the displayed board
 }
 
 document.getElementById('level-select').addEventListener('change', (event) => {
