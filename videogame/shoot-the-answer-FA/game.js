@@ -1,125 +1,172 @@
-// Variables globales
-let currentQuestion = 0;
-let questions = [];
-let score = 0;
-let attempts = 0;
-let consecutiveHits = 0;
+let genderSelected = false;
+let themeSelected = false;
+let selectedTheme = '';
+let currentQuestionIndex = 0;  // Índice de la pregunta actual
+let attemptsLeft = 3;          // Intentos restantes para la pregunta actual
+let questions = [];            // Almacenar las preguntas cargadas
+let score = 0;                  // Puntuación total
+let firstTrySuccesses = 0;      // Contador de aciertos al primer intento consecutivos
+let attemptsUsed = 0;           // Intentos usados en la pregunta actual
 
-document.getElementById('startButton').addEventListener('click', startGame);
-
-// Función para iniciar el juego
-function startGame() {
-    let topic = document.getElementById('topicSelect').value;
-    let gender = document.getElementById('genderSelect').value;
-    loadQuestions(topic);
-    setupGameScreen(topic, gender);
+function initializeGameScreen() {
+    document.getElementById('startScreen').style.display = 'none';  // Ocultar la pantalla de inicio
+    document.getElementById('gameScreen').style.display = 'block';  // Mostrar la pantalla del juego
+    updateScoreDisplay();  // Asegúrate de que el puntaje inicial se muestre correctamente
 }
 
-// Cargar preguntas según el tema seleccionado desde un archivo único
-function loadQuestions(topic) {
-    fetch(`/videogame/shoot-the-answer-FA/data/questions.json`)
-        .then(response => response.json())
-        .then(data => {
-            questions = data[topic];
-            displayQuestion(); // Asegúrate de llamar a esta función una vez que las preguntas estén cargadas
-        })
-        .catch(error => {
-            console.error('Error loading the questions:', error);
-            alert('Failed to load questions.');
+
+document.querySelectorAll('.gender-image').forEach(item => {
+    item.addEventListener('click', function() {
+        genderSelected = true;
+        document.querySelectorAll('.gender-image').forEach(image => {
+            image.classList.add('not-selected');
         });
-}
+        item.classList.remove('not-selected');
+        checkSelections();
+    });
+});
 
-// Configurar la pantalla de juego
-function setupGameScreen(topic, gender) {
-    document.getElementById('startScreen').style.display = 'none';
-    document.getElementById('gameScreen').style.display = 'block';
-    document.getElementById('gameScreen').style.backgroundImage = `url('/videogame/shoot-the-answer-FA/assets/backgrounds/${topic}.webp')`;
-    document.getElementById('topicHeader').textContent = topic.charAt(0).toUpperCase() + topic.slice(1);
-}
+document.querySelectorAll('.theme-button').forEach(button => {
+    button.addEventListener('click', function() {
+        themeSelected = true;
+        selectedTheme = button.getAttribute('id').replace('-button', '');
+        document.querySelectorAll('.theme-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        checkSelections();
+    });
+});
 
-// Mostrar la pregunta actual y las respuestas
-function displayQuestion() {
-    if (questions.length === 0) {
-        endGame();
-        return;
+function checkSelections() {
+    let startButton = document.getElementById('startButton');
+    if (genderSelected && themeSelected) {
+        startButton.disabled = false;
+        startButton.classList.remove('btn-secondary');
+        startButton.classList.add('btn-success');
+    } else {
+        startButton.disabled = true;
+        startButton.classList.remove('btn-success');
+        startButton.classList.add('btn-secondary');
     }
-    let question = questions[currentQuestion];
-    document.getElementById('questionText').textContent = question.question;
-    const answersContainer = document.getElementById('answers');
-    answersContainer.innerHTML = '';  // Limpiar respuestas anteriores
+}
 
-    question.options.forEach((option, index) => {
-        let answerDisk = document.createElement('div');
-        answerDisk.className = 'answerDisk';
-        answerDisk.style.backgroundImage = `url('/videogame/shoot-the-answer-FA/assets/disks/${String.fromCharCode(65 + index)}.webp')`;
-        answerDisk.dataset.correct = question.answer === String.fromCharCode(65 + index);
-        answersContainer.appendChild(answerDisk);
+// Asegúrate de inicializar el estado al cargar la página
+checkSelections();
 
-        // Agrega el movimiento aleatorio de los discos
-        moveDiskRandomly(answerDisk);
-        answerDisk.addEventListener('click', () => checkAnswer(answerDisk, answerDisk.dataset.correct === 'true'));
+function updateScoreDisplay() {
+    document.getElementById('score').innerText = score;  // Actualizar el puntaje en el DOM
+}
+
+
+
+// Función para cargar preguntas desde el JSON
+function loadQuestions(theme) {
+    fetch('data/questions.json')
+    .then(response => response.json())
+    .then(data => {
+        questions = data[theme];
+        displayQuestion(currentQuestionIndex);
+    })
+    .catch(error => {
+        console.error('Error loading the questions:', error);
     });
 }
 
-// Mover los discos de forma aleatoria dentro del área de respuestas
-function moveDiskRandomly(disk) {
-    let area = document.getElementById('answers');
-    let maxX = area.clientWidth - 50;  // Anchura del disco
-    let maxY = 100;  // Altura limitada para que los discos floten
-    setInterval(() => {
-        let newX = Math.random() * maxX;
-        let newY = Math.random() * maxY;
-        disk.style.left = `${newX}px`;
-        disk.style.top = `${newY}px`;
-    }, 250);  // Mover cada 250 milisegundos
+function displayQuestion(index) {
+    const question = questions[index];
+    const questionContainer = document.getElementById('questionContainer');
+    questionContainer.innerHTML = `<h4>${question.question}</h4>`; // Muestra la pregunta
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'options';
+
+    question.options.forEach((option, idx) => {
+        const optionButton = document.createElement('button');
+        optionButton.className = 'btn btn-info m-2';
+        optionButton.innerText = option;
+        optionButton.onclick = () => handleAnswer(idx, question.answer);
+        optionsDiv.appendChild(optionButton);
+    });
+
+    questionContainer.appendChild(optionsDiv);
+    attemptsLeft = 3;  // Restablecer los intentos para la nueva pregunta
+    attemptsUsed = 0;  // Restablecer los intentos usados
 }
 
-// Comprobar la respuesta seleccionada
-function checkAnswer(disk, isCorrect) {
-    attempts++;
-    if (isCorrect) {
-        score += attempts === 1 ? 100 : attempts === 2 ? 50 : 25;
-        consecutiveHits += 1;
-        if (consecutiveHits === 3) {
+
+
+function handleAnswer(selectedOptionIndex, correctAnswer) {
+    const correctIndex = correctAnswer.charCodeAt(0) - 'A'.charCodeAt(0);
+    attemptsUsed++;
+    attemptsLeft--;
+
+    if (selectedOptionIndex === correctIndex) {
+        // Asignar puntos según el número de intentos usados
+        switch (attemptsUsed) {
+            case 1:
+                score += 100;
+                firstTrySuccesses++;
+                break;
+            case 2:
+                score += 50;
+                firstTrySuccesses = 0;  // Resetear conteo de primeros intentos exitosos
+                break;
+            case 3:
+                score += 20;
+                firstTrySuccesses = 0;  // Resetear conteo de primeros intentos exitosos
+                break;
+        }
+
+        // Verificar si hay un bonus por 3 aciertos consecutivos al primer intento
+        if (firstTrySuccesses === 3) {
             score += 100;
-            consecutiveHits = 0;
+            firstTrySuccesses = 0;  // Resetear después de aplicar el bonus
         }
-        alert('¡Correcto!');
-        nextQuestion();
+
+        console.log(`Correct answer! Score: ${score}`);
+        updateScoreDisplay();
+        moveToNextQuestion();
     } else {
-        if (attempts >= 3) {
-            consecutiveHits = 0;
-            alert('Incorrecto. Intentos agotados.');
-            nextQuestion();
+        if (attemptsLeft > 0) {
+            console.log(`Wrong answer! Try again. Attempts left: ${attemptsLeft}`);
         } else {
-            alert('Incorrecto. Intenta de nuevo.');
+            console.log('No more attempts!');
+            score -= 15;
+            firstTrySuccesses = 0;  // Resetear conteo de primeros intentos exitosos
+            console.log(`Score: ${score}`);
+            updateScoreDisplay();
+            moveToNextQuestion();
         }
     }
-    updateScore();
 }
 
-// Actualizar el puntaje en la pantalla
-function updateScore() {
-    document.getElementById('score').textContent = `Puntaje: ${score}`;
-}
-
-// Pasar a la siguiente pregunta
-function nextQuestion() {
-    currentQuestion++;
-    attempts = 0;
-    if (currentQuestion < questions.length) {
-        displayQuestion();
+function moveToNextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        displayQuestion(currentQuestionIndex);
     } else {
-        endGame();
+        console.log('Game Over! Final Score:', score);
+        // Aquí podrías mostrar un resumen del juego o redirigir a una pantalla de resultados
     }
 }
 
-// Finalizar el juego
-function endGame() {
-    alert('Juego terminado. Tu puntaje final es: ' + score);
-    document.getElementById('startScreen').style.display = 'block';
-    document.getElementById('gameScreen').style.display = 'none';
-    score = 0;
-    currentQuestion = 0;
-    consecutiveHits = 0;
+
+
+// Función para verificar la respuesta
+function checkAnswer(correctAnswer, selectedOptionIndex) {
+    const correctIndex = correctAnswer.charCodeAt(0) - 'A'.charCodeAt(0);
+    if (selectedOptionIndex === correctIndex) {
+        console.log('Correct answer!');
+        // Implementar lógica de puntuación aquí
+    } else {
+        console.log('Wrong answer!');
+    }
 }
+
+document.getElementById('startButton').addEventListener('click', function() {
+    if (selectedTheme) {
+        document.getElementById('startScreen').style.display = 'none'; // Ocultar pantalla de inicio
+        loadQuestions(selectedTheme);
+        initializeGameScreen();
+    }
+});

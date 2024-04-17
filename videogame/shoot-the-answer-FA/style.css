@@ -1,31 +1,28 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+/* Estilos personalizados que Bootstrap no cubre */
+.gender-image {
+    cursor: pointer;
+    max-width: 120px;
+    transition: all 0.3s;
 }
 
-#gameScreen {
-    position: relative;
-    width: 800px;
-    height: 600px;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    background-size: cover;
+.gender-image.not-selected {
+    opacity: 0.5;
 }
 
-#header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+.theme-button {
+    width: 150px; /* Ancho fijo para botones de tema */
+    transition: all 0.3s;
 }
 
-#questionContainer {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-}
-
-#answers div {
-    width: 50px;
-    height: 50px;
-    position: absolute;
+/* No es necesario agregar estilos para .disabled porque Bootstrap ya lo maneja con la clase .disabled o :disabled */
+.score-board {
+    font-size: 20px;  
+    color: #333;
+    background-color: #f8f9fa; 
+    padding: 10px;  
+    border-radius: 5px;  
+    position: absolute;     
+    top: 10px;  
+    right: 10px;  
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);     
 }

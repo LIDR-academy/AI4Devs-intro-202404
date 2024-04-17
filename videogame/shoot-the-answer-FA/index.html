@@ -3,49 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Shoot n' Study</title>
-    <link rel="stylesheet" href="/videogame/shoot-the-answer-FA/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container py-5">
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
         <div id="startScreen" class="text-center">
             <h1 class="mb-4">Shoot n' Study</h1>
-            <div class="row justify-content-center">
-                <div class="col-md-4 mb-3">
-                    <label for="topicSelect" class="form-label">Escoge un tema:</label>
-                    <select id="topicSelect" class="form-select">
-                        <option value="math">Matemáticas</option>
-                        <option value="science">Ciencias</option>
-                        <option value="history">Historia</option>
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="genderSelect" class="form-label">¿Eres niño o niña?</label>
-                    <select id="genderSelect" class="form-select">
-                        <option value="boy">Niño</option>
-                        <option value="girl">Niña</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <button id="startButton" class="btn btn-primary mt-4">Empezar</button>
-                </div>
+            <div class="gender-selection mb-3">
+                <img src="assets/boy.png" alt="Niño" class="gender-image img-thumbnail mr-2" id="boy">
+                <img src="assets/girl.png" alt="Niña" class="gender-image img-thumbnail" id="girl">
             </div>
+            <div class="theme-selection btn-group mb-3" role="group" aria-label="Basic example">
+                <button type="button" class="theme-button btn btn-primary" id="math-button">Matemáticas</button>
+                <button type="button" class="theme-button btn btn-primary" id="science-button">Ciencia</button>
+                <button type="button" class="theme-button btn btn-primary" id="history-button">Historia</button>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button id="startButton" class="btn btn-success btn-lg" disabled>Iniciar Juego</button>
+            </div>
+            
         </div>
-
-        <div id="gameScreen" class="d-none">
-            <div id="header" class="d-flex justify-content-between align-items-center p-2">
-                <span id="score" class="h4">Puntaje: 0</span>
-                <span id="topicHeader" class="h4"></span>
+        <!-- Aquí se cargará la pantalla de juego una vez que se inicie -->
+        <div id="gameScreen" class="game-screen" style="display: none;">
+            <div id="scoreBoard" class="score-board">
+                Puntaje: <span id="score">0</span>
             </div>
-            <div id="questionContainer" class="position-relative">
-                <p id="questionText" class="fs-4"></p>
-                <div id="answers" class="position-absolute w-100" style="bottom: 10px;">
-                    <!-- Discos flotantes serán generados aquí -->
-                </div>
-            </div>
+            <div id="questionContainer"></div> <!-- Contenedor exclusivo para preguntas -->
         </div>
+        
     </div>
-
-    <script src="/videogame/shoot-the-answer-FA/game.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
