@@ -98,23 +98,51 @@ function displayQuestion(currentQuestionIndex) {
         floatingAnswer.className = `floating-answer btn btn-circle color-${index + 1}`;
         floatingAnswer.style.display = 'none';
         floatingAnswersContainer.appendChild(floatingAnswer);
-        moveDiskRandomly(floatingAnswer);
         floatingAnswer.addEventListener('click', () => handleAnswer(index, question.answer));
+        moveDiskRandomly(floatingAnswer);
     });
 }
 
-// Actualizar la función moveDiskRandomly() para ajustar los nuevos elementos flotantes
-function moveDiskRandomly(answer) {
+// Actualizar la función moveDiskRandomly() para ajustar los nuevos elementos flotantes// Función para mover un disco de forma aleatoria y fluida dentro del área de respuestas
+function moveDiskRandomly(disk) {
     const floatingAnswersContainer = document.getElementById('floatingAnswers');
-    let { newX, newY } = calculatePositions(floatingAnswersContainer, answer);
-    answer.style.left = `${newX}px`;
-    answer.style.top = `${newY}px`;
-    answer.style.display = 'block';
-    setInterval(() => {
-        let { newX, newY } = calculatePositions(floatingAnswersContainer, answer);
-        answer.style.left = `${newX}px`;
-        answer.style.top = `${newY}px`;
-    }, 2000);
+    disk.style.display = 'block';  // Mostrar el disco antes de calcular las posiciones iniciales
+    let maxX = floatingAnswersContainer.clientWidth - disk.offsetWidth;
+    let maxY = floatingAnswersContainer.clientHeight - disk.offsetHeight;
+
+    // Velocidad y dirección inicial aleatoria
+    let speedX = (Math.random() - 0.5) * 4; // Velocidad en X
+    let speedY = (Math.random() - 0.5) * 4; // Velocidad en Y
+
+    function updatePosition() {
+        let currentLeft = parseFloat(disk.style.left, 10) || 0;
+        let currentTop = parseFloat(disk.style.top, 10) || 0;
+
+        // Calcular nueva posición
+        let newLeft = currentLeft + speedX;
+        let newTop = currentTop + speedY;
+
+        // Rebotar en los bordes del contenedor
+        if (newLeft <= 0 || newLeft >= maxX) {
+            speedX = -speedX;
+            newLeft = newLeft <= 0 ? 0 : maxX;
+        }
+        if (newTop <= 0 || newTop >= maxY) {
+            speedY = -speedY;
+            newTop = newTop <= 0 ? 0 : maxY;
+        }
+
+        // Aplicar nueva posición
+        disk.style.left = `${newLeft}px`;
+        disk.style.top = `${newTop}px`;
+
+        // Solicitar el próximo cuadro de animación
+        requestAnimationFrame(updatePosition);
+    }
+
+    // Iniciar la animación
+    updatePosition();
+    setInterval(() => updatePosition(),20000);
 }
 
 function calculatePositions(container, disk) {
