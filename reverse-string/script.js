@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+function reverseString(str) {
+    return str.split('').reverse().join('');
+}
+=======
 document.addEventListener('DOMContentLoaded', () => {
     const inputText = document.getElementById('inputText');
     const reverseBtn = document.getElementById('reverseBtn');
@@ -33,3 +38,4 @@ function copyToClipboard(text) {
     document.execCommand('copy');
     document.body.removeChild(textarea);
 }
+>>>>>>> 294eb62a2507f52590a41ab3a290496c27366af8
