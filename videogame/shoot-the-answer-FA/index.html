@@ -26,12 +26,28 @@
             
         </div>
         <!-- Aquí se cargará la pantalla de juego una vez que se inicie -->
-        <div id="gameScreen" class="game-screen" style="display: none;">
-            <div id="scoreBoard" class="score-board">
-                Puntaje: <span id="score">0</span>
+        <div id="gameScreen" class="game-container" style="display: none;">
+            <div id="header">
+                <span id="score">Puntaje: 0</span>
             </div>
-            <div id="questionContainer"></div> <!-- Contenedor exclusivo para preguntas -->
+            <div id="questionsContainer" class="questions-container">
+                <div id="floatingAnswers" class="floating-answers">
+                    <!-- Los botones flotantes se generarán y moverán aquí -->
+                </div>
+                <div id="staticAnswers" class="static-answers">
+                    <p id="questionText"></p>
+                    <div id="answers">
+                        <!-- Respuestas estáticas A, B, C, D para visualización -->
+                    </div>
+                </div>
+            </div>
         </div>
+        <div id="endScreen" class="text-center" style="display: none;">
+            <h1>Juego Terminado</h1>
+            <p id="finalScore"></p>
+            <button class="btn btn-primary" onclick="restartGame()">Reiniciar Juego</button>
+        </div>
+        
         
     </div>
     <script src="game.js"></script>

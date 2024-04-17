@@ -10,7 +10,9 @@ let attemptsUsed = 0;           // Intentos usados en la pregunta actual
 
 function initializeGameScreen() {
     document.getElementById('startScreen').style.display = 'none';  // Ocultar la pantalla de inicio
-    document.getElementById('gameScreen').style.display = 'block';  // Mostrar la pantalla del juego
+    document.getElementById('gameScreen').style.display = 'flex';  // Mostrar la pantalla del juego
+    document.getElementById('gameScreen').style.backgroundImage = `url('assets/backgrounds/${selectedTheme}.png')`;
+    document.getElementById('gameScreen').style.backgroundSize = 'cover';
     updateScoreDisplay();  // Asegúrate de que el puntaje inicial se muestre correctamente
 }
 
@@ -73,26 +75,69 @@ function loadQuestions(theme) {
     });
 }
 
-function displayQuestion(index) {
-    const question = questions[index];
-    const questionContainer = document.getElementById('questionContainer');
-    questionContainer.innerHTML = `<h4>${question.question}</h4>`; // Muestra la pregunta
-    const optionsDiv = document.createElement('div');
-    optionsDiv.className = 'options';
+// Agregar a la función displayQuestion()
+function displayQuestion(currentQuestionIndex) {
+    let question = questions[currentQuestionIndex];
+    document.getElementById('questionText').textContent = question.question;
+    const floatingAnswersContainer = document.getElementById('floatingAnswers');
+    const staticAnswersContainer = document.getElementById('answers');
+    
+    floatingAnswersContainer.innerHTML = ''; // Limpiar respuestas flotantes anteriores
+    staticAnswersContainer.innerHTML = '';   // Limpiar respuestas estáticas anteriores
 
-    question.options.forEach((option, idx) => {
-        const optionButton = document.createElement('button');
-        optionButton.className = 'btn btn-info m-2';
-        optionButton.innerText = option;
-        optionButton.onclick = () => handleAnswer(idx, question.answer);
-        optionsDiv.appendChild(optionButton);
+    question.options.forEach((option, index) => {
+        let staticAnswer = document.createElement('div');
+        staticAnswer.innerHTML = `<strong>${String.fromCharCode(65 + index)}:</strong> ${option}`;
+        staticAnswersContainer.appendChild(staticAnswer);
+
+        let floatingAnswer = document.createElement('button');
+        let backgroundUrl = `assets/disks/${String.fromCharCode(65 + index)}.png`;
+        floatingAnswer.style.backgroundImage = `url('${backgroundUrl}' ) `;
+        floatingAnswer.style.backgroundSize = 'contain';
+        floatingAnswer.style.backgroundPosition = 'center';
+        floatingAnswer.className = `floating-answer btn btn-circle color-${index + 1}`;
+        floatingAnswer.style.display = 'none';
+        floatingAnswersContainer.appendChild(floatingAnswer);
+        moveDiskRandomly(floatingAnswer);
+        floatingAnswer.addEventListener('click', () => handleAnswer(index, question.answer));
     });
-
-    questionContainer.appendChild(optionsDiv);
-    attemptsLeft = 3;  // Restablecer los intentos para la nueva pregunta
-    attemptsUsed = 0;  // Restablecer los intentos usados
 }
 
+// Actualizar la función moveDiskRandomly() para ajustar los nuevos elementos flotantes
+function moveDiskRandomly(answer) {
+    const floatingAnswersContainer = document.getElementById('floatingAnswers');
+    let { newX, newY } = calculatePositions(floatingAnswersContainer, answer);
+    answer.style.left = `${newX}px`;
+    answer.style.top = `${newY}px`;
+    answer.style.display = 'block';
+    setInterval(() => {
+        let { newX, newY } = calculatePositions(floatingAnswersContainer, answer);
+        answer.style.left = `${newX}px`;
+        answer.style.top = `${newY}px`;
+    }, 2000);
+}
+
+function calculatePositions(container, disk) {
+    let maxX = container.clientWidth - disk.offsetWidth;
+    let maxY = container.clientHeight - disk.offsetHeight;
+    let newX, newY, valid;
+
+    do {
+        newX = Math.random() * maxX;
+        newY = Math.random() * maxY;
+        valid = true;
+
+        // Revisar colisiones con otros discos
+        Array.from(container.children).forEach(other => {
+            if (other !== disk) {
+                let distance = Math.sqrt(Math.pow(newX - parseFloat(other.style.left), 2) + Math.pow(newY - parseFloat(other.style.top), 2));
+                if (distance < disk.offsetWidth) valid = false;  // Considerar ajustar esta lógica de colisión
+            }
+        });
+    } while (!valid);
+
+    return { newX, newY };
+}
 
 
 function handleAnswer(selectedOptionIndex, correctAnswer) {
@@ -142,11 +187,13 @@ function handleAnswer(selectedOptionIndex, correctAnswer) {
 
 function moveToNextQuestion() {
     currentQuestionIndex++;
+    attemptsLeft = 3;
+    attemptsUsed = 0;
     if (currentQuestionIndex < questions.length) {
         displayQuestion(currentQuestionIndex);
     } else {
         console.log('Game Over! Final Score:', score);
-        // Aquí podrías mostrar un resumen del juego o redirigir a una pantalla de resultados
+        endGame();
     }
 }
 
@@ -154,6 +201,8 @@ function moveToNextQuestion() {
 
 // Función para verificar la respuesta
 function checkAnswer(correctAnswer, selectedOptionIndex) {
+    console.log('Selected option:', selectedOptionIndex);
+    console.log('Correct answer:', correctAnswer);
     const correctIndex = correctAnswer.charCodeAt(0) - 'A'.charCodeAt(0);
     if (selectedOptionIndex === correctIndex) {
         console.log('Correct answer!');
@@ -170,3 +219,18 @@ document.getElementById('startButton').addEventListener('click', function() {
         initializeGameScreen();
     }
 });
+
+function endGame() {
+    document.getElementById('gameScreen').style.display = 'none'; // Ocultar pantalla de juego
+    document.getElementById('endScreen').style.display = 'block'; // Mostrar pantalla de fin
+    document.getElementById('finalScore').innerText = `Tu puntaje final es: ${score}`;
+}
+
+function restartGame() {
+    document.getElementById('endScreen').style.display = 'none';
+    document.getElementById('startScreen').style.display = 'block';
+    currentQuestionIndex = 0;
+    score = 0;
+    updateScoreDisplay();
+    checkSelections(); // Reactivar botón de inicio si ya se seleccionaron género y tema
+}
