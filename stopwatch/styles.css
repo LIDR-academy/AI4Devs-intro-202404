@@ -66,3 +66,31 @@ h1 {
 body.paused {
   background-color: white;
 }
+
+.countdown {
+  display: flex;
+  justify-content: center;
+}
+
+.countdown-item {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.countdown-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.countdown-label {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.buttons-container {
+  margin-top: 20px;
+  text-align: center;
+}
