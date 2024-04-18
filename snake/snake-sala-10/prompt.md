@@ -85,7 +85,7 @@ Control de la serpiente por el jugador.
 Paso 1: Configuración inicial y creación de la cuadrícula y la serpiente
 Primero, estableceremos una cuadrícula de 20x20 y posicionaremos la serpiente inicial en esta cuadrícula. También configuraremos el juego para que tenga un alimento en una posición aleatoria.
 
-En el archivo script.js, escribiremos el siguiente código:
+En el archivo game.js, escribiremos el siguiente código:
 
 javascript
 Copy code
@@ -156,7 +156,7 @@ Mueve la serpiente en la dirección inicial cada segundo.
 Paso 2: Agregar control del jugador
 A continuación, agregaremos la capacidad para que el jugador controle la dirección de la serpiente usando las teclas WASD y las flechas del teclado.
 
-Agregaremos este código a nuestro archivo script.js:
+Agregaremos este código a nuestro archivo game.js:
 
 javascript
 Copy code
@@ -190,7 +190,7 @@ Paso 3: Comer el alimento y crecer
 Modificaremos la función moveSnake para incluir la lógica de comer el alimento y hacer crecer a la serpiente. También crearemos una función para posicionar aleatoriamente el alimento.
 
 JavaScript para comer y crecer
-Agregaremos y modificaremos el siguiente código en script.js:
+Agregaremos y modificaremos el siguiente código en game.js:
 
 javascript
 Copy code
@@ -303,7 +303,7 @@ document.addEventListener('keydown', event => {
         if (x === 0) direction = { x: 1, y: 0 };
     }
 });
-Este código debería funcionar correctamente para controlar la serpiente con tanto las flechas del teclado como las teclas WASD. Asegúrate de que este código esté correctamente colocado en tu archivo script.js y de que el navegador esté cargando la versión más reciente del script (a veces puede haber problemas de caché).
+Este código debería funcionar correctamente para controlar la serpiente con tanto las flechas del teclado como las teclas WASD. Asegúrate de que este código esté correctamente colocado en tu archivo game.js y de que el navegador esté cargando la versión más reciente del script (a veces puede haber problemas de caché).
 
 Verificar la implementación
 Asegúrate de que el script se esté cargando correctamente: Puedes verificar si hay errores en la consola del navegador, la cual puedes abrir con F12 o haciendo clic derecho en la página y seleccionando "Inspeccionar" y luego la pestaña "Consola".
@@ -312,7 +312,7 @@ Revisa la carga del archivo JavaScript: Asegúrate de que el navegador está car
 
 Prueba de funcionalidad: Una vez hecho esto, prueba el juego nuevamente para ver si los controles responden adecuadamente.
 
-Si después de estos pasos sigues enfrentando problemas con el control del teclado, verifica que el archivo script.js esté correctamente vinculado en tu archivo HTML y que no haya errores de tipeo o sintaxis en el código. Si todo parece correcto pero el problema persiste, podríamos necesitar revisar más a fondo la lógica del juego para asegurarnos de que no haya interferencias con otras partes del código.
+Si después de estos pasos sigues enfrentando problemas con el control del teclado, verifica que el archivo game.js esté correctamente vinculado en tu archivo HTML y que no haya errores de tipeo o sintaxis en el código. Si todo parece correcto pero el problema persiste, podríamos necesitar revisar más a fondo la lógica del juego para asegurarnos de que no haya interferencias con otras partes del código.
 
 User
 Me está dando este error en la consola:

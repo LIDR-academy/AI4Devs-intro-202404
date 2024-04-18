@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Economía</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="game-container">
+    <div id="map"></div>
+    <div id="controls" onclick="toggleControls(event)">
+        <button>☰ Menú</button>
+        <div class="menu" style="display:none;">
+            <div>
+                <button onclick="zoomIn()">+</button>
+                <button onclick="zoomOut()">-</button>
+            </div>
+            <button onclick="buildBuilding('Residencia')">Residencia ($50)</button>
+            <button onclick="buildBuilding('Fabrica')">Fábrica ($100)</button>
+            <button onclick="buildBuilding('Tienda')">Tienda ($70)</button>
+            <button onclick="buildBuilding('Almacen')">Almacén ($150)</button>
+            <button onclick="buildBuilding('Hospital')">Hospital ($150)</button>
+            <button onclick="buildBuilding('Escuela')">Escuela ($150)</button>
+            <button onclick="buildBuilding('Supermercado')">Supermercado ($150)</button>
+            <button class="close-btn" onclick="closeMenu()">Cerrar Menú</button>
+        </div>
+    </div>
+    <div id="info-panel">
+        <p>Dinero: <span id="money">1000</span></p>
+        <p>Población: <span id="population">0</span></p>
+        <p>Bienestar: <span id="bienestar">100</span></p>
+        <p>Mensajes: <span id="messages">No hay mensajes</span></p>
+    </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>

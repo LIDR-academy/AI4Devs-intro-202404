@@ -4,7 +4,7 @@ Utiliza lo aprendido sobre prompt engineering para crear un **cronómetro y cuen
 
 Referencia: [https://www.online-stopwatch.com/](https://www.online-stopwatch.com/) (ver res/stopwatch.png, referencia de diseño)
 
-Hazlo apoyado en el seed `index.html` + `script.js`
+Hazlo apoyado en el seed `index.html` + `game.js`
 
 Utiliza un chatbot, como ChatGPT o Gemini, no un asistente de código en IDE como Copilot.
 
