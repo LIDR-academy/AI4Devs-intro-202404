@@ -48,7 +48,6 @@
     right: 350px;
 }
 
-/* Nuevos estilos para los efectos visuales */
 .paddle-hit {
     background-color: #ff0;
 }
@@ -63,4 +62,14 @@
 
 .right-wall-hit {
     background-color: #f90;
+}
+
+.start-message {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
 }

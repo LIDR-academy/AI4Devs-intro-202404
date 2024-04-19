@@ -4,6 +4,7 @@ const paddle2 = document.getElementById('paddle2');
 const ball = document.getElementById('ball');
 const score1 = document.getElementById('score1');
 const score2 = document.getElementById('score2');
+const startMessage = document.getElementById('startMessage');
 
 let paddle1Y = 250;
 let paddle2Y = 250;
@@ -14,6 +15,7 @@ let ballSpeedY = 5;
 let player1Score = 0;
 let player2Score = 0;
 let gameLoop;
+let gameStarted = false;
 
 // Crear elementos de audio
 const paddleHitSound = new Audio('res/paddle_hit.mp3');
@@ -23,15 +25,25 @@ const winnerSound = new Audio('res/winner.mp3');
 const loserSound = new Audio('res/loser.mp3');
 const startSound = new Audio('res/start.mp3');
 
-// Reproducir sonido de inicio cuando el usuario interactúa con la página
-document.addEventListener('click', () => {
-	startSound.play();
+// Iniciar el juego cuando se hace clic en el tablero
+game.addEventListener('click', () => {
+	if (!gameStarted) {
+		gameStarted = true;
+		startSound.play();
+		startMessage.style.display = 'none';
+		gameLoop = setInterval(() => {
+			movePaddle2();
+			moveBall();
+		}, 1000/60);
+	}
 });
 
 function movePaddle1(event) {
-	const gameRect = game.getBoundingClientRect();
-	paddle1Y = event.clientY - gameRect.top - 50;
-	paddle1.style.top = paddle1Y + 'px';
+	if (gameStarted) {
+		const gameRect = game.getBoundingClientRect();
+		paddle1Y = event.clientY - gameRect.top - 50;
+		paddle1.style.top = paddle1Y + 'px';
+	}
 }
 
 function movePaddle2() {
@@ -152,13 +164,9 @@ function resetGame() {
 	score1.textContent = player1Score;
 	score2.textContent = player2Score;
 	resetBall();
-	// Reproducir sonido de inicio al resetear el juego
-	startSound.play();
+	gameStarted = false;
+	startMessage.style.display = 'block';
+	clearInterval(gameLoop);
 }
 
 game.addEventListener('mousemove', movePaddle1);
-
-gameLoop = setInterval(() => {
-	movePaddle2();
-	moveBall();
-}, 1000/60);
