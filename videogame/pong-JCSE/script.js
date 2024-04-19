@@ -15,6 +15,13 @@ let player1Score = 0;
 let player2Score = 0;
 let gameLoop;
 
+// Crear elementos de audio
+const paddleHitSound = new Audio('res/paddle_hit.mp3');
+const wallHitSound = new Audio('res/wall_hit.mp3');
+const scoreSound = new Audio('res/score.mp3');
+const winnerSound = new Audio('res/winner.mp3');
+const loserSound = new Audio('res/loser.mp3');
+
 function movePaddle1(event) {
 	const gameRect = game.getBoundingClientRect();
 	paddle1Y = event.clientY - gameRect.top - 50;
@@ -43,6 +50,9 @@ function moveBall() {
 
 	if (ballY <= 0 || ballY >= 580) {
 		ballSpeedY = -ballSpeedY;
+		wallHitSound.play();
+		ball.classList.add('wall-hit');
+		setTimeout(() => ball.classList.remove('wall-hit'), 100);
 	}
 
 	if (ballX <= 30) {
@@ -50,9 +60,15 @@ function moveBall() {
 			ballSpeedX = -ballSpeedX;
 			ballSpeedX *= 1.05;
 			ballSpeedY *= 1.05;
+			paddleHitSound.play();
+			paddle1.classList.add('paddle-hit');
+			setTimeout(() => paddle1.classList.remove('paddle-hit'), 100);
 		} else {
 			player2Score++;
 			score2.textContent = player2Score;
+			scoreSound.play();
+			ball.classList.add('right-wall-hit');
+			setTimeout(() => ball.classList.remove('right-wall-hit'), 100);
 			resetBall();
 		}
 	}
@@ -62,17 +78,25 @@ function moveBall() {
 			ballSpeedX = -ballSpeedX;
 			ballSpeedX *= 1.05;
 			ballSpeedY *= 1.05;
+			paddleHitSound.play();
+			paddle2.classList.add('paddle-hit');
+			setTimeout(() => paddle2.classList.remove('paddle-hit'), 100);
 		} else {
 			player1Score++;
 			score1.textContent = player1Score;
+			scoreSound.play();
+			ball.classList.add('left-wall-hit');
+			setTimeout(() => ball.classList.remove('left-wall-hit'), 100);
 			resetBall();
 		}
 	}
 
 	if (player1Score === 11 && player1Score >= player2Score + 2) {
+		winnerSound.play();
 		alert("Player 1 wins!");
 		resetGame();
 	} else if (player2Score === 11 && player2Score >= player1Score + 2) {
+		loserSound.play();
 		alert("Player 2 wins!");
 		resetGame();
 	}
