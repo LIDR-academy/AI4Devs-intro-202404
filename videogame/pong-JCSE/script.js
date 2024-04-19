@@ -21,6 +21,10 @@ const wallHitSound = new Audio('res/wall_hit.mp3');
 const scoreSound = new Audio('res/score.mp3');
 const winnerSound = new Audio('res/winner.mp3');
 const loserSound = new Audio('res/loser.mp3');
+const startSound = new Audio('res/start.mp3');
+
+// Reproducir sonido de inicio
+startSound.play();
 
 function movePaddle1(event) {
 	const gameRect = game.getBoundingClientRect();
@@ -41,6 +45,19 @@ function movePaddle2() {
 	paddle2.style.top = paddle2Y + 'px';
 }
 
+function stopAllSounds() {
+	paddleHitSound.pause();
+	paddleHitSound.currentTime = 0;
+	wallHitSound.pause();
+	wallHitSound.currentTime = 0;
+	scoreSound.pause();
+	scoreSound.currentTime = 0;
+	winnerSound.pause();
+	winnerSound.currentTime = 0;
+	loserSound.pause();
+	loserSound.currentTime = 0;
+}
+
 function moveBall() {
 	ballX += ballSpeedX;
 	ballY += ballSpeedY;
@@ -50,6 +67,7 @@ function moveBall() {
 
 	if (ballY <= 0 || ballY >= 580) {
 		ballSpeedY = -ballSpeedY;
+		stopAllSounds();
 		wallHitSound.play();
 		ball.classList.add('wall-hit');
 		setTimeout(() => ball.classList.remove('wall-hit'), 100);
@@ -60,12 +78,14 @@ function moveBall() {
 			ballSpeedX = -ballSpeedX;
 			ballSpeedX *= 1.05;
 			ballSpeedY *= 1.05;
+			stopAllSounds();
 			paddleHitSound.play();
 			paddle1.classList.add('paddle-hit');
 			setTimeout(() => paddle1.classList.remove('paddle-hit'), 100);
 		} else {
 			player2Score++;
 			score2.textContent = player2Score;
+			stopAllSounds();
 			scoreSound.play();
 			ball.classList.add('right-wall-hit');
 			setTimeout(() => ball.classList.remove('right-wall-hit'), 100);
@@ -78,12 +98,14 @@ function moveBall() {
 			ballSpeedX = -ballSpeedX;
 			ballSpeedX *= 1.05;
 			ballSpeedY *= 1.05;
+			stopAllSounds();
 			paddleHitSound.play();
 			paddle2.classList.add('paddle-hit');
 			setTimeout(() => paddle2.classList.remove('paddle-hit'), 100);
 		} else {
 			player1Score++;
 			score1.textContent = player1Score;
+			stopAllSounds();
 			scoreSound.play();
 			ball.classList.add('left-wall-hit');
 			setTimeout(() => ball.classList.remove('left-wall-hit'), 100);
@@ -92,10 +114,12 @@ function moveBall() {
 	}
 
 	if (player1Score === 11 && player1Score >= player2Score + 2) {
+		stopAllSounds();
 		winnerSound.play();
 		alert("Player 1 wins!");
 		resetGame();
 	} else if (player2Score === 11 && player2Score >= player1Score + 2) {
+		stopAllSounds();
 		loserSound.play();
 		alert("Player 2 wins!");
 		resetGame();
