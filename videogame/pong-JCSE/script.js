@@ -65,8 +65,10 @@ function stopAllSounds() {
 	paddleHitSound.currentTime = 0;
 	wallHitSound.pause();
 	wallHitSound.currentTime = 0;
-	scoreSound.pause();
-	scoreSound.currentTime = 0;
+	player1ScoreSound.pause();
+	player1ScoreSound.currentTime = 0;
+	player2ScoreSound.pause();
+	player2ScoreSound.currentTime = 0;
 	winnerSound.pause();
 	winnerSound.currentTime = 0;
 	loserSound.pause();
