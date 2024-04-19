@@ -1,0 +1,147 @@
+body {
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+canvas {
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#gameCanvas {
+  background-color: #f0f0f0;
+}
+
+/* Estilos para los botones */
+button {
+  background-color: #4CAF50; /* Color de fondo verde */
+  color: white; /* Color del texto blanco */
+  padding: 15px 20px; /* Espacio alrededor del texto dentro del botón */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cursor de flecha al pasar el ratón */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-right: 10px; /* Espacio entre los botones */
+}
+
+button:hover {
+  background-color: #45a049; /* Color de fondo más oscuro al pasar el ratón */
+}
+
+button:disabled {
+  opacity: 0.6; /* Reducir la opacidad de los botones deshabilitados */
+  cursor: not-allowed; /* Cambiar el cursor a "no permitido" */
+}
+
+/* Estilos para el contenedor gameInfo */
+#gameInfo {
+  background-color: #f2f2f2; /* Color de fondo gris claro */
+  border: 2px solid #ddd; /* Borde gris */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px; /* Espaciado interno */
+  margin-bottom: 20px; /* Margen inferior */
+}
+
+/* Estilos para los elementos internos dentro de gameInfo */
+#gameInfo p {
+  margin: 0; /* Eliminar el margen superior e inferior de los párrafos */
+  font-size: 18px; /* Tamaño de fuente */
+  color: #333; /* Color del texto gris oscuro */
+}
+
+#gameInfo span {
+  font-weight: bold; /* Texto en negrita */
+  margin-right: 10px; /* Espacio entre los elementos */
+}
+
+/* Estilos para los ladrillos */
+.brick {
+  width: 70px;
+  height: 20px;
+  background-color: #4CAF50; /* Color de fondo verde */
+  border: 1px solid #333; /* Borde gris */
+  border-radius: 5px; /* Bordes redondeados */
+  margin: 2px; /* Margen entre los ladrillos */
+}
+
+/* Estilos para la paleta */
+#paddle {
+  width: 100px;
+  height: 10px;
+  background-color: #0095DD; /* Color de fondo azul */
+  position: absolute;
+  bottom: 10px; /* Distancia desde la parte inferior del área de juego */
+  left: 50%; /* Posición horizontal centrada */
+  transform: translateX(-50%); /* Centrar horizontalmente */
+}
+
+/* Estilos para el área de juego */
+#gameCanvas {
+  border: 2px solid #333; /* Borde gris */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-top: 20px; /* Margen superior */
+}
+
+/* Estilos para el título */
+.title {
+  text-align: center; /* Centrar el texto */
+  color: #13a38b; /* Color del texto gris oscuro */
+  font-size: 24px; /* Tamaño de la fuente */
+  margin-bottom: 20px; /* Margen inferior */
+}
+
+
+/* Estilos para el modal */
+.modal {
+  display: none; /* Ocultar el modal por defecto */
+  position: fixed; /* Posición fija */
+  z-index: 1; /* Z-index para superponer al resto del contenido */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Habilitar desplazamiento si es necesario */
+  background-color: rgba(0,0,0,0.5); /* Fondo oscuro semitransparente */
+}
+
+/* Estilos para el modal */
+.modal {
+  display: none; /* Ocultar el modal por defecto */
+  position: fixed; /* Posición fija */
+  z-index: 1; /* Z-index para superponer al resto del contenido */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Habilitar desplazamiento si es necesario */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+}
+
+/* Estilos para el contenido del modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* Margen superior e inferior */
+  padding: 20px;
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+  width: 80%;
+  max-width: 400px; /* Ancho máximo del modal */
+}
+
+/* Estilos para el botón de cierre */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
