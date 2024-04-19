@@ -23,8 +23,10 @@ const winnerSound = new Audio('res/winner.mp3');
 const loserSound = new Audio('res/loser.mp3');
 const startSound = new Audio('res/start.mp3');
 
-// Reproducir sonido de inicio
-startSound.play();
+// Reproducir sonido de inicio cuando el usuario interactúa con la página
+document.addEventListener('click', () => {
+	startSound.play();
+});
 
 function movePaddle1(event) {
 	const gameRect = game.getBoundingClientRect();
@@ -71,8 +73,8 @@ function moveBall() {
 		wallHitSound.play();
 		ball.classList.add('wall-hit');
 		setTimeout(() => ball.classList.remove('wall-hit'), 100);
-		// Efecto visual en la pelota al golpear las paredes
-		ball.style.transform = 'scale(1.2)';
+		// Aumentar el tamaño de la pelota al golpear las paredes
+		ball.style.transform = 'scale(1.6)';
 		setTimeout(() => ball.style.transform = 'scale(1)', 100);
 	}
 
@@ -85,8 +87,8 @@ function moveBall() {
 			paddleHitSound.play();
 			paddle1.classList.add('paddle-hit');
 			setTimeout(() => paddle1.classList.remove('paddle-hit'), 100);
-			// Efecto visual en la pelota al golpear la paleta
-			ball.style.transform = 'scale(1.2)';
+			// Aumentar el tamaño de la pelota al golpear la paleta
+			ball.style.transform = 'scale(1.6)';
 			setTimeout(() => ball.style.transform = 'scale(1)', 100);
 		} else {
 			player2Score++;
@@ -108,8 +110,8 @@ function moveBall() {
 			paddleHitSound.play();
 			paddle2.classList.add('paddle-hit');
 			setTimeout(() => paddle2.classList.remove('paddle-hit'), 100);
-			// Efecto visual en la pelota al golpear la paleta
-			ball.style.transform = 'scale(1.2)';
+			// Aumentar el tamaño de la pelota al golpear la paleta
+			ball.style.transform = 'scale(1.6)';
 			setTimeout(() => ball.style.transform = 'scale(1)', 100);
 		} else {
 			player1Score++;
