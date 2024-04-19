@@ -71,6 +71,9 @@ function moveBall() {
 		wallHitSound.play();
 		ball.classList.add('wall-hit');
 		setTimeout(() => ball.classList.remove('wall-hit'), 100);
+		// Efecto visual en la pelota al golpear las paredes
+		ball.style.transform = 'scale(1.2)';
+		setTimeout(() => ball.style.transform = 'scale(1)', 100);
 	}
 
 	if (ballX <= 30) {
@@ -82,6 +85,9 @@ function moveBall() {
 			paddleHitSound.play();
 			paddle1.classList.add('paddle-hit');
 			setTimeout(() => paddle1.classList.remove('paddle-hit'), 100);
+			// Efecto visual en la pelota al golpear la paleta
+			ball.style.transform = 'scale(1.2)';
+			setTimeout(() => ball.style.transform = 'scale(1)', 100);
 		} else {
 			player2Score++;
 			score2.textContent = player2Score;
@@ -102,6 +108,9 @@ function moveBall() {
 			paddleHitSound.play();
 			paddle2.classList.add('paddle-hit');
 			setTimeout(() => paddle2.classList.remove('paddle-hit'), 100);
+			// Efecto visual en la pelota al golpear la paleta
+			ball.style.transform = 'scale(1.2)';
+			setTimeout(() => ball.style.transform = 'scale(1)', 100);
 		} else {
 			player1Score++;
 			score1.textContent = player1Score;
@@ -141,6 +150,8 @@ function resetGame() {
 	score1.textContent = player1Score;
 	score2.textContent = player2Score;
 	resetBall();
+	// Reproducir sonido de inicio al resetear el juego
+	startSound.play();
 }
 
 game.addEventListener('mousemove', movePaddle1);
