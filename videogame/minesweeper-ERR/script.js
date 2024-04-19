@@ -6,6 +6,46 @@ const levelConfig = {
 
 let board = [];
 let currentLevel = 'beginner';
+let timerInterval;
+let timeElapsed = 0;
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timeElapsed++;
+        updateTimerDisplay();
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function resetTimer() {
+    stopTimer();
+    timeElapsed = 0;
+    updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+    const timeCounter = document.getElementById('time-counter');
+    timeCounter.textContent = `Time: ${timeElapsed}`;
+}
+
+function updateScoreboard() {
+    const scoreboard = document.getElementById('scoreboard');
+    scoreboard.innerHTML = '<h3>Scoreboard</h3>';
+    const scores = JSON.parse(localStorage.getItem('minesweeper_scores')) || {};
+    Object.keys(scores).forEach(level => {
+        scoreboard.innerHTML += `<p>${level}: ${scores[level]}</p>`;
+    });
+}
+
+function storeScore(level, time) {
+    const scores = JSON.parse(localStorage.getItem('minesweeper_scores')) || {};
+    scores[level] = time;
+    localStorage.setItem('minesweeper_scores', JSON.stringify(scores));
+}
+
 
 function createBoard() {
     const { height, width, mines } = levelConfig[currentLevel];
@@ -69,34 +109,35 @@ function revealCell(x, y) {
     if (board[x][y].isMine) {
         cell.classList.add('bomb');
         alert('Game Over! You hit a mine!');
-    } else {
-        cell.textContent = board[x][y].neighborMines || '';
-        if (board[x][y].neighborMines === 0) {
-            for (let i = -1; i <= 1; i++) {
-                for (let j = -1; j <= 1; j++) {
-                    revealCell(x + i, y + j);
-                }
+        restartGame(); // Reset the game when hitting a mine
+        return; // Return early to avoid further execution
+    }
+    cell.textContent = board[x][y].neighborMines || '';
+    if (board[x][y].neighborMines === 0) {
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                revealCell(x + i, y + j);
             }
         }
     }
     if (checkWin()) {
+        stopTimer();
         alert('Congratulations! You have won the game!');
+        const level = currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1); // Capitalize level name
+        storeScore(level, timeElapsed);
+        updateScoreboard();
     }
 }
 
 function checkWin() {
-    console.log('check win');
-
     const { height, width } = levelConfig[currentLevel];
     for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
             if (!board[i][j].isMine && !board[i][j].revealed) {
-                console.log('check win false');
                 return false;
             }
         }
     }
-    console.log('check win true');
     return true;
 }
 
@@ -141,6 +182,9 @@ function initGame() {
 }
 
 function restartGame() {
+    resetTimer(); // Reset the timer
+    startTimer(); // Start the timer again
+    createBoard();
     const boardContainer = document.querySelector('.board');
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => {
@@ -148,6 +192,7 @@ function restartGame() {
         cell.classList.remove('revealed', 'bomb', 'flagged');
     });
     initGame(); // Call initGame() to refresh the displayed board
+    updateScoreboard(); // Update the scoreboard on game restart
 }
 
 document.getElementById('level-select').addEventListener('change', (event) => {
@@ -158,3 +203,5 @@ document.getElementById('level-select').addEventListener('change', (event) => {
 document.getElementById('restart-btn').addEventListener('click', restartGame);
 
 initGame();
+startTimer();
+updateScoreboard(); // Display initial scoreboard
