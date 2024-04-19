@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#game-container {
+    position: relative;
+}
+
+#gameCanvas {
+    border: 1px solid black;
+}
+
+#score-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+}
