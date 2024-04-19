@@ -13,6 +13,8 @@
 - Los commits que tienen que ver con la generación de código empiezan desde el prompt número 3.
 - A continuación, se detallan los prompts utilizados para el desarrollo del juego Pong.
 
+![Referencia](./res/commits.png)
+
 ## Prompts utilizados
 ### 1. Conoces el juego pong?
 Sí, conozco el juego Pong. Pong es uno de los primeros videojuegos comerciales y fue muy popular en la década de 1970. Aquí hay algunos datos interesantes sobre Pong:
