@@ -20,7 +20,8 @@ let gameStarted = false;
 // Crear elementos de audio
 const paddleHitSound = new Audio('res/paddle_hit.mp3');
 const wallHitSound = new Audio('res/wall_hit.mp3');
-const scoreSound = new Audio('res/score.mp3');
+const player1ScoreSound = new Audio('res/player1_score.mp3');
+const player2ScoreSound = new Audio('res/player2_score.mp3');
 const winnerSound = new Audio('res/winner.mp3');
 const loserSound = new Audio('res/loser.mp3');
 const startSound = new Audio('res/start.mp3');
@@ -114,7 +115,7 @@ function moveBall() {
 			player2Score++;
 			score2.textContent = player2Score;
 			stopAllSounds();
-			scoreSound.play();
+			player2ScoreSound.play();
 			ball.classList.add('right-wall-hit');
 			setTimeout(() => ball.classList.remove('right-wall-hit'), 100);
 			resetBall();
@@ -141,7 +142,7 @@ function moveBall() {
 			player1Score++;
 			score1.textContent = player1Score;
 			stopAllSounds();
-			scoreSound.play();
+			player1ScoreSound.play();
 			ball.classList.add('left-wall-hit');
 			setTimeout(() => ball.classList.remove('left-wall-hit'), 100);
 			resetBall();
