@@ -85,9 +85,13 @@ function moveBall() {
 		wallHitSound.play();
 		ball.classList.add('wall-hit');
 		setTimeout(() => ball.classList.remove('wall-hit'), 100);
-		// Aumentar el tamaño de la pelota al golpear las paredes
+		// Aumentar el tamaño de la pelota y cambiar su color al golpear las paredes
 		ball.style.transform = 'scale(1.6)';
-		setTimeout(() => ball.style.transform = 'scale(1)', 100);
+		ball.style.backgroundColor = '#f0f';
+		setTimeout(() => {
+			ball.style.transform = 'scale(1)';
+			ball.style.backgroundColor = '#fff';
+		}, 100);
 	}
 
 	if (ballX <= 30) {
@@ -99,9 +103,13 @@ function moveBall() {
 			paddleHitSound.play();
 			paddle1.classList.add('paddle-hit');
 			setTimeout(() => paddle1.classList.remove('paddle-hit'), 100);
-			// Aumentar el tamaño de la pelota al golpear la paleta
+			// Aumentar el tamaño de la pelota y cambiar su color al golpear la paleta
 			ball.style.transform = 'scale(1.6)';
-			setTimeout(() => ball.style.transform = 'scale(1)', 100);
+			ball.style.backgroundColor = '#0ff';
+			setTimeout(() => {
+				ball.style.transform = 'scale(1)';
+				ball.style.backgroundColor = '#fff';
+			}, 100);
 		} else {
 			player2Score++;
 			score2.textContent = player2Score;
@@ -122,9 +130,13 @@ function moveBall() {
 			paddleHitSound.play();
 			paddle2.classList.add('paddle-hit');
 			setTimeout(() => paddle2.classList.remove('paddle-hit'), 100);
-			// Aumentar el tamaño de la pelota al golpear la paleta
+			// Aumentar el tamaño de la pelota y cambiar su color al golpear la paleta
 			ball.style.transform = 'scale(1.6)';
-			setTimeout(() => ball.style.transform = 'scale(1)', 100);
+			ball.style.backgroundColor = '#0ff';
+			setTimeout(() => {
+				ball.style.transform = 'scale(1)';
+				ball.style.backgroundColor = '#fff';
+			}, 100);
 		} else {
 			player1Score++;
 			score1.textContent = player1Score;
