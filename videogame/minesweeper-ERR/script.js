@@ -79,6 +79,25 @@ function revealCell(x, y) {
             }
         }
     }
+    if (checkWin()) {
+        alert('Congratulations! You have won the game!');
+    }
+}
+
+function checkWin() {
+    console.log('check win');
+
+    const { height, width } = levelConfig[currentLevel];
+    for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+            if (!board[i][j].isMine && !board[i][j].revealed) {
+                console.log('check win false');
+                return false;
+            }
+        }
+    }
+    console.log('check win true');
+    return true;
 }
 
 function flagCell(x, y) {
