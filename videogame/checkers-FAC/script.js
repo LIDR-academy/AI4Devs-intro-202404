@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return (
             squares[endIndex].childElementCount === 0 && // Target square is empty
             Math.abs(startRow - endRow) === 1 && // Move is only one row away
-            Math.abs(startIndex - endIndex) === 7 || Math.abs(startIndex - endIndex) === 9 // Move is diagonal
+            (Math.abs(startIndex - endIndex) === 7 || Math.abs(startIndex - endIndex) === 9) // Move is diagonal
         );
     }
 
@@ -88,9 +88,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createBoard();
 });
-
-// CSS for the selected piece
-const css = document.createElement('style');
-css.type = 'text/css';
-css.innerHTML = '.selected { box-shadow: 0 0 0 2px yellow; }';
-document.body.appendChild(css);

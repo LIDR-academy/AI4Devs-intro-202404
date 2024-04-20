@@ -44,3 +44,7 @@ body {
 .red-piece {
     background-color: #ff0000; /* Red pieces */
 }
+
+.selected {
+    box-shadow: 0 0 0 2px yellow;
+}

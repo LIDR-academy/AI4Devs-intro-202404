@@ -151,4 +151,17 @@ You can download the updated script.js file here.
 
 With this script, try playing the game in your browser and moving the pieces according to the rules described. ​​
 
+# Felipe
+
+this is not good. i don't want CSS code to be present within script.js. please remove CSS information from script.js and place it within the styles.css file you had previously generated
+
+# ChatGPT
+
+The script.js file has been updated to remove the CSS code, and the styling for the selected piece has been added to the styles.css file.
+
+You can download the updated files here:
+
+Updated script.js script.js
+Updated styles.css styles.css
+Now, when you run the game, the CSS will correctly apply the yellow circle to the selected piece from the external stylesheet. ​
 
