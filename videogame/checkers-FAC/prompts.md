@@ -90,3 +90,14 @@ can you update the code you've generated so that when the game is first loaded, 
 
 # ChatGPT
 
+The JavaScript code has been updated to correctly position the pieces in their initial layout as per standard checkers setup. You can download the updated JavaScript file here.
+
+Please replace the previous script.js with this updated one. The HTML and CSS files do not need to be changed, as they already provide the correct structure and style. Once you replace the JavaScript file, the game should load with the pieces in the correct starting positions. ​
+
+# Felipe
+
+ok, this is still not working, the pieces are still being placed in random positions. let's try to make this simpler. 
+
+let's focus on the initial position of the black pieces for now. within the script.js file, i want you to create a function called `placeBlackPieces`. i want you to erase the previous contents of function `placePieces`. i want `placePieces` to only do one thing for now: invoke `placeBlackPieces`.
+
+this new `placeBlackPieces` function should place 12 black pieces on the board. those 12 pieces should occupy the first 12 dark-brown positions on the top of the board. please don't do complicated `for` loops involving calls to `Math.floor`. keep it very simple and place the 12 black pieces in fixed positions in the board.

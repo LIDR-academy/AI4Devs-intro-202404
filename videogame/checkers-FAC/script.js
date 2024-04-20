@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const board = document.getElementById('game-board');
     const squares = [];
-    let isBlackTurn = true;
 
     function createBoard() {
         for (let i = 0; i < 64; i++) {
@@ -16,22 +15,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function placePieces() {
-        // Place black pieces
-        for (let i = 0; i < 24; i++) {
-            if ((i + Math.floor(i / 8)) % 2 !== 0) {
-                const piece = document.createElement('div');
-                piece.classList.add('piece');
-                if (i < 12) {
-                    // Add black pieces to the first 3 rows
-                    piece.classList.add('black-piece');
-                    squares[i + Math.floor(i / 4) * 8].appendChild(piece);
-                } else if (i >= 24 - 12) {
-                    // Add red pieces to the last 3 rows
-                    piece.classList.add('red-piece');
-                    squares[40 + (i - 12) + Math.floor((i - 12) / 4) * 8].appendChild(piece);
-                }
-            }
-        }
+        placeBlackPieces();
+    }
+
+    function placeBlackPieces() {
+        // Hardcoded positions for the 12 black pieces
+        const positions = [
+            1, 3, 5, 7, // The first row (from the top, 0-indexed)
+            8, 10, 12, 14, // The second row
+            17, 19, 21, 23  // The third row
+        ];
+
+        positions.forEach(position => {
+            const piece = document.createElement('div');
+            piece.classList.add('piece', 'black-piece');
+            squares[position].appendChild(piece);
+        });
     }
 
     createBoard();
