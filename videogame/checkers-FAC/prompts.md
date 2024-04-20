@@ -165,3 +165,25 @@ Updated script.js script.js
 Updated styles.css styles.css
 Now, when you run the game, the CSS will correctly apply the yellow circle to the selected piece from the external stylesheet. ​
 
+# Felipe
+
+ok, great. the styling part is fixed. but i still cannot move a piece. when i click a piece (either red or black), everything works fine: the style of the selected piece changes and i can see the yellow circle around it.
+
+nevertheless, when i click the destination square, i can see the following error is fired: 
+
+script.js:65 Uncaught TypeError: Cannot read properties of undefined (reading 'childElementCount')
+    at isValidMove (script.js:65:31)
+    at HTMLDivElement.movePiece (script.js:73:30)
+
+please update script.js so that this error is not fired and i'm able to move the selected piece to the destination position.
+
+# ChatGPT
+
+The issue with the move functionality in the script.js file has been fixed. The error that occurred when trying to move a piece should no longer happen.
+
+You can download the updated script.js file here.
+
+Please replace the previous JavaScript file with this updated one and try moving the pieces again. The movement should now work as expected, allowing you to select a piece, see the yellow circle around it, and move it to a valid position on the board. If the move is invalid, an alert will inform you, and the yellow circle will be removed.
+
+
+

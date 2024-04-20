@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const square = document.createElement('div');
             square.classList.add('square');
             square.classList.add(((i + Math.floor(i / 8)) % 2 === 0) ? 'light' : 'dark');
+            square.addEventListener('click', movePiece); // Event listener for moving the piece
             board.appendChild(square);
             squares.push(square);
         }
@@ -22,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function placeBlackPieces() {
-        // Hardcoded positions for the 12 black pieces
         const blackPositions = [
             1, 3, 5, 7,
             8, 10, 12, 14,
@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function placeRedPieces() {
-        // Hardcoded positions for the 12 red pieces
         const redPositions = [
             40, 42, 44, 46,
             49, 51, 53, 55,
@@ -54,37 +53,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         selectedPiece = event.currentTarget;
         selectedPiece.classList.add('selected');
-        selectedPieceIndex = squares.findIndex(square => square === selectedPiece.parentElement);
+        selectedPieceIndex = squares.findIndex(square => square.contains(selectedPiece));
         event.stopPropagation(); // Prevent the click from reaching the square
     }
 
     function isValidMove(startIndex, endIndex) {
         const startRow = Math.floor(startIndex / 8);
         const endRow = Math.floor(endIndex / 8);
-        return (
-            squares[endIndex].childElementCount === 0 && // Target square is empty
-            Math.abs(startRow - endRow) === 1 && // Move is only one row away
-            (Math.abs(startIndex - endIndex) === 7 || Math.abs(startIndex - endIndex) === 9) // Move is diagonal
-        );
+        const squareIsEmpty = !squares[endIndex].hasChildNodes();
+        const moveIsDiagonal = Math.abs(startIndex - endIndex) === 7 || Math.abs(startIndex - endIndex) === 9;
+        const moveIsForward = selectedPiece.classList.contains('black-piece') ? endRow > startRow : endRow < startRow;
+        
+        return squareIsEmpty && moveIsDiagonal && moveIsForward;
     }
 
     function movePiece(event) {
+        if (!selectedPiece) return; // No piece selected
+        
         const index = squares.findIndex(square => square === event.currentTarget);
-        if (selectedPiece && isValidMove(selectedPieceIndex, index)) {
-            event.currentTarget.appendChild(selectedPiece);
+        if (isValidMove(selectedPieceIndex, index)) {
+            squares[index].appendChild(selectedPiece);
             selectedPiece.classList.remove('selected');
             selectedPiece = null;
             selectedPieceIndex = -1;
         } else {
             alert('Invalid move');
-            if (selectedPiece) {
-                selectedPiece.classList.remove('selected');
-            }
+            selectedPiece.classList.remove('selected');
             selectedPiece = null;
+            selectedPieceIndex = -1;
         }
     }
-
-    board.addEventListener('click', movePiece);
 
     createBoard();
 });
