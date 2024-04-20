@@ -57,31 +57,48 @@ document.addEventListener('DOMContentLoaded', function () {
         event.stopPropagation(); // Prevent the click from reaching the square
     }
 
-    function isValidMove(startIndex, endIndex) {
+    function isValidMove(startIndex, endIndex, isCapture) {
         const startRow = Math.floor(startIndex / 8);
         const endRow = Math.floor(endIndex / 8);
         const squareIsEmpty = !squares[endIndex].hasChildNodes();
         const moveIsDiagonal = Math.abs(startIndex - endIndex) === 7 || Math.abs(startIndex - endIndex) === 9;
         const moveIsForward = selectedPiece.classList.contains('black-piece') ? endRow > startRow : endRow < startRow;
-        
-        return squareIsEmpty && moveIsDiagonal && moveIsForward;
+
+        if (isCapture) {
+            const opponentExists = squares[startIndex].hasChildNodes() && 
+                                   squares[startIndex].firstChild.classList.contains(selectedPiece.classList.contains('black-piece') ? 'red-piece' : 'black-piece');
+            return squareIsEmpty && moveIsDiagonal && opponentExists;
+        }
+
+        return squareIsEmpty && moveIsDiagonal && moveIsForward && !isCapture;
     }
 
     function movePiece(event) {
         if (!selectedPiece) return; // No piece selected
-        
+
         const index = squares.findIndex(square => square === event.currentTarget);
-        if (isValidMove(selectedPieceIndex, index)) {
+        const isCapture = selectedPieceIndex >= 0 && 
+                          squares[selectedPieceIndex].hasChildNodes() && 
+                          squares[index].hasChildNodes() &&
+                          squares[index].firstChild.classList.contains(selectedPiece.classList.contains('black-piece') ? 'red-piece' : 'black-piece');
+
+        if (isCapture) {
+            if (isValidMove(selectedPieceIndex, index, true)) {
+                // Capture the piece
+                squares[selectedPieceIndex].removeChild(squares[selectedPieceIndex].firstChild);
+                squares[index].appendChild(selectedPiece);
+            } else {
+                alert('Invalid move');
+            }
+        } else if (isValidMove(selectedPieceIndex, index, false)) {
             squares[index].appendChild(selectedPiece);
-            selectedPiece.classList.remove('selected');
-            selectedPiece = null;
-            selectedPieceIndex = -1;
         } else {
             alert('Invalid move');
-            selectedPiece.classList.remove('selected');
-            selectedPiece = null;
-            selectedPieceIndex = -1;
         }
+
+        selectedPiece.classList.remove('selected');
+        selectedPiece = null;
+        selectedPieceIndex = -1;
     }
 
     createBoard();

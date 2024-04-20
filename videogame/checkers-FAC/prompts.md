@@ -185,5 +185,29 @@ You can download the updated script.js file here.
 
 Please replace the previous JavaScript file with this updated one and try moving the pieces again. The movement should now work as expected, allowing you to select a piece, see the yellow circle around it, and move it to a valid position on the board. If the move is invalid, an alert will inform you, and the yellow circle will be removed.
 
+# Felipe
+
+great! it's working neatly now! 
+
+now let's implement the next type of move: captures. 
+
+this is the description you provided before: 
+
+**Captures**: If an opponent’s piece occupies an adjacent square and the square immediately beyond it is vacant, the piece must jump the opponent’s piece and land on the empty square, thus capturing the opponent’s piece. Captured pieces are removed from the board.
+
+please implement the ability to capture another piece. 
+
+for instance, if i click on a red piece, its style should change and have the yellow circle to indicate it's selected. when i click again, if i click over an opponent piece (in this case, a black piece) or click on a position that is occupied by an opponent piece, the opponent piece should be remove from the board and my previously selected piece should now occupy that position. after the capture is done, the style of my previously selected piece should be reset and no longer have the yellow circle.
+
+please make sure to not change any of the pre-existing behaviours. the initial positions of the pieces on the board when the game is loaded should not be harmed, as well as the ability to move pieces to another position that is empty.
+
+# ChatGPT
+
+The JavaScript code has been updated to include the logic for capturing moves. The selected piece will now be able to capture an opponent's piece if the move is valid, according to the rules described.
+
+You can download the updated script.js file here.
+
+Please replace the previous JavaScript file with this updated one. The game should now support capturing moves while preserving all the pre-existing behaviors, including the initial positions of the pieces and the ability to make regular non-capturing moves. 
+
 
 
