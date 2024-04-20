@@ -57,48 +57,59 @@ document.addEventListener('DOMContentLoaded', function () {
         event.stopPropagation(); // Prevent the click from reaching the square
     }
 
-    function isValidMove(startIndex, endIndex, isCapture) {
+    function isOpponentPiece(index) {
+        return squares[index].childElementCount === 1 &&
+               selectedPiece &&
+               ((selectedPiece.classList.contains('black-piece') && squares[index].firstChild.classList.contains('red-piece')) ||
+               (selectedPiece.classList.contains('red-piece') && squares[index].firstChild.classList.contains('black-piece')));
+    }
+
+    function isValidMove(startIndex, endIndex) {
         const startRow = Math.floor(startIndex / 8);
         const endRow = Math.floor(endIndex / 8);
         const squareIsEmpty = !squares[endIndex].hasChildNodes();
         const moveIsDiagonal = Math.abs(startIndex - endIndex) === 7 || Math.abs(startIndex - endIndex) === 9;
         const moveIsForward = selectedPiece.classList.contains('black-piece') ? endRow > startRow : endRow < startRow;
 
-        if (isCapture) {
-            const opponentExists = squares[startIndex].hasChildNodes() && 
-                                   squares[startIndex].firstChild.classList.contains(selectedPiece.classList.contains('black-piece') ? 'red-piece' : 'black-piece');
-            return squareIsEmpty && moveIsDiagonal && opponentExists;
+        if (!squareIsEmpty && isOpponentPiece(endIndex)) {
+            // Capture
+            const overJumpIndex = endIndex + (endIndex - startIndex);
+            return squares[overJumpIndex] && !squares[overJumpIndex].hasChildNodes(); // Must jump to an empty space
         }
 
-        return squareIsEmpty && moveIsDiagonal && moveIsForward && !isCapture;
+        return squareIsEmpty && moveIsDiagonal && moveIsForward;
+    }
+
+    function capturePiece(index) {
+        if (squares[index].firstChild) {
+            squares[index].removeChild(squares[index].firstChild);
+        }
     }
 
     function movePiece(event) {
-        if (!selectedPiece) return; // No piece selected
-
         const index = squares.findIndex(square => square === event.currentTarget);
-        const isCapture = selectedPieceIndex >= 0 && 
-                          squares[selectedPieceIndex].hasChildNodes() && 
-                          squares[index].hasChildNodes() &&
-                          squares[index].firstChild.classList.contains(selectedPiece.classList.contains('black-piece') ? 'red-piece' : 'black-piece');
-
-        if (isCapture) {
-            if (isValidMove(selectedPieceIndex, index, true)) {
-                // Capture the piece
-                squares[selectedPieceIndex].removeChild(squares[selectedPieceIndex].firstChild);
-                squares[index].appendChild(selectedPiece);
+        if (selectedPiece && isValidMove(selectedPieceIndex, index)) {
+            if (isOpponentPiece(index)) {
+                // Capture the opponent piece
+                capturePiece(index);
+                // Move to the space after the captured piece
+                const overJumpIndex = index + (index - selectedPieceIndex);
+                squares[overJumpIndex].appendChild(selectedPiece);
             } else {
-                alert('Invalid move');
+                // Regular move
+                squares[index].appendChild(selectedPiece);
             }
-        } else if (isValidMove(selectedPieceIndex, index, false)) {
-            squares[index].appendChild(selectedPiece);
+            selectedPiece.classList.remove('selected');
+            selectedPiece = null;
+            selectedPieceIndex = -1;
         } else {
             alert('Invalid move');
+            if (selectedPiece) {
+                selectedPiece.classList.remove('selected');
+            }
+            selectedPiece = null;
+            selectedPieceIndex = -1;
         }
-
-        selectedPiece.classList.remove('selected');
-        selectedPiece = null;
-        selectedPieceIndex = -1;
     }
 
     createBoard();
