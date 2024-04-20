@@ -1,6 +1,7 @@
 // Obtener el contenedor del juego y el marcador
 const gameContainer = document.getElementById("gameContainer");
 const scoreElement = document.getElementById("score");
+const gameScoreList = document.getElementById("gameScoreList"); // Nuevo elemento para la lista de puntajes
 
 // Definir variables globales
 const gridSize = 20; // Tamaño de cada cuadrado en píxeles
@@ -90,9 +91,37 @@ function move() {
   draw();
 }
 
+
+// Función para mostrar la lista de puntajes en el HTML
+function showScores(scores) {
+  const scoreListElement = document.getElementById("scoreList");
+  scoreListElement.innerHTML = "";
+  scores.forEach((score, index) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${score.name}: ${score.score}`;
+    scoreListElement.appendChild(listItem);
+  });
+}
+
+// Iniciar el juego cuando se cargue la página
+window.onload = () => {
+  const scores = JSON.parse(localStorage.getItem("snakeGameScores")) || [];
+  showScores(scores);
+};
 // Función para finalizar el juego
 function gameOver() {
   clearInterval(gameInterval);
+  const playerName = prompt("Game Over! Enter your name initials (3 letters):");
+  const playerScore = { name: playerName, score };
+
+  // Agregar el puntaje a la lista de puntajes
+  const scores = JSON.parse(localStorage.getItem("snakeGameScores")) || [];
+  scores.push(playerScore);
+  scores.sort((a, b) => b.score - a.score); // Ordenar de mayor a menor score
+
+  // Mostrar la lista actualizada de puntajes
+  showScores(scores);
+
   alert("Game Over! Your score: " + score);
 }
 
@@ -135,3 +164,4 @@ document.getElementById("startButton").addEventListener("click", startGame);
 
 // Iniciar el juego cuando se cargue la página
 startGame();
+
