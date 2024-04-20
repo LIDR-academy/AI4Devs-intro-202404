@@ -101,3 +101,28 @@ ok, this is still not working, the pieces are still being placed in random posit
 let's focus on the initial position of the black pieces for now. within the script.js file, i want you to create a function called `placeBlackPieces`. i want you to erase the previous contents of function `placePieces`. i want `placePieces` to only do one thing for now: invoke `placeBlackPieces`.
 
 this new `placeBlackPieces` function should place 12 black pieces on the board. those 12 pieces should occupy the first 12 dark-brown positions on the top of the board. please don't do complicated `for` loops involving calls to `Math.floor`. keep it very simple and place the 12 black pieces in fixed positions in the board.
+
+# ChatGPT
+
+The JavaScript code has been simplified. The placePieces function now only calls a new function, placeBlackPieces, which places the 12 black pieces on the first 12 dark-brown positions at the top of the board.
+
+You can download the updated script.js file here.
+
+With this change, when you load the game by opening the HTML file in your browser, you should see the black pieces placed in the specified starting positions. ​
+
+# Felipe
+
+great, you nailed it! now let's do something similar for the red pieces. 
+
+within the script.js file, i want you to create a function called `placeRedPieces`.  i want the`placePieces`function to do two things: invoke `placeBlackPieces` created on the previous step, and then invoke `placeRedPieces`.
+
+this new `placeRedPieces` function should place 12 red pieces on the board. those 12 pieces should occupy the last 12 dark-brown positions on the bottom of the board. please don't do complicated `for` loops involving calls to `Math.floor`. keep it very simple and place the 12 red pieces in fixed positions in the board.
+
+# ChatGPT
+
+The script.js file has now been updated to include both placeBlackPieces and placeRedPieces functions. The placePieces function will invoke these two to place the black and red pieces on their respective starting positions.
+
+You can download the updated script.js file here.
+
+By loading the game with this script, you should now see both the black and red pieces placed on the board in their initial game positions
+
