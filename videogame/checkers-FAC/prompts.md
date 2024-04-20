@@ -78,3 +78,15 @@ The files for the checkers game have been generated:
 - The JavaScript file, which includes the basic logic for the game, is available to download here.
 
 Please download these files and you can run the HTML file in your browser to try out the checkers game. Keep in mind that the JavaScript currently only sets up the board and allows clicking on squares; it doesn't yet include the full logic for enforcing all the rules of checkers, like moves and captures, as implementing the complete game logic is quite extensive. If you need further enhancements, feel free to ask! ​
+
+# Felipe
+[attached image](res/initial-layout.png)
+
+ok, let's do this step by step. the colors of the pieces are fine, but the first problem i see is that they're placed in random positions. plus, there are not enough pieces.
+
+the initial layout of the board should look as the attached image: there should be 12 black pieces and 12 red pieces, occupying the first 3 rows of each side of the board. the pieces should occupy the dark-shaded positions of the board.
+
+can you update the code you've generated so that when the game is first loaded, the pieces are positioned as per the attached image?
+
+# ChatGPT
+
