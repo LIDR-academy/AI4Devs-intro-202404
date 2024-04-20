@@ -126,3 +126,29 @@ You can download the updated script.js file here.
 
 By loading the game with this script, you should now see both the black and red pieces placed on the board in their initial game positions
 
+# Felipe
+
+You nailed it! Well done! Now I want you implement the capability of regular moves. As you described before, Regular moves mean: Pieces move diagonally forward one square to an adjacent unoccupied dark square.
+
+I want something very simple here: 
+- first i'll click on a black or red piece. 
+- the style of the selected piece should change to have a yellow circle around it, indicating it's been selected
+- then i'll click the position of the board i'd like to move that piece to
+- if the movement is valid (ie, i'm trying to move the selected piece diagonally forward one square to an adjacent unoccupied dark square), the selected piece should be placed on the new position and the yellow circle should be removed from the selected piece
+- if the movement is invalid, an alert message should be displayed indicating that the move is invalid, and the yellow circle should be removed from the selected piece
+
+is everything clear? do you have enough information to update the code?
+
+# ChatGPT
+
+The code for regular moves has been updated in the script.js file. Now, when you load the game, you will be able to:
+
+Click on a piece to select it, which will highlight it with a yellow circle.
+Click on a valid diagonal forward square to move the selected piece.
+If the move is valid, the piece will move to the new position, and the yellow highlight will be removed.
+If the move is invalid, an alert will display, and the yellow highlight will be removed from the selected piece.
+You can download the updated script.js file here.
+
+With this script, try playing the game in your browser and moving the pieces according to the rules described. ​​
+
+

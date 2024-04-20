@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const board = document.getElementById('game-board');
     const squares = [];
+    let selectedPiece = null;
+    let selectedPieceIndex = -1;
 
     function createBoard() {
         for (let i = 0; i < 64; i++) {
@@ -22,32 +24,73 @@ document.addEventListener('DOMContentLoaded', function () {
     function placeBlackPieces() {
         // Hardcoded positions for the 12 black pieces
         const blackPositions = [
-            1, 3, 5, 7, // The first row (from the top, 0-indexed)
-            8, 10, 12, 14, // The second row
-            17, 19, 21, 23  // The third row
+            1, 3, 5, 7,
+            8, 10, 12, 14,
+            17, 19, 21, 23
         ];
-
-        blackPositions.forEach(position => {
-            const piece = document.createElement('div');
-            piece.classList.add('piece', 'black-piece');
-            squares[position].appendChild(piece);
-        });
+        blackPositions.forEach(position => placePiece(position, 'black-piece'));
     }
 
     function placeRedPieces() {
         // Hardcoded positions for the 12 red pieces
         const redPositions = [
-            40, 42, 44, 46, // The sixth row (from the top, 0-indexed)
-            49, 51, 53, 55, // The seventh row
-            56, 58, 60, 62  // The eighth row
+            40, 42, 44, 46,
+            49, 51, 53, 55,
+            56, 58, 60, 62
         ];
-
-        redPositions.forEach(position => {
-            const piece = document.createElement('div');
-            piece.classList.add('piece', 'red-piece');
-            squares[position].appendChild(piece);
-        });
+        redPositions.forEach(position => placePiece(position, 'red-piece'));
     }
+
+    function placePiece(position, className) {
+        const piece = document.createElement('div');
+        piece.classList.add('piece', className);
+        piece.addEventListener('click', selectPiece);
+        squares[position].appendChild(piece);
+    }
+
+    function selectPiece(event) {
+        if (selectedPiece) {
+            selectedPiece.classList.remove('selected');
+        }
+        selectedPiece = event.currentTarget;
+        selectedPiece.classList.add('selected');
+        selectedPieceIndex = squares.findIndex(square => square === selectedPiece.parentElement);
+        event.stopPropagation(); // Prevent the click from reaching the square
+    }
+
+    function isValidMove(startIndex, endIndex) {
+        const startRow = Math.floor(startIndex / 8);
+        const endRow = Math.floor(endIndex / 8);
+        return (
+            squares[endIndex].childElementCount === 0 && // Target square is empty
+            Math.abs(startRow - endRow) === 1 && // Move is only one row away
+            Math.abs(startIndex - endIndex) === 7 || Math.abs(startIndex - endIndex) === 9 // Move is diagonal
+        );
+    }
+
+    function movePiece(event) {
+        const index = squares.findIndex(square => square === event.currentTarget);
+        if (selectedPiece && isValidMove(selectedPieceIndex, index)) {
+            event.currentTarget.appendChild(selectedPiece);
+            selectedPiece.classList.remove('selected');
+            selectedPiece = null;
+            selectedPieceIndex = -1;
+        } else {
+            alert('Invalid move');
+            if (selectedPiece) {
+                selectedPiece.classList.remove('selected');
+            }
+            selectedPiece = null;
+        }
+    }
+
+    board.addEventListener('click', movePiece);
 
     createBoard();
 });
+
+// CSS for the selected piece
+const css = document.createElement('style');
+css.type = 'text/css';
+css.innerHTML = '.selected { box-shadow: 0 0 0 2px yellow; }';
+document.body.appendChild(css);
