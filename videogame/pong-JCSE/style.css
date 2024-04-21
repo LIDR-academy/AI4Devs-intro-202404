@@ -1,0 +1,75 @@
+#game {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: auto;
+    background-color: #000;
+}
+
+.paddle {
+    position: absolute;
+    width: 10px;
+    height: 100px;
+    background-color: #fff;
+}
+
+#paddle1 {
+    left: 20px;
+    top: 250px;
+}
+
+#paddle2 {
+    right: 20px;
+    top: 250px;
+}
+
+#ball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    left: 390px;
+    top: 290px;
+}
+
+.score {
+    position: absolute;
+    top: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+#score1 {
+    left: 350px;
+}
+
+#score2 {
+    right: 350px;
+}
+
+.paddle-hit {
+    background-color: #ff0;
+}
+
+.wall-hit {
+    background-color: #f0f;
+}
+
+.left-wall-hit {
+    background-color: #0ff;
+}
+
+.right-wall-hit {
+    background-color: #f90;
+}
+
+.start-message {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+}

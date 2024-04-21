@@ -1,0 +1,23 @@
+#gameArea {
+    width: 400px; /* 20 cuadros x 20px cada uno */
+    height: 400px;
+    background-color: black;
+    position: relative;
+    margin: 20px auto;
+    border: 2px solid white;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    box-sizing: border-box;
+}
+
+.snake {
+    background-color: green;
+}
+
+.food {
+    background-color: red;
+}
