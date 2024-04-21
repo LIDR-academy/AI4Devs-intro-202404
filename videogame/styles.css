@@ -13,8 +13,8 @@ body {
   border: 2px solid #000;
   background-color: #e0e0e0;
   display: grid;
-  grid-template-columns: repeat(10, 40px); /* Ancho de cada columna */
-  grid-template-rows: repeat(7, 40px); /* Alto de cada fila */
+  grid-template-columns: repeat(20, 40px); /* Ancho de cada columna */
+  grid-template-rows: repeat(10, 40px); /* Alto de cada fila */
 }
 
 .tile {
@@ -40,5 +40,30 @@ body {
 .type-mario {
   background-color: #f00; /* Color para Mario */
 }
+.type-4 {
+  background-color: yellow; /* Color para Mario */
+}
+.type-5 {
+  background-color: gray; /* Color para Mario */
+}
+.type-6 {
+  background-color: black; /* Color para Mario */
+}
 
 /* Otros estilos para diferentes tipos de tiles */
+
+/* Estilos para la interfaz de usuario */
+#ui-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  z-index: 100;
+}
+
+#message {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0000; /* Rojo para mensajes importantes */
+}
