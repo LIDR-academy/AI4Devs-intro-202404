@@ -1,0 +1,206 @@
+/* styles.css */
+body,
+button,
+.game-over {
+  font-family: 'Press Start 2P', cursive;
+  /* Fuente estilo arcade */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  /* 10 columnas */
+  grid-template-rows: repeat(10, 40px);
+  /* 10 filas */
+  gap: 1px;
+  /* Espacio entre las celdas */
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #555;
+}
+
+.wall {
+  background-color: blue;
+}
+
+/* Agregar a styles.css */
+.score {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Estilo básico para la fruta */
+.fruit {
+  font-size: 24px; /* Ajusta el tamaño según sea necesario */
+  line-height: 40px; /* Alineación vertical en el centro */
+  text-align: center; /* Alineación horizontal en el centro */
+  animation: bounce 1.5s infinite; /* Animación de rebote aplicada a la fruta */
+}
+
+/* Animación de rebote para la fruta */
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+}
+
+/* Añadir y actualizar en styles.css */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Semi-transparente para ver el fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.game-over {
+  color: red;
+  font-size: 24px;
+}
+
+.score {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  /* Asegurar que el score siempre sea visible */
+}
+
+/* Estilo general para todos los fantasmas */
+.ghost {
+  width: 40px;
+  height: 40px;
+  background-color: red; /* Color por defecto, se cambiará individualmente */
+  border-radius: 50% 50% 0 0; /* Redondeo solo en la parte superior */
+  position: relative;
+}
+
+/* Colores específicos para cada fantasma */
+.blinky { background-color: red; }
+.pinky { background-color: pink; }
+.inky { background-color: cyan; }
+.clyde { background-color: orange; }
+
+/* Sombras y detalles para dar un efecto 3D */
+.ghost::before, .ghost::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: inherit; /* Toma el color del fantasma */
+}
+
+.ghost::before {
+  left: 5px;
+}
+
+.ghost::after {
+  right: 5px;
+}
+
+/* Estilos para los ojos de los fantasmas */
+.ghost .eye {
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  background-color: white;
+  border-radius: 50%;
+  top: 10px;
+}
+
+.ghost .eye::before {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: blue;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+}
+
+/* Posición de los ojos */
+.ghost .left-eye { left: 8px; }
+.ghost .right-eye { right: 8px; }
+
+
+
+/* Estilo básico para Pac-Man */
+.pacman {
+  width: 40px;
+  /* Tamaño de la celda */
+  height: 40px;
+  background-color: black;
+  /* Color clásico de Pac-Man */
+  /* border-radius: 50%; */
+  /* Hace el círculo perfecto */
+  position: relative;
+  /* Para el posicionamiento de la boca */
+  clip-path: circle();
+  /* Asegura que sea un círculo completo inicialmente */
+}
+
+/* Añade un pseudo-elemento para la boca */
+.pacman::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: yellow;
+  border-radius: 50%;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%, 100% 0);
+  animation: chomp 0.5s infinite alternate;
+  /* Animación que abre y cierra la boca */
+}
+
+/* Definir la animación de la boca */
+@keyframes chomp {
+  from {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 50% 50%);
+  }
+
+  to {
+    clip-path: polygon(100% 0, 0 50%, 100% 100%, 100% 0);
+  }
+}
