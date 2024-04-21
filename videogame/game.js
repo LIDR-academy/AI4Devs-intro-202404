@@ -1,41 +1,73 @@
-// Definir variables para puntaje y vidas
-let score = 0;
-let lives = 3;
+/* 0: vacio, 1: ladrillo, 2: plataforma, 3: Mario */
+const levelMatrix = [
+  [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [2, 2, 2, 2, 2, 0, 2, 2, 2, 2],
+];
 
-// Obtener elementos del DOM
-const scoreElement = document.getElementById('score-value');
-const livesElement = document.getElementById('lives-value');
+const player = {
+  x: 1,
+  y: 5,
+};
 
-// Actualizar puntaje y vidas en la interfaz de usuario
-function updateUI() {
-    scoreElement.textContent = score;
-    livesElement.textContent = lives;
-}
-
-// Función principal para inicializar el juego
-function initGame() {
-    // Lógica del juego empezaría aquí
-    // Por ejemplo, inicializar el nivel, manejar colisiones, etc.
-    // Por ahora, solo actualizamos la interfaz de usuario
-    updateUI();
-}
-
-// Llamar a la función principal para iniciar el juego
-initGame();
-
-// Función para manejar la recolección de monedas
-function collectCoin() {
-  score += 10; // Aumentar el puntaje al recolectar una moneda
-  updateUI(); // Actualizar la interfaz de usuario
-}
-
-// Manejar eventos de clic para recolección de monedas
-document.addEventListener('click', function(event) {
-  if (event.target.classList.contains('coin')) {
-      event.target.remove(); // Eliminar la moneda al recolectarla
-      collectCoin(); // Llamar a la función para recolectar la moneda
+function generateLevel() {
+  const gameContainer = document.getElementById('game-container');
+  for (let y = 0; y < levelMatrix.length; y++) {
+    for (let x = 0; x < levelMatrix[y].length; x++) {
+      const tileType = levelMatrix[y][x];
+      const tile = document.createElement('div');
+      tile.className = `tile type-${tileType}`;
+      gameContainer.appendChild(tile);
+    }
   }
+}
+
+function renderPlayer() {
+  const playerTile = document.createElement('div');
+  playerTile.className = 'tile type-3'; // Tipo 3 para Mario
+  playerTile.style.gridColumnStart = player.x + 1; // Ajustar posición X
+  playerTile.style.gridRowStart = player.y + 1; // Ajustar posición Y
+  document.getElementById('game-container').appendChild(playerTile);
+}
+
+function clearPlayer() {
+  const playerTile = document.querySelector('.type-3'); // Encontrar el tile de Mario
+  if (playerTile) {
+    playerTile.remove(); // Eliminar el tile de Mario
+  }
+}
+
+function movePlayer(direction) {
+  clearPlayer(); // Limpiar la posición anterior de Mario
+
+  // Actualizar la posición de Mario según la dirección
+  switch (direction) {
+    case 'ArrowLeft':
+      if (player.x > 0 && levelMatrix[player.y][player.x - 1] !== 1) {
+        player.x--;
+      }
+      break;
+    case 'ArrowRight':
+      if (player.x < levelMatrix[0].length - 1 && levelMatrix[player.y][player.x + 1] !== 1) {
+        player.x++;
+      }
+      break;
+    case 'ArrowUp':
+      // Implementar salto si es necesario
+      break;
+  }
+
+  renderPlayer(); // Renderizar a Mario en la nueva posición
+}
+
+document.addEventListener('keydown', (event) => {
+  movePlayer(event.key); // Mover a Mario cuando se presiona una flecha
 });
 
-// Llamar a la función principal para iniciar el juego
-initGame();
+generateLevel(); // Generar el nivel inicial
+renderPlayer(); // Renderizar a Mario inicialmente
