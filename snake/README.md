@@ -1,4 +1,3 @@
-@@ -1,9 +0,0 @@
 **Tiempo: 30 minutos**
 
 Con la ayuda de un asistente de IA, desarrollar por equipos un juego interactivo de Snake. El juego debe ser completamente funcional y compatible con todos los navegadores web modernos.
