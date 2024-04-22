@@ -1,0 +1,43 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game Settings</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4 text-center">Memory Game Settings</h1>
+        <form id="settings-form" class="settings-form" onsubmit="return false;">
+            <div class="form-group">
+                <label for="num-players">Number of Players:</label>
+                <select id="num-players" class="form-control">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div id="player-names-container">
+                <!-- Player name fields will be dynamically added here based on the selected number of players -->
+            </div>
+            <div class="form-group">
+                <label for="difficulty">Difficulty:</label>
+                <select class="form-control" id="difficulty">
+                    <option value="4">Easy (4 pairs)</option>
+                    <option value="5">Medium (5 pairs)</option>
+                    <option value="6">Hard (6 pairs)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Start Game</button>
+        </form>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>
+

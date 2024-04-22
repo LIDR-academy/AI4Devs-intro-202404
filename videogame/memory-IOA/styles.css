@@ -1,0 +1,35 @@
+.card {
+    width: 257px; /* Adjust the width as needed */
+    height: 361px; /* Adjust the height as needed */
+    background-color: blue; /* Set the initial background color */
+    cursor: pointer; /* Show pointer cursor on hover */
+    margin: 10px; /* Add margin around the card */
+    border: 2px solid black; /* Add border to the card */
+    /* Add more styles as needed */
+}
+
+/* Add styles for the face-up state of the card (displaying the image) */
+.card-image {
+    background-size: cover; /* This will cover the entire div with the background image */
+    background-position: center; /* This will center the background image */
+    /* You can add more styles like background-repeat, background-color, etc., as needed */
+}
+
+/* Add styles for the face-down state of the card */
+.card.empty {
+    /* Set the background color for face-down cards */
+    background-color: blue;
+    /* Set the background image to none by default */
+    background-image: none !important;
+}
+
+/* Class to hide the background image */
+#turn-text {
+    font-size: 24px; /* Adjust the font size as needed */
+}
+
+#player-turn {
+    font-size: 24px; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the text bold */
+}
+

@@ -1,0 +1,30 @@
+<!-- board.html -->--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Memory Game Board</title>
+   <!-- Include Bootstrap CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Custom styles -->
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <div class="container">
+       <h1 class="mt-5 mb-4 text-center">Memory Game Board</h1>
+       <div id="game-board" class="row justify-content-center mb-4">
+           <!-- Game board grid will be dynamically generated here -->
+       </div>
+       <div class="row justify-content-center">
+           <div class="col-md-2 text-center">
+               <p id="turn-text" class="mb-3">It's your turn: </p>
+           </div>
+           <div class="col-md-2 text-center">
+               <p id="player-turn" class="mb-3">Player 1</p>
+           </div>
+       </div>
+   </div>
+   <script src="js/board.js"></script>
+</body>
+</html>
