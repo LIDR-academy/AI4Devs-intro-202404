@@ -1,0 +1,31 @@
+#gameArea {
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+  position: relative;
+  background-color: black;
+  overflow: hidden;
+}
+#paddle {
+  width: 100px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  bottom: 10px;
+  left: 350px;
+}
+#ball {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position: absolute;
+  top: 300px;
+  left: 390px;
+  border-radius: 50%;
+}
+.brick {
+  width: 75px; /* Ajusta el tamaño según el ancho de tu área de juego */
+  height: 20px;
+  position: absolute;
+  background-color: red; /* Color por defecto */
+}
