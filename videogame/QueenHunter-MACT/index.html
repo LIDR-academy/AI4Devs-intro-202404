@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queen Hunter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="main-menu">
+      <h1>Queen Hunter</h1>
+      <button id="play-button">Jugar</button>
+      <button id="high-scores-button">Los más veloces</button>
+      <button id="credits-button">Créditos</button>
+    </div>
+
+    <div style="display: none">
+      <div id="game-container">
+        <h2>Queen Hunter</h2>
+        <div id="chessboard"></div>
+        <div id="timer">00:00:00</div>
+        <button id="new-game-button">Iniciar un nuevo juego</button>
+        <button class="back-button">🔙</button>
+      </div>
+    </div>
+
+    <div id="victory-message" style="display: none">
+      <h3>¡Has ganado!</h3>
+      <p id="victory-details"></p>
+      <button id="play-again-button">Jugar de Nuevo</button>
+    </div>
+
+    <div id="high-scores" style="display: none">
+      <h2>Los más veloces</h2>
+      <div id="scores-container"></div>
+      <button class="back-button">🔙</button>
+    </div>
+
+    <div id="credits" style="display: none">
+      <h2>Créditos</h2>
+      <p>
+        Este juego es una creación conjunta de
+        <strong>The Creative Coders</strong>, Miguel Casallas y GPT.
+      </p>
+      <p>Gracias por jugar y ser parte de esta aventura de desarrollo!</p>
+      <button class="back-button">🔙</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
