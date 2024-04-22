@@ -10,7 +10,7 @@ def create_index_html(base_path):
         file.write('<html lang="es">\n')
         file.write('<head>\n')
         file.write('    <meta charset="UTF-8">\n')
-        file.write('    <title>Índice de Juegos</title>\n')
+        file.write('    <title>Índice de Juegos - AI4Devs</title>\n')
         file.write('    <link rel="stylesheet" href="styles.css">\n')
         file.write('</head>\n')
         file.write('<body>\n')
@@ -27,6 +27,9 @@ def create_index_html(base_path):
 
         file.write('        </ul>\n')
         file.write('    </div>\n')
+        file.write('    <footer>\n')
+        file.write('        <p>© AI4Devs students</p>\n')
+        file.write('    </footer>\n')
         file.write('</body>\n')
         file.write('</html>\n')
 
