@@ -1,0 +1,30 @@
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30px, 0fr));
+    gap: 2px;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #ddd;
+    border: 1px solid #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.revealed {
+    background-color: #f5f5f5;
+}
+
+.flagged {
+    background-color: #ffc107;
+}
+
+.mine {
+    background-color: #dc3545;
+    color: #fff;
+}

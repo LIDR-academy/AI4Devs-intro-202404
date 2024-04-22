@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Shoot n' Study</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+        <div id="startScreen" class="text-center">
+            <h1 class="mb-4">Shoot n' Study</h1>
+            <div class="gender-selection mb-3">
+                <img src="assets/boy.png" alt="Niño" class="gender-image img-thumbnail mr-2" id="boy">
+                <img src="assets/girl.png" alt="Niña" class="gender-image img-thumbnail" id="girl">
+            </div>
+            <div class="theme-selection btn-group mb-3" role="group" aria-label="Basic example">
+                <button type="button" class="theme-button btn btn-primary" id="math-button">Matemáticas</button>
+                <button type="button" class="theme-button btn btn-primary" id="science-button">Ciencia</button>
+                <button type="button" class="theme-button btn btn-primary" id="history-button">Historia</button>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button id="startButton" class="btn btn-success btn-lg" disabled>Iniciar Juego</button>
+            </div>
+            
+        </div>
+        <!-- Aquí se cargará la pantalla de juego una vez que se inicie -->
+        <div id="gameScreen" class="game-container" style="display: none;">
+            <div id="header">
+                <span id="score">Puntaje: 0</span>
+            </div>
+            <div id="questionsContainer" class="questions-container">
+                <div id="floatingAnswers" class="floating-answers">
+                    <!-- Los botones flotantes se generarán y moverán aquí -->
+                </div>
+                <div id="staticAnswers" class="static-answers">
+                    <p id="questionText"></p>
+                    <div id="answers">
+                        <!-- Respuestas estáticas A, B, C, D para visualización -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="endScreen" class="text-center" style="display: none;">
+            <h1>Juego Terminado</h1>
+            <p id="finalScore"></p>
+            <button class="btn btn-primary" onclick="restartGame()">Reiniciar Juego</button>
+        </div>
+        
+        
+    </div>
+    <script src="questions.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

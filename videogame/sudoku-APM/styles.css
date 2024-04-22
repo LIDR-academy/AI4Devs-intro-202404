@@ -1,0 +1,100 @@
+.sudoku-rules {
+    font-size: 0.9em;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.sudoku-rules h2 {
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.sudoku-rules ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sudoku-rules li::before {
+    content: "•";
+    color: #007bff; /* color de Bootstrap primary */
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+.sudoku-rules ul {
+    list-style: none; /* quita los estilos de lista por defecto */
+    padding: 0; /* quita el padding por defecto de la lista */
+    margin: 0; /* ajusta el margen para que no haya espacio extra fuera del cuadro */
+}
+
+.sudoku-rules li {
+    padding-left: 1em; /* añade padding para que el texto no toque el borde */
+    text-indent: -1em; /* Indenta negativamente para que los puntos queden alineados dentro del cuadro */
+    margin-left: 20px; /* añade margen izquierdo para alinear con el título */
+    position: relative; /* posiciona relativamente para el pseudo-elemento */
+}
+
+.sudoku-rules li::before {
+    content: "•"; /* el punto para cada elemento de la lista */
+    color: #007bff; /* usa un color azul como en Bootstrap para el punto */
+    font-weight: bold; /* hace el punto más grueso */
+    position: absolute; /* posiciona absolutamente respecto a su elemento padre li */
+    left: 0; /* alinea a la izquierda dentro del padding del elemento li */
+}
+
+.sudoku-grid {
+    margin: auto;
+    border-collapse: collapse;
+    width: 450px; /* Ajusta al tamaño deseado */
+}
+
+.sudoku-cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #999; /* líneas internas más claras */
+    text-align: center;
+    font-size: 20px;
+    line-height: 50px; /* Centra el texto verticalmente */
+    font-weight: 400; /* Estilo de fuente normal para números ingresados por el usuario */
+    color: #333; /* Color de fuente más oscuro para mejor lectura */
+    background-color: #fff; /* Fondo blanco para las celdas */
+}
+
+.sudoku-cell:focus {
+    background-color: #eef;
+    outline: none;
+}
+
+/* Para los números preestablecidos, que podrían estar en una clase diferente, como 'given-number' */
+.given-number {
+    font-weight: bold; /* Estilo de fuente más oscuro para los números dados */
+}
+
+.sudoku-grid tr td:nth-child(3n) {
+    border-right: none; /* Eliminar borde derecho para todas las celdas */
+}
+
+/* Añadir borde derecho solo a las celdas que son el límite de una subcuadrícula */
+.sudoku-grid tr td:nth-child(3n):not(:last-child) {
+    border-right: 3px solid #000; /* Borde derecho más grueso solo en las subcuadrículas */
+}
+
+/* Eliminar la línea inferior negra gruesa de la última fila de cada subcuadrícula 3x3, excepto la última fila del tablero */
+.sudoku-grid tr:nth-child(3n):not(:last-child) td {
+    border-bottom: 3px solid #000;
+}
+
+/* Centrar el botón debajo del tablero */
+#check-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 200px; /* Ancho fijo para el botón */
+}
+
+

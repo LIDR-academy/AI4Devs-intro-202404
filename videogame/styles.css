@@ -1,0 +1,38 @@
+/* Importa la fuente 'Press Start 2P' de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive; /* Aplica la fuente a todo el cuerpo del documento */
+    text-align: center;
+}
+
+#game-index ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#game-index li {
+    margin: 20px 0;
+}
+
+#game-index a {
+    color: #00ff00; /* Verde brillante, común en pantallas retro */
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#game-index a:hover {
+    color: #ff0000;
+}
+
+/* Add styles for the footer */
+footer {
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer p {
+    color: #777; /* Color for the copyright text */
+}
