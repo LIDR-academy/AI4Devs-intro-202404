@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     copyBtn.addEventListener('click', () => {
         copyToClipboard(resultDiv.textContent);
+        copyMsg.textContent = 'Copied to clipboard!'; // Show message when text is copied
+        setTimeout(() => {
+            copyMsg.textContent = '';
+        }, 5000); // 5000 milliseconds = 5 seconds
     });
 });
 

@@ -1,0 +1,49 @@
+.board {
+    display: grid;
+    gap: 1px;
+}
+
+/* Adjust grid-template-columns for different levels */
+.board.level-beginner {
+    grid-template-columns: repeat(9, 30px);
+}
+
+.board.level-intermediate {
+    grid-template-columns: repeat(16, 30px);
+}
+
+.board.level-expert {
+    grid-template-columns: repeat(30, 30px);
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #999;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+.cell.revealed {
+    background-color: #fff;
+    cursor: default;
+}
+.cell.flagged {
+    background-color: #ccc;
+    color: #f00;
+}
+.cell.bomb {
+    background-color: #f00;
+    color: #fff;
+}
+
+.level-selector {
+    margin-top: 10px;
+}
+
+.level-selector label {
+    margin-right: 10px;
+}
