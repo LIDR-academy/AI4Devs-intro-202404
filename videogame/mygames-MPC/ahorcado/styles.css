@@ -1,0 +1,121 @@
+/* En el archivo styles.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  /* Color de fondo suave */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.title {
+  font-size: 36px;
+  /* Tamaño de fuente más grande */
+  font-family: 'Arial', sans-serif;
+  /* Fuente más moderna */
+  color: #333;
+  /* Color de texto más oscuro */
+  margin-bottom: 20px;
+}
+
+.game-container {
+  background-color: #fff;
+  /* Color de fondo de la caja del juego */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  /* Ancho máximo de la caja del juego */
+  width: 100%;
+  text-align: center;
+  /* Centrar elementos dentro de la caja */
+  margin-bottom: 20px;
+  /* Espacio inferior entre la caja del juego y el siguiente elemento */
+}
+
+.word {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.keyboard button {
+  font-size: 18px;
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #6c757d;
+  /* Color de fondo de los botones */
+  color: #fff;
+  /* Color de texto */
+  border: none;
+  /* Sin borde */
+}
+
+.keyboard button.btn-success {
+  background-color: #73c6b6;
+  /* Color verde suave */
+}
+
+.keyboard button.btn-danger {
+  background-color: #f08080;
+  /* Color rojo suave */
+}
+
+.keyboard {
+  margin-bottom: 20px;
+  /* Espaciado debajo del teclado */
+}
+
+.remaining-attempts {
+  text-align: center;
+  margin-top: 40px;
+  /* Más espacio entre la caja de intentos y el teclado */
+  border: 2px solid #6c757d;
+  /* Borde de la caja de "Intentos restantes" */
+  border-radius: 5px;
+  /* Bordes redondeados */
+  padding: 10px;
+  /* Espaciado interno */
+  max-width: 150px;
+  /* Ancho máximo de la caja */
+  width: 100%;
+  margin: 0 auto;
+  /* Centrar horizontalmente */
+  background-color: #f8f9fa;
+  /* Color de fondo de la caja */
+  color: #333;
+  /* Color de texto */
+  font-size: 20px;
+  /* Tamaño de fuente aumentado */
+  font-weight: bold;
+  /* Texto en negrita */
+}
+
+.remaining-attempts span {
+  font-size: inherit;
+  /* Tamaño de fuente heredado */
+  font-weight: inherit;
+  /* Peso de fuente heredado */
+  color: #333;
+  /* Color de texto predeterminado */
+}
+
+.remaining-attempts span.low-attempts {
+  color: #dc3545;
+  /* Color rojo suave cuando los intentos están por debajo de 4 */
+}
