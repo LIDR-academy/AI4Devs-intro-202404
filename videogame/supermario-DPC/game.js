@@ -1,15 +1,15 @@
 /* 0: vacio, 1: ladrillo, 2: plataforma, 3: Mario, 4: Moneda, 5: Enemigo, 6: Meta */
 const levelMatrix = [
-  [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 0, 0, 0, 4, 0, 0, 5, 0, 0, 0, 0, 0, 6, 0],
-  [2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 2, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 1, 4, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0],
+  [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 2, 2, 2, 0, 0, 6],
+  [2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2],
 ];
 
 const player = {
@@ -34,6 +34,7 @@ function generateLevel() {
       const tileType = levelMatrix[y][x];
       const tile = document.createElement('div');
       tile.className = `tile type-${tileType}`;
+      tile.id = `tile-${x}-${y}`;
       tile.style.gridColumnStart = x + 1;
       tile.style.gridRowStart = y + 1;
       gameContainer.appendChild(tile);
@@ -61,6 +62,16 @@ function movePlayer(direction) {
 
   if (!player.isJumping && player.isFalling && player.y < levelMatrix.length - 1 && levelMatrix[player.y + 1][player.x] !== 1 && levelMatrix[player.y + 1][player.x] !== 2) {
     player.y++;
+  }
+  if (!player.isJumping && player.isFalling && player.y === levelMatrix.length - 1) {
+    // Mario ha llegado al límite inferior del mapa
+    player.lives--;
+    if (player.lives <= 0) {
+      gameOver();
+    } else {
+      respawnPlayer();
+    }
+    return;
   }
 
   switch (direction) {
@@ -96,6 +107,12 @@ function movePlayer(direction) {
   renderPlayer();
 }
 
+function updateTile(x, y, type) {
+  const tile = document.querySelector(`#tile-${x}-${y}`);
+  if (tile) {
+    tile.className = `tile type-${type}`;
+  }
+}
 function handleCollisions() {
   const tileType = levelMatrix[player.y][player.x];
   switch (tileType) {
@@ -103,6 +120,7 @@ function handleCollisions() {
       player.score += 10;
       updateUI();
       levelMatrix[player.y][player.x] = 0; // Eliminar la moneda del nivel
+      updateTile(player.x, player.y, 0); // Actualizar el tipo de tile en el DOM
       break;
     case 5: // Enemigo
       player.lives--;
@@ -154,3 +172,4 @@ document.addEventListener('keydown', (event) => {
 
 generateLevel();
 updateUI(); // Mostrar la puntuación y vidas iniciales
+
