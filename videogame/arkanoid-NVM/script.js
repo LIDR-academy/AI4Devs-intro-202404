@@ -1,8 +1,15 @@
+const scoreDisplay = document.getElementById("scoreDisplay");
+const paddle = document.getElementById("paddle");
+const ball = document.getElementById("ball");
+const button = document.getElementById("restartButton");
+const gameArea = document.getElementById("bricks");
+const gameContainer = document.getElementById("gameArea");
+
 // Variables globales
 let gameStarted = false;
 let xVelocity = 2;
 let yVelocity = -2;
-
+let score = 0;
 document.addEventListener("DOMContentLoaded", initGame);
 
 // Inicializar el juego
@@ -10,12 +17,11 @@ function initGame() {
   setupEventListeners();
   createBricks();
   setupPaddleAndBall(); // Posicionar y mostrar la pelota desde el inicio
+  displayScores();
 }
 
 // Configurar la paleta y la bola
 function setupPaddleAndBall() {
-  const paddle = document.getElementById("paddle");
-  const ball = document.getElementById("ball");
   resetBall(paddle, ball); // Posicionar la pelota correctamente
   ball.style.display = ""; // Asegurar que la pelota sea visible desde el inicio
 }
@@ -43,19 +49,20 @@ function setupEventListeners() {
 
 // Iniciar el juego
 function startGame() {
-  gameStarted = true;
-
-  xVelocity = 0; // Sin movimiento horizontal inicial
-  yVelocity = -4; // Comenzar el movimiento hacia arriba
-
-  requestAnimationFrame(moveBall); // Comenzar la animación
+  if (!gameStarted) {
+    gameStarted = true;
+    score = 0; // Restablecer la puntuación a 0 al comenzar el juego
+    updateScoreDisplay(); // Actualizar el display de la puntuación
+    xVelocity = 0; // Sin movimiento horizontal inicial
+    yVelocity = -4; // Comenzar el movimiento hacia arriba
+    requestAnimationFrame(moveBall); // Comenzar la animación del juego
+  }
 }
 
 // Manejar el movimiento de la paleta
 function handlePaddleMovement(event) {
   if (!gameStarted) return; // Ignorar los eventos de teclado si el juego no ha empezado
 
-  const paddle = document.getElementById("paddle");
   const left = paddle.offsetLeft;
   const step = 20; // Definir cuánto se mueve la paleta con cada pulsación
 
@@ -68,7 +75,6 @@ function handlePaddleMovement(event) {
 
 // Mover la pelota
 function moveBall() {
-  const ball = document.getElementById("ball");
   let x = ball.offsetLeft + xVelocity;
   let y = ball.offsetTop + yVelocity;
 
@@ -94,21 +100,25 @@ function boundaryCollisionCheck(x, y) {
 
 // Comprobar colisión con ladrillos
 function brickCollisionCheck() {
-  const ball = document.getElementById("ball");
   const bricks = document.querySelectorAll(".brick");
+  let scoreUpdated = false;
+
   bricks.forEach((brick) => {
     if (brick.style.display !== "none" && detectCollision(ball, brick)) {
       yVelocity *= -1;
       brick.style.display = "none";
-      return;
+      score += parseInt(brick.dataset.points); // Sumar puntos del ladrillo
+      scoreUpdated = true;
     }
   });
+
+  if (scoreUpdated) {
+    updateScoreDisplay(); // Actualizar el display de la puntuación
+  }
 }
 
 // Comprobar colisión con la paleta
 function paddleCollisionCheck() {
-  const ball = document.getElementById("ball");
-  const paddle = document.getElementById("paddle");
   if (detectCollision(ball, paddle) && yVelocity > 0) {
     yVelocity = -yVelocity; // Asegurar que el rebote sólo ocurra si la pelota se está moviendo hacia abajo
     // Ajustar la dirección X basada en el punto de impacto
@@ -119,7 +129,6 @@ function paddleCollisionCheck() {
 }
 
 function hideRestartButton() {
-  const button = document.getElementById("restartButton");
   if (button) {
     button.remove();
   }
@@ -128,6 +137,8 @@ function hideRestartButton() {
 function restartGame() {
   hideRestartButton(); // Ocultar el botón de reinicio
   gameStarted = false; // Marcar que el juego no ha comenzado
+  score = 0; // Restablecer la puntuación a 0
+  updateScoreDisplay(); // Actualizar el display de la puntuación
   clearBricks(); // Limpiar los ladrillos existentes
   createBricks(); // Crear ladrillos de nuevo
   setupPaddleAndBall(); // Reposicionar la paleta y la pelota
@@ -136,8 +147,6 @@ function restartGame() {
 }
 
 function resetBallAndPaddle() {
-  const paddle = document.getElementById("paddle");
-  const ball = document.getElementById("ball");
   paddle.style.left = "350px"; // Ajusta esto según la posición inicial deseada
   resetBall(paddle, ball);
   ball.style.display = ""; // Asegurar que la pelota sea visible
@@ -155,7 +164,6 @@ function clearBricks() {
 }
 
 function showRestartButton() {
-  const gameContainer = document.getElementById("gameArea");
   const button = document.createElement("button");
   button.textContent = "Volver a jugar";
   button.id = "restartButton";
@@ -163,15 +171,75 @@ function showRestartButton() {
   gameContainer.appendChild(button);
 }
 
+function updateScoreDisplay() {
+  if (!scoreDisplay) {
+    console.error("Score display element is missing!");
+    return;
+  }
+  scoreDisplay.textContent = `Score: ${score}`;
+}
+
 // Fin del juego
 function endGame() {
-  alert("Game Over! You lost the ball."); // Mostrar un mensaje simple de fin del juego
-  showRestartButton(); // Mostrar el botón para reiniciar el juego
+  alert("Game Over! You lost the ball.");
+  showRestartButton(); // Mostrar el botón de reinicio
+  let initials = prompt("Enter your initials (3 letters):", "");
+  if (initials && initials.length === 3) {
+    saveScore(initials, score);
+  } else {
+    alert("Invalid initials. Please enter exactly 3 letters.");
+  }
+}
+
+function saveScore(initials, newScore) {
+  let scores = JSON.parse(localStorage.getItem("scores")) || [];
+  let existingEntry = scores.find((s) => s.initials === initials);
+
+  if (existingEntry) {
+    // Si las iniciales ya existen, actualizar solo si la nueva puntuación es mayor
+    if (newScore > existingEntry.score) {
+      existingEntry.score = newScore; // Actualizar la puntuación
+    }
+  } else {
+    // Si no existen las iniciales, agregar nueva entrada
+    scores.push({ initials, score: newScore });
+  }
+
+  // Ordenar y guardar las puntuaciones
+  scores.sort((a, b) => b.score - a.score);
+  localStorage.setItem("scores", JSON.stringify(scores));
+  displayScores(); // Actualizar la lista de puntuaciones cada vez que se guarda una nueva
+}
+
+function displayScores() {
+  let scores = JSON.parse(localStorage.getItem("scores")) || [];
+  let scoreList = document.getElementById("scoreList");
+  if (!scoreList) {
+    console.error("Score list element is missing!");
+    return;
+  }
+
+  // Ordenar puntuaciones de mayor a menor
+  scores.sort((a, b) => b.score - a.score);
+
+  // Limpiar la lista existente antes de agregar nuevas entradas
+  scoreList.innerHTML = "";
+
+  // Tomar solo los 10 mejores resultados
+  scores.slice(0, 10).forEach((s) => {
+    let row = document.createElement("tr");
+    let nameCell = document.createElement("td");
+    nameCell.textContent = s.initials;
+    let scoreCell = document.createElement("td");
+    scoreCell.textContent = s.score;
+    row.appendChild(nameCell);
+    row.appendChild(scoreCell);
+    scoreList.appendChild(row);
+  });
 }
 
 // Crear ladrillos
 function createBricks() {
-  const gameArea = document.getElementById("bricks");
   const colors = [
     "red",
     "orange",
@@ -200,6 +268,7 @@ function createBricks() {
       let brickY = row * (brickHeight + brickPadding) + offsetTop;
       brick.style.left = `${brickX}px`;
       brick.style.top = `${brickY}px`;
+      brick.dataset.points = (numRows - row) * 10; // Asignar puntos de manera ascendente desde la parte superior
       gameArea.appendChild(brick);
     }
   }
