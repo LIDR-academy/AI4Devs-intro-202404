@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 id="title">2048</h1>
+    <div class="container">
+        <!-- Aquí se añadirán las celdas del juego dinámicamente -->
+    </div>
+    <div id="score">0</div> <!-- Elemento para mostrar el puntaje -->
+    <div id="overlay">
+        <div id="popup">
+            <h2>¡Bienvenido a 2048!</h2>
+            <p>Combina los números para obtener el 2048.</p>
+            <p>Utiliza las teclas de dirección para mover las celdas: ↑ ↓ ← →</p>
+            <p>El puntaje aumenta cada vez que combinas números.</p>
+            <button onclick="startGame()">Empezar</button>
+        </div>
+    </div>
+    <div id="game-over-popup">
+        <div id="game-over-content">
+            <h2>¡Juego Terminado!</h2>
+            <p>Puntaje final: <span id="final-score">0</span></p>
+            <button onclick="restartGame()">Reiniciar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
