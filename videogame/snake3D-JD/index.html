@@ -1,0 +1,506 @@
+<!-- The comments added to the code provide explanations for the different parts and functionalities of the game. Here's a summary of the main sections:
+
+1. The HTML structure defines the layout and elements of the game, including the score, controls, instructions, and coordinate display.
+
+2. The CSS styles define the appearance and positioning of the game elements.
+
+3. The JavaScript code handles the game logic and functionality:
+   - Variables are declared to store the game elements and settings.
+   - The `init` function initializes the game by setting up the scene, camera, renderer, lights, grid helpers, event listeners, and creating the snake and food.
+   - The `toggleAutoplay` function toggles the autoplay mode on and off.
+   - The `autoplayRotation` function handles the autoplay logic by calculating the direction towards the food and updating the snake's direction accordingly.
+   - The `addGrids` function adds grid helpers to the scene for visual reference.
+   - The `createSnake` and `createFood` functions create the snake and food objects.
+   - The `positionFood` function positions the food randomly within the grid.
+   - The `updateCoordinates` function updates the display of the snake head and food coordinates.
+   - The `animate` function is the main animation loop that updates the game state and renders the scene.
+   - The `moveSnake` function handles the movement of the snake and checks for collisions with the walls.
+   - The `checkCollision` function checks for collision between the snake head and the food.
+   - The `growSnake` function grows the snake by adding a new segment when the food is eaten.
+   - The event handler functions (`onDocumentKeyDown`, `onMouseDown`, `onMouseMove`, `onHorizontalSliderChange`, `onVerticalSliderChange`, `onMouseUp`, `onWheel`, `onWindowResize`) handle various user interactions and update the game accordingly.
+   - The `startGame` function starts the game by initiating the animation loop.
+   - The `adjustSpeed` function adjusts the speed of the game based on the speed slider value.
+
+4. Finally, the `init` function is called to initialize and start the game. -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Snake Game</title>
+    <style>
+        /* CSS styles for the game layout and elements */
+        body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #000; }
+        canvas { display: block; }
+        #info { position: absolute; color: white; font-size: 18px; top: 40px; left: 10px; }
+        #speed-control {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 18px;
+        }
+        #rotation-control {
+            position: absolute;
+            top: 70px;
+            right: 10px;
+            color: white;
+            font-size: 18px;
+        }
+        #autoplay-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .info-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: white;
+            font-size: 18px;
+            text-align: right;
+        }
+        .info-container h2 {
+            margin-bottom: 5px;
+        }
+        .info-container p {
+            margin: 0;
+        }
+        .info-container .control {
+            margin-bottom: 10px;
+        }
+        .score {
+            margin-bottom: 20px;
+        }
+        .score h2 {
+            margin-bottom: 5px;
+        }
+        .score p {
+            font-size: 24px;
+            margin: 0;
+        }
+        .score #score {
+            font-size: 24px;
+            margin: 0;
+        }        
+        .coordinates {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }                
+    </style>
+</head>
+<body>
+    <!-- HTML structure for the game elements -->    
+    <div class="info-container">
+        <div class="score">
+            <h2>SCORE</h2>
+            <div id="score">0</div>
+        </div>                
+        <div class="controls">
+            <h2>CONTROLS</h2>
+            <div class="control">
+                <label for="speed-slider">Speed:</label>
+                <input type="range" id="speed-slider" min="500" max="1500" value="1000" step="100">
+            </div>
+            <div class="control">
+                <label for="horizontal-slider">Horizontal Rotation:</label>
+                <input type="range" id="horizontal-slider" min="-180" max="180" value="0" step="1">
+            </div>
+            <div class="control">
+                <label for="vertical-slider">Vertical Rotation:</label>
+                <input type="range" id="vertical-slider" min="-90" max="90" value="0" step="1">
+            </div>            
+        </div>
+        <div class="instructions">
+            <h2>INSTRUCTIONS</h2>
+            <p>Mouse Drag: Rotate camera</p>
+            <p>Arrow Keys: Move snake</p>
+            <p>W/S Keys: Move snake vertically</p>
+            <p>Spacebar: Pause/Resume</p>
+            <button id="autoplay-button">Autoplay</button>
+        </div>            
+    </div>    
+    <div class="coordinates" id="coordinates">Snake Head: (0, 0, 0) | Food: (0, 0, 0)</div>
+
+    <!-- Include the Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Declare variables for the game elements and settings
+        let scene, camera, renderer, light, ambientLight, snakeGroup, food, gridHelper;
+        let snakeDirection = new THREE.Vector3(2, 0, 0);
+        let score = 0;
+        let lastUpdateTime = 0;
+        let speed = 125; // Initial speed (0.5 seconds delay)
+        let isMoving = true;
+        let moveInterval;
+        let polarAngle = 0;
+        let azimuthAngle = 0;
+        let autoplayInterval;
+        let isAutoplayOn = false;
+
+        // Initialize the game
+        function init() {
+            // Set up the scene, camera, renderer, lights, and grid helpers
+            scene = new THREE.Scene();
+            const aspectRatio = window.innerWidth / window.innerHeight;
+            camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+            camera.position.set(0, 50, 100);
+            camera.lookAt(new THREE.Vector3(0, 0, 0));
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0xabcdef);
+            renderer.shadowMap.enabled = true;
+            document.body.appendChild(renderer.domElement);
+            ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            light = new THREE.DirectionalLight(0xffffff, 0.5);
+            light.position.set(50, 50, 50);
+            light.castShadow = true;
+            scene.add(light);
+            addGrids();
+
+            // Add event listeners for window resize, mouse events, and key events
+            window.addEventListener('resize', onWindowResize, false);
+            document.addEventListener('mousedown', onMouseDown, false);
+            document.addEventListener('mouseup', onMouseUp, false);
+            document.addEventListener('mousemove', onMouseMove, false);
+            document.addEventListener('wheel', onWheel, false);
+
+            // Create the snake and food            
+            createSnake();
+            createFood();
+
+            document.addEventListener('keydown', onDocumentKeyDown, false);
+
+            // Set up the speed slider and rotation sliders            
+            document.getElementById('speed-slider').value = speed;
+            document.getElementById('horizontal-slider').addEventListener('input', onHorizontalSliderChange);
+            document.getElementById('vertical-slider').addEventListener('input', onVerticalSliderChange);
+
+            // Set up the autoplay button              
+            document.getElementById('autoplay-button').addEventListener('click', toggleAutoplay);   
+            
+            // Start the game            
+            startGame();
+        }
+
+        // Toggle autoplay mode
+        function toggleAutoplay() {
+            isAutoplayOn = !isAutoplayOn;
+            if (isAutoplayOn) {
+                autoplayInterval = setInterval(autoplayRotation, 50);
+                document.getElementById('autoplay-button').textContent = 'Stop Autoplay';
+            } else {
+                clearInterval(autoplayInterval);
+                document.getElementById('autoplay-button').textContent = 'Autoplay';
+            }
+        }
+
+        // Autoplay rotation logic        
+        function autoplayRotation() {
+            let snakeHead = snakeGroup.children[0];
+            let directionToFood = new THREE.Vector3().subVectors(food.position, snakeHead.position).normalize();
+            
+            // Calculate the angles between the current direction and the direction to the food
+            let angleX = Math.atan2(directionToFood.z, directionToFood.y) - Math.atan2(snakeDirection.z, snakeDirection.y);
+            let angleY = Math.atan2(directionToFood.x, directionToFood.z) - Math.atan2(snakeDirection.x, snakeDirection.z);
+            let angleZ = Math.atan2(directionToFood.y, directionToFood.x) - Math.atan2(snakeDirection.y, snakeDirection.x);
+            
+            // Determine the axis with the smallest angle difference
+            let minAngle = Math.min(Math.abs(angleX), Math.abs(angleY), Math.abs(angleZ));
+            
+            // Update the snake's direction based on the smallest angle difference
+            if (minAngle === Math.abs(angleX)) {
+                if (angleX > 0) {
+                    snakeDirection.set(0, 0, 2);
+                } else {
+                    snakeDirection.set(0, 0, -2);
+                }
+            } else if (minAngle === Math.abs(angleY)) {
+                if (angleY > 0) {
+                    snakeDirection.set(2, 0, 0);
+                } else {
+                    snakeDirection.set(-2, 0, 0);
+                }
+            } else {
+                if (angleZ > 0) {
+                    snakeDirection.set(0, 2, 0);
+                } else {
+                    snakeDirection.set(0, -2, 0);
+                }
+            }
+            
+            // Rotate the camera horizontally
+            polarAngle += 0.01;
+            let radius = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z + camera.position.y * camera.position.y);
+            updateCameraPosition(radius);
+        }
+
+        // Add grid helpers to the scene        
+        function addGrids() {
+            const size = 100;
+            const divisions = 20;
+            const gridColor = 0x888888;
+
+            gridHelper = new THREE.GridHelper(size, divisions, gridColor, gridColor);
+            gridHelper.position.set(0, 0, 0);
+            scene.add(gridHelper);
+
+            const gridHelperXY = new THREE.GridHelper(size, divisions, gridColor, gridColor);
+            gridHelperXY.rotation.x = Math.PI / 2;
+            gridHelperXY.position.set(0, 0, 0);
+            scene.add(gridHelperXY);
+
+            const gridHelperYZ = new THREE.GridHelper(size, divisions, gridColor, gridColor);
+            gridHelperYZ.rotation.z = Math.PI / 2;
+            gridHelperYZ.position.set(0, 0, 0);
+            scene.add(gridHelperYZ);
+        }
+
+        // Create the snake        
+        function createSnake() {
+            snakeGroup = new THREE.Group();
+            const segmentGeometry = new THREE.BoxGeometry(2, 2, 2);
+            const segmentMaterial = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+            segmentMaterial.castShadow = true;
+            for (let i = 0; i < 3; i++) {
+                let segment = new THREE.Mesh(segmentGeometry, segmentMaterial);
+                segment.position.set(-i * 2.2, 0, 0);
+                segment.castShadow = true;
+                snakeGroup.add(segment);
+            }
+            scene.add(snakeGroup);
+        }
+
+        // Create the food        
+        function createFood() {
+            const foodGeometry = new THREE.BoxGeometry(2, 2, 2);
+            const foodMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+            food = new THREE.Mesh(foodGeometry, foodMaterial);
+            food.castShadow = true;
+            positionFood();
+            scene.add(food);
+        }
+
+        // Position the food randomly within the grid        
+        function positionFood() {
+            const range = 48; // Ensure it aligns with the grid, integers only
+            const x = Math.floor((Math.random() * (range + 1)) - range / 2);
+            const y = Math.floor((Math.random() * (range + 1)) - range / 2);
+            food.position.set(x, y, 0);
+        }
+
+        // Update the coordinates display        
+        function updateCoordinates() {
+            const snakeHead = snakeGroup.children[0].position;
+            const foodPosition = food.position;
+            document.getElementById('coordinates').textContent = `Snake Head: (${snakeHead.x.toFixed(2)}, ${snakeHead.y.toFixed(2)}, ${snakeHead.z.toFixed(2)}) | Food: (${foodPosition.x.toFixed(2)}, ${foodPosition.y.toFixed(2)}, ${foodPosition.z.toFixed(2)})`;
+        }
+
+        // Animation loop        
+        function animate(timestamp) {
+            requestAnimationFrame(animate);
+            if (timestamp - lastUpdateTime >= speed) {
+                lastUpdateTime = timestamp;
+                if (isMoving) {
+                    moveSnake();
+                    checkCollision();
+                }
+            }
+            renderer.render(scene, camera);
+            updateCoordinates();
+        }
+
+        // Move the snake        
+        function moveSnake() {
+            if (!isMoving) return;
+            let snakeHead = snakeGroup.children[0];
+            let newPosition = snakeHead.position.clone().add(snakeDirection);
+
+            // Check for collisions with the invisible walls
+            if (newPosition.x > 50 || newPosition.x < -50 || newPosition.y > 50 || newPosition.y < -50 || newPosition.z > 50 || newPosition.z < -50) {
+                // Reverse the snake's direction
+                snakeDirection.negate();
+
+                // Change the color of the wall to signal a bump
+                const wallColor = new THREE.Color(0xff0000); // Red color
+                gridHelper.material.color = wallColor;
+                gridHelperXY.material.color = wallColor;
+                gridHelperYZ.material.color = wallColor;
+
+                // Revert the wall color after 0.5 seconds
+                setTimeout(() => {
+                        const originalColor = new THREE.Color(0x888888);
+                        gridHelper.material.color = originalColor;
+                        gridHelperXY.material.color = originalColor;
+                        gridHelperYZ.material.color = originalColor;
+                    }, 500);
+
+                // Update the new position based on the reversed direction
+                newPosition = snakeHead.position.clone().add(snakeDirection);
+            }
+
+            snakeHead.position.copy(newPosition);
+
+            for (let i = snakeGroup.children.length - 1; i > 0; i--) {
+                snakeGroup.children[i].position.copy(snakeGroup.children[i - 1].position);
+            }
+        }
+
+        // Check for collision between the snake head and the food        
+        function checkCollision() {
+            let head = snakeGroup.children[0];
+            if (head.position.distanceTo(food.position) < 2) {
+                score++;
+                document.getElementById('score').textContent = score;
+                growSnake();                
+                positionFood();
+            }
+        }
+
+        // Grow the snake by adding a new segment        
+        function growSnake() {
+            let lastSegment = snakeGroup.children[snakeGroup.children.length - 1];
+            let newSegment = new THREE.Mesh(snakeGroup.children[0].geometry, snakeGroup.children[0].material);
+            newSegment.position.copy(lastSegment.position);
+            snakeGroup.add(newSegment);
+        }
+
+        // Handle key events for snake movement        
+        function onDocumentKeyDown(event) {
+            switch (event.key) {
+                case 'ArrowUp':
+                    if (snakeDirection.y !== -2) {
+                        snakeDirection.set(0, 2, 0);
+                    }
+                    break;
+                case 'ArrowDown':
+                    if (snakeDirection.y !== 2) {
+                        snakeDirection.set(0, -2, 0);
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (snakeDirection.x !== 2) {
+                        snakeDirection.set(-2, 0, 0);
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (snakeDirection.x !== -2) {
+                        snakeDirection.set(2, 0, 0);
+                    }
+                    break;
+                case 'w':
+                case 'W':
+                    if (snakeDirection.z !== -2) {
+                        snakeDirection.set(0, 0, 2);
+                    }
+                    break;
+                case 's':
+                case 'S':
+                    if (snakeDirection.z !== 2) {
+                        snakeDirection.set(0, 0, -2);
+                    }
+                    break;
+                case ' ':
+                    isMoving = !isMoving;
+                    break;
+            }
+        }
+
+        // Handle mouse down event        
+        function onMouseDown(event) {
+            mouseDown = true;
+            lastMouseX = event.clientX;
+            lastMouseY = event.clientY;
+        }
+
+        let verticalRotation = 0;
+
+        // Handle mouse move event for camera rotation        
+        function onMouseMove(event) {
+            if (!mouseDown) return;
+            let deltaX = event.clientX - lastMouseX;
+            let deltaY = event.clientY - lastMouseY;
+            let radius = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z + camera.position.y * camera.position.y);
+
+            polarAngle += deltaX * 0.01;
+            azimuthAngle += deltaY * 0.01;
+
+            updateCameraPosition(radius);
+
+            lastMouseX = event.clientX;
+            lastMouseY = event.clientY;
+        }
+
+        // Handle horizontal slider change event        
+        function onHorizontalSliderChange(event) {
+            let angle = parseFloat(event.target.value);
+            polarAngle = THREE.MathUtils.degToRad(angle);
+            let radius = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z + camera.position.y * camera.position.y);
+            updateCameraPosition(radius);
+        }
+
+        // Handle vertical slider change event        
+        function onVerticalSliderChange(event) {
+            let angle = parseFloat(event.target.value);
+            azimuthAngle = THREE.MathUtils.degToRad(angle);
+            let radius = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z + camera.position.y * camera.position.y);
+            updateCameraPosition(radius);
+        }
+
+        // Update the camera position based on the polar and azimuth angles        
+        function updateCameraPosition(radius) {
+            camera.position.x = radius * Math.sin(azimuthAngle) * Math.sin(polarAngle);
+            camera.position.z = radius * Math.sin(azimuthAngle) * Math.cos(polarAngle);
+            camera.position.y = radius * Math.cos(azimuthAngle);
+            camera.lookAt(scene.position);
+        }
+
+        // Handle mouse up event
+        function onMouseUp(event) {
+            mouseDown = false;
+        }
+
+        // Handle mouse wheel event for zooming        
+        function onWheel(event) {
+            event.preventDefault();
+            camera.fov += event.deltaY * 0.05;
+            camera.fov = Math.max(20, Math.min(100, camera.fov));
+            camera.updateProjectionMatrix();
+        }
+
+        // Handle window resize event        
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Start the game        
+        function startGame() {
+            lastUpdateTime = performance.now();
+            animate(lastUpdateTime);
+        }
+
+        // Adjust the speed based on the speed slider value        
+        function adjustSpeed() {
+            speed = parseInt(document.getElementById('speed-slider').value);
+        }        
+
+        // Add event listener to the speed slider
+        document.getElementById('speed-slider').addEventListener('input', adjustSpeed)
+        
+        init();
+    </script>
+</body>
+</html>
