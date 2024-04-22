@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="board"></div>
+<div class="level-selector">
+    <label for="level-select">Select Level:</label>
+    <select id="level-select">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="expert">Expert</option>
+    </select>
+    <button id="restart-btn">Restart</button>
+    <div class="timer" id="timer-container">
+        <span id="time-counter">Time: 0</span>
+        <div id="scoreboard"></div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

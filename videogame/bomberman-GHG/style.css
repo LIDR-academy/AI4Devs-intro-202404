@@ -1,0 +1,39 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  h1 {
+    text-align: center;
+    color: #fff;
+  }
+  
+  #gameArea {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    gap: 30px;
+  }
+
+  #controls {
+    color: white;
+    text-align: center;
+  }
+
+  #controls button {
+    color: green;
+    margin: 10px;
+  }
+
+  .game-over {
+    filter: grayscale(1);
+  }
+  
+  #gameCanvas {
+    background-color: #fff;
+  }
+  

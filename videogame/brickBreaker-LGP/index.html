@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick Breaker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">AI4DEVS - Brick Breaker</h1>
+        <div class="row">
+            <div id="gameInfo" class="gameInfo col-md-2">
+                <p>Score: <span id="score">0</span></p>
+                <p>Lives: <span id="lives">3</span></p>
+                <p>Level: <span id="level">1</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <canvas id="gameCanvas" width="800" height="600"></canvas>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-8 offset-md-4" id="buttons">
+                <button id="playButton" class="gameButton">Play</button>
+                <button id="pauseButton" class="gameButton" disabled>Pause</button>
+                <button id="continueButton" class="gameButton" disabled>Continue</button>
+                <button id="restartButton" class="gameButton">Restart</button>
+            </div>
+        </div>
+        <div id="gameOverModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <p class="text-center">Game Over. Your final score is: <span id="finalScore"></span></p>
+            </div>
+          </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
