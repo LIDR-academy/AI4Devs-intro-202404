@@ -1,0 +1,32 @@
+body { 
+    font-family: Arial, sans-serif; 
+    background: #f4f4f4; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+}
+canvas { 
+    background: #000; 
+    display: block; 
+}
+.game-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 20px;
+}
+.score {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+.instructions {
+    max-width: 200px;
+    margin-left: 20px;
+    font-size: 0.9em;
+}
+#pauseButton {
+    margin-top: 10px;
+}
