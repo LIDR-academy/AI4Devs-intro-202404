@@ -1,0 +1,71 @@
+# Blender MTL File: 'Foliage-1.blend'
+# Material Count: 6
+
+newmtl Bark
+Ns 27.777765
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -bm 0.500000 D:\\BlenderProjects\\Grass UE5\\GrassUE5_N.png
+map_Kd G:\\Downloads\\woodbark (1).png
+map_Ks D:\\BlenderProjects\\Grass UE5\\textures_1k\\BarkAI_Spec.png
+map_d G:\\Downloads\\woodbark (1).png
+
+newmtl Grass
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.033166 0.066806 0.001416
+Ks 0.104938 0.104938 0.104938
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Green
+Ns 27.777765
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:\\Downloads\\GrassUE5_D2 (1).png
+map_d G:\\Downloads\\GrassUE5_D2 (1).png
+
+newmtl Leaves
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.040909 0.040909 0.040909
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:\\Downloads\\GrassUE5_D4.png
+map_d G:\\Downloads\\GrassUE5_D4.png
+
+newmtl STEM
+Ns 97.090938
+Ka 1.000000 1.000000 1.000000
+Kd 0.152323 0.063233 0.015526
+Ks 0.166667 0.166667 0.166667
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Trunk
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:\\Downloads\\GrassUE5_D2 (1).png

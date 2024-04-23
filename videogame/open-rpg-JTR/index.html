@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open World RPG</title>
+    <!-- Include Babylon.js from CDN -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <!-- Include a script to manage the game -->
+    <script src="src/game.js"></script>
+</head>
+<body>
+<canvas id="gameCanvas" style="width: 100%; height: 100%;"></canvas>
+
+<div id="characterCreation" style="text-align: center;">
+    <h2>Character Creation</h2>
+    <p>Choose your character's gender:</p>
+    <label>
+        <input type="radio" name="gender" value="male" checked> Male
+    </label>
+    <label>
+        <input type="radio" name="gender" value="female"> Female
+    </label>
+
+    <p>Choose your character's skin color:</p>
+    <input type="color" id="skinColor" value="#ffe0bd"> <!-- Default light skin tone -->
+
+    <button id="startGame">Start Game</button>
+</div>
+</body>
+</html>
