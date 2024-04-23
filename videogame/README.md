@@ -16,10 +16,14 @@ Como referencia, se ha proporcionado el desarrollo de un juego de Snake, pero er
 
 5. **Prueba tu juego:** Antes de finalizar, prueba tu juego en diferentes navegadores para asegurarte de que funciona correctamente en todos ellos. Ajusta cualquier error que encuentres durante las pruebas con más prompts.
 
-6. **Haz una pull request:** Una vez que tu juego esté completo y probado, haz una pull request para incluir tu juego en el repositorio. Asegúrate de incluir en el comentario de la pull request una breve descripción de tu juego, cómo se juega y cualquier detalle relevante que quieras destacar.
+6. **Haz una pull request:** Una vez que tu juego esté completo y probado, haz una pull request para incluir tu juego en el repositorio. Recuerda incorporar al commit solo la carpeta de tu juego, para no tener conflictos con los ejercicios anteriores. Asegúrate de incluir en el comentario de la pull request una breve descripción de tu juego, cómo se juega y cualquier detalle relevante que quieras destacar.
 
 ## Ejemplo: Snake Game
 
 Para darte una idea de cómo estructurar tu proyecto, puedes referirte al juego de Snake desarrollado como ejemplo. Encuentra los archivos y la documentación necesaria en la carpeta `snake-EHS`.
 
 ¡Esperamos ver tu creatividad en acción y jugar los increíbles juegos que desarrolléis!
+
+## Uso de los juegos
+
+Hemos incorporado un listado con todos los juegos a modo emulador. Solo tienes que abrir `index.html` en la raiz de la carpeta videogame, elegir el juego que quieras, y ¡a jugar!
