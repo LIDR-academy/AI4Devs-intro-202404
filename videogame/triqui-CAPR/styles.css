@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa; /* Color de fondo ligero de Bootstrap */
+}
+
+#game-container {
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Limita el ancho máximo para dispositivos grandes */
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    background-color: #007bff; /* Azul de Bootstrap */
+    color: white; /* Texto blanco para mejor contraste */
+    height: 100px; /* Altura fija para cada celda */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: .25rem; /* Bordes redondeados al estilo Bootstrap */
+}
+
+.player {
+    margin: 10px;
+    color: #343a40; /* Gris oscuro de Bootstrap */
+}
+
+.player-icon {
+    font-weight: bold;
+}
+
+.score {
+    font-size: 1.5em;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #28a745; /* Verde de Bootstrap */
+    color: white;
+    border-radius: .25rem;
+}
+
+button:hover {
+    background-color: #218838; /* Verde oscuro al pasar el mouse */
+}
