@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-function reverseString(str) {
-    return str.split('').reverse().join('');
-}
-=======
 document.addEventListener('DOMContentLoaded', () => {
     const inputText = document.getElementById('inputText');
     const reverseBtn = document.getElementById('reverseBtn');
@@ -23,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     copyBtn.addEventListener('click', () => {
         copyToClipboard(resultDiv.textContent);
+        copyMsg.textContent = 'Copied to clipboard!'; // Show message when text is copied
+        setTimeout(() => {
+            copyMsg.textContent = '';
+        }, 5000); // 5000 milliseconds = 5 seconds
     });
 });
 
@@ -38,4 +37,3 @@ function copyToClipboard(text) {
     document.execCommand('copy');
     document.body.removeChild(textarea);
 }
->>>>>>> 294eb62a2507f52590a41ab3a290496c27366af8
