@@ -1,0 +1,35 @@
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#game-board {
+    width: 300px;
+    height: 600px;
+    background-color: #ccc;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.game-piece {
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+#score-display {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#message-display {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
