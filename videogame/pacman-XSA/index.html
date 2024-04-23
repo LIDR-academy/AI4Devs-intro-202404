@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pac-Man</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-PFDI3EP5gWs6ET+nJcPiJR81A0/yzxz+3xTOV5V+yd1MywFvKX9H2/6FodvAnCPyn6xswuFbSicB/MvN2TqhZg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div id="game-container" class="container">
+      <div id="scoreboard">Score: 0</div>
+
+      <div id="game-board" class="row">
+        <!-- Aquí se generará el laberinto del juego -->
+        <div class="cell">
+          <!-- Reemplazamos esto con el icono de FontAwesome -->
+          <i class="fas fa-pacman"></i>
+        </div>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+/* Estilos para el tablero */
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(
+    10,
+    40px
+  ); /* Cambia el número para ajustar el tamaño del tablero */
+  grid-template-rows: repeat(
+    10,
+    40px
+  ); /* Cambia el número para ajustar el tamaño del tablero */
+  gap: 2px; /* Espacio entre las celdas del tablero */
+  background-color: #000;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: fit-content; /* Ajustar el ancho del contenedor al contenido */
+}
+
+/* Estilos para las celdas del tablero */
+.cell {
+  width: 40px; /* Ancho de cada celda */
+  height: 40px; /* Alto de cada celda */
+}
+
+/* Estilos para Pac-Man */
+.pacman {
+  background-color: yellow;
+  border-radius: 50%; /* Para hacer que Pac-Man sea redondo */
+}
+
+/* Estilos para los fantasmas */
+.ghost {
+  background-color: #ff0000; /* Rojo */
+}
+
+/* Estilos para las píldoras */
+.pill {
+  background-color: #ffffff; /* Blanco */
+  border-radius: 50%; /* Para hacer que las píldoras sean redondas */
+}
