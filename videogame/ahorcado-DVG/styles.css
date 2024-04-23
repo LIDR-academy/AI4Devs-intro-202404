@@ -1,0 +1,12 @@
+#game-container {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+#game-over {
+    font-weight: bold;
+}
+
+#score {
+    font-weight: bold;
+}

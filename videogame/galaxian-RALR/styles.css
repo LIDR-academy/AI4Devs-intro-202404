@@ -1,0 +1,45 @@
+body {
+    max-width: 350px;
+}
+
+.title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    box-sizing: border-box;
+    z-index: 2; /* Increased z-index to ensure it's displayed above other elements */
+    color: white; /* Added text color */
+    background-color: #333; /* Added background color */
+    padding: 10px; /* Added padding for better readability */
+}
+
+.score-container {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: absolute; /* Change position to absolute */
+    top: 50px; /* Adjust top position to move it below the title */
+    width: 350px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.game-container {
+    background-color: black;
+    position: absolute; /* Change position to absolute */
+    top: 100px; /* Adjust top position to move it below the score */
+    width: 350px; /* Ensure the game container spans the entire width */
+    max-height: 280px;
+}
+
+.score-container, .title {
+    font-family: Courier, monospace;
+}
+
+.game-over-message {
+    color: red;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+}

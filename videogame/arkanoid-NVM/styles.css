@@ -1,0 +1,82 @@
+#gameArea {
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+  position: relative;
+  background-color: black;
+  overflow: hidden;
+}
+
+#gameContainer {
+  display: flex;
+  gap: 20px;
+}
+
+#paddle {
+  width: 100px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  bottom: 10px;
+  left: 350px;
+}
+#ball {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position: absolute;
+  top: 300px;
+  left: 390px;
+  border-radius: 50%;
+}
+.brick {
+  width: 75px; /* Ajusta el tamaño según el ancho de tu área de juego */
+  height: 20px;
+  position: absolute;
+  background-color: red; /* Color por defecto */
+}
+
+/* Estilos generales para la tabla */
+.table {
+  width: auto;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+/* Añadir zebra-striping a las filas de la tabla */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Estilos para los encabezados de la tabla */
+.table-dark {
+  color: #fff;
+  background-color: #343a40;
+}
+
+.table-dark th,
+.table-dark td,
+.table-dark thead th {
+  border-color: #454d55;
+}
+
+.table-dark thead th {
+  background-color: #454d55;
+}

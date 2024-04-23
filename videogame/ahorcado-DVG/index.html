@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Ahorcado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-4 mb-5">Juego del Ahorcado</h1>
+        <div id="category-message" class="text-center mb-4"></div>
+        <div id="game-over" class="alert alert-secondary text-center mb-4" role="alert"></div>
+        <div id="score" class="font-weight-bold text-center mb-4"></div>
+        <div id="game-container" class="p-3 border rounded shadow">
+            <svg id="hangman" height="250" width="150" class="mb-3 mx-auto d-block">
+                <!-- Base -->
+                <line x1="10" y1="220" x2="140" y2="220" stroke="black" stroke-width="3" id="base" />
+                <!-- Cabeza -->
+                <circle cx="75" cy="70" r="20" stroke="black" stroke-width="3" fill="white" id="head-circle" />
+                <!-- Cuerpo -->
+                <line x1="75" y1="90" x2="75" y2="150" stroke="black" stroke-width="3" id="body" />
+                <!-- Brazos -->
+                <line x1="75" y1="100" x2="45" y2="120" stroke="black" stroke-width="3" id="left-arm" />
+                <line x1="75" y1="100" x2="105" y2="120" stroke="black" stroke-width="3" id="right-arm" />
+                <!-- Piernas -->
+                <line x1="75" y1="150" x2="45" y2="200" stroke="black" stroke-width="3" id="left-leg" />
+                <line x1="75" y1="150" x2="105" y2="200" stroke="black" stroke-width="3" id="right-leg" />
+            </svg>
+            <div id="word-container" class="h3 text-center mb-4"></div>
+            <div id="letters" class="text-center"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+

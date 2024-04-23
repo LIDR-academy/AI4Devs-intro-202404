@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Arkanoid Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="gameContainer">
+      <div id="gameArea">
+        <div id="bricks"></div>
+        <div id="paddle"></div>
+        <div id="ball"></div>
+      </div>
+      <div id="scoreDisplay">
+        <h2>Score: 0</h3>
+        </div>
+        <table id="scoreTable" class="table table-striped table-dark">
+          <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Puntuación</th>
+              </tr>
+          </thead>
+          <tbody id="scoreList">
+              <!-- Las puntuaciones se insertarán aquí -->
+          </tbody>
+      </table>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
