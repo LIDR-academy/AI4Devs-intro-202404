@@ -1,0 +1,98 @@
+#game-board {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr); /* Ajustar según la cantidad de filas del tablero */
+    grid-template-columns: repeat(10, 1fr); /* Ajustar según la cantidad de columnas del tablero */
+}
+
+/* Ajustes básicos para las celdas del tablero */
+.cell {
+  width: 25px; /* o el tamaño que prefieras */
+  height: 25px; /* o el tamaño que prefieras */
+  margin: 2px; /* Espacio entre celdas */
+  background-color: #eee;
+  border: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 25px; /* Ajustar al alto de la celda */
+  cursor: pointer;
+}
+
+#game-board.disabled {
+    pointer-events: none;  // Desactivar eventos de clic
+    opacity: 0.4;          // Opcional, para efecto visual de desactivado
+}
+
+/* Colores para diferentes estados de la celda */
+.cell.mine {
+  background-color: red;
+}
+.cell.flagged {
+  background-color: blue;
+}
+.cell.revealed {
+  background-color: lightgrey;
+}
+.cell.no-interact {
+    pointer-events: auto;  // Asegurar que el doble clic funcione
+    opacity: 0.5;
+}
+
+/* Estilos adicionales para el contador y el desplegable */
+#flag-counter {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.dropdown {
+  margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;  /* Organiza el título y el tablero en columna */
+    align-items: center;  /* Centra el contenido verticalmente */
+}
+
+.controls-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px; /* Espacio entre controles */
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 20px; /* Espacio entre el título y el tablero */
+}
+
+
+/* Estilos para mejorar la visibilidad y estética de los botones y el contador */
+.button, .dropdown, #flag-counter {
+    width: 200px;  /* Ancho uniforme para todos los controles */
+}
+
+.dropdown .dropdown-menu {
+    width: 100%;  /* Asegura que el menú desplegable tenga el mismo ancho que el botón */
+}
+
+.board-and-controls {
+    display: grid;
+    grid-template-columns: auto 200px; /* El tablero ocupa el espacio que necesita y la barra lateral 200px */
+    column-gap: 20px; /* Espacio entre el tablero y los controles */
+    align-items: start; /* Alinea el tablero y los controles en la parte superior */
+}
+
+/* Ajustes para el dropdown y el botón de reinicio */
+#restart-button, #levelDropdown {
+    width: 100%; /* Asegúrate de que los controles llenen el espacio asignado */
+}
+
+.flags-counter {
+    text-align: right;
+}
