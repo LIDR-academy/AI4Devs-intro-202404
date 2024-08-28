@@ -59,7 +59,7 @@ Teniendo en cuenta el funcionamiento y reglas que me acabas de describir, ayúda
 </head>
 <body>
     <div id="gameArea"></div>
-    <script src="script.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
 ```
@@ -87,7 +87,7 @@ Teniendo en cuenta el funcionamiento y reglas que me acabas de describir, ayúda
 }
 ```
 
-### Paso 3: Lógica en JavaScript (`script.js`)
+### Paso 3: Lógica en JavaScript (`game.js`)
 ```javascript
 const gameArea = document.getElementById('gameArea');
 const gameSize = 400;
@@ -201,7 +201,7 @@ D: He encontrado algunos errores en el juego:
 1. **Control de la Velocidad**: Agregaremos un mecanismo para ajustar la velocidad de la serpiente en función de la longitud de la misma, lo que hará que el juego sea más desafiante a medida que la serpiente crezca.
 2. **Desaparición de la Manzana**: Aseguraremos que la manzana desaparezca y reaparezca en una nueva ubicación cada vez que la serpiente la consuma.
 
-### Mejoras en el Código JavaScript (`script.js`)
+### Mejoras en el Código JavaScript (`game.js`)
 
 Voy a añadir y modificar algunas funciones para corregir y mejorar el comportamiento:
 
@@ -325,7 +325,7 @@ Vamos mejorando, pero aún tenemos el siguiente error: Cuando la serpiente come 
 
 ¡Gracias por señalarlo! Corregiremos el error para asegurarnos de que la serpiente aumente su longitud correctamente cada vez que consuma una manzana. Aquí está la modificación necesaria para la función `moveSnake` en el código JavaScript para asegurar que la serpiente crezca adecuadamente:
 
-### Corrección en JavaScript (`script.js`)
+### Corrección en JavaScript (`game.js`)
 
 Vamos a modificar la función `moveSnake` para que, en lugar de eliminar el último segmento de la serpiente cuando come una manzana, simplemente añada el nuevo segmento al frente y deje el resto del cuerpo intacto. Esto resultará en un aumento en la longitud de la serpiente.
 

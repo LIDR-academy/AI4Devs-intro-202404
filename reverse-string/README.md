@@ -4,7 +4,7 @@ Crea una **función en javascript que invierta el orden de una cadena de texto**
 
 Ejemplo: si introduzco `AI4Devs` devuelve `sveD4IA`. 
 
-Hazlo apoyado en el seed `index.html` y `script.js` que proporcionamos
+Hazlo apoyado en el seed `index.html` y `game.js` que proporcionamos
 
 Utiliza un chatbot, como ChatGPT o Gemini, no un asistente de código en IDE como Github Copilot.
 
